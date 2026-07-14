@@ -39,6 +39,13 @@ Criar uma solução digital acessível e intuitiva que ajude mulheres a entender
 
 ---
 
+##  Protótipo 
+
+Você pode ver as telas em desenvolvimento, telas do projeto diretamente pelo Figma:
+
+👉 [Clique aqui para testar o protótipo no Figma](https://www.figma.com/design/xauKOoD4ZFX3WgJihZxNZX/Velary?node-id=112-736&t=X6f1brm5olJO1IKK-1)
+---
+
 ## Autora
 
 Stefani Cristin ✨  
