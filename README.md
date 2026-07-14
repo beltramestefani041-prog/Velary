@@ -1,5 +1,9 @@
 # Velary
 
+<p align="center">
+  <img width="300" alt="Velary Logo" src="https://github.com/user-attachments/assets/430aff38-7e6b-4f70-b4de-b6e8bf20b5bc" />
+</p>
+
 Aplicativo voltado à saúde feminina, desenvolvido para acompanhar e apoiar mulheres em todas as fases da vida.
 
 ---
@@ -15,9 +19,9 @@ O app busca unir tecnologia, cuidado e acolhimento em uma experiência única.
 ## Funcionalidades
 
 - Monitoramento do ciclo menstrual  
--  Acompanhamento de sintomas  
+- Acompanhamento de sintomas  
 - Suporte para tentantes  
--  Informações sobre saúde feminina  
+- Informações sobre saúde feminina  
 - Lembretes personalizados  
 
 ---
@@ -37,5 +41,5 @@ Criar uma solução digital acessível e intuitiva que ajude mulheres a entender
 
 ## Autora
 
-Stefani Cristina ✨  
+Stefani Cristin ✨  
 Em formação em desenvolvimento web e design.
