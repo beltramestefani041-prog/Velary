@@ -48,5 +48,5 @@ Você pode ver as telas em desenvolvimento, telas do projeto diretamente pelo Fi
 
 ## Autora
 
-Stefani Cristin ✨  
+Stefani Cristina  
 Em formação em desenvolvimento web e design.
