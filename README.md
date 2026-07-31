@@ -28,17 +28,34 @@ A plataforma foi pensada para acompanhar diferentes momentos da vida, oferecendo
 
 ---
 
-## Funcionalidades planejadas
+### Funcionalidades planejadas
+
+O Velary está sendo desenvolvido para oferecer acompanhamento e informações sobre diferentes fases da saúde feminina.
+
+### Acompanhamento da saúde
 
 - Acompanhamento do ciclo menstrual;
 - Registro de sintomas físicos e emocionais;
-- Diário emocional;
-- Conteúdos educativos sobre saúde feminina;
+- Diário emocional para acompanhamento do bem-estar;
+- Histórico de informações de saúde.
+
+### Educação em saúde feminina
+
+- Conteúdos educativos baseados em informações confiáveis;
+- Orientações sobre o primeiro ciclo menstrual;
 - Informações sobre endometriose e síndrome dos ovários policísticos (SOP);
-- Conteúdos sobre fertilidade, gestação, puerpério e menopausa;
-- Área educativa sobre a primeira menstruação para adolescentes;
+- Conteúdos sobre fertilidade, gestação, puerpério e menopausa.
+
+### Organização e rotina
+
 - Lembretes de consultas, exames e medicamentos;
-- Possibilidade de compartilhamento de informações com parceiro(a) ou responsável;
+- Organização de informações importantes da saúde;
+- Acompanhamento personalizado conforme a fase da vida.
+
+### Apoio e conexão
+
+- Área de acompanhamento para adolescentes com possibilidade de compartilhamento com um responsável;
+- Compartilhamento opcional de informações com parceiro(a), fortalecendo o apoio e a comunicação;
 - Futuras integrações com profissionais da saúde, clínicas e instituições parceiras.
 
 ---
