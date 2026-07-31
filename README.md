@@ -10,8 +10,7 @@
 
 ---
 
-## Sobre o projeto
-
+## 
 O Velary é uma plataforma digital de saúde feminina criada com o propósito de oferecer informação, acompanhamento e suporte para mulheres em diferentes fases da vida, desde a primeira menstruação até a menopausa.
 
 Diferente de aplicativos focados apenas no controle do ciclo menstrual, o Velary busca reunir tecnologia, educação em saúde e cuidado personalizado em um único ambiente, promovendo maior compreensão sobre o corpo feminino e apoio na rotina.
@@ -51,7 +50,7 @@ A pesquisa tem como objetivo auxiliar na identificação de melhorias e funciona
 
 Link da pesquisa:
 
-[Pesquisa de Validação do Velary – Plataforma Digital de Saúde Feminina](COLE_O_LINK_DO_GOOGLE_FORMS_AQUI)
+[Pesquisa de Validação do Velary – Plataforma Digital de Saúde Feminina]([COLE_O_LINK_DO_GOOGLE_FORMS_AQUI](https://docs.google.com/forms/d/e/1FAIpQLScQk1UpHdUZmxxo_71HgvxKhJvYYubR4-_aZtwQAXrjKqgeiA/viewform?usp=preview))
 
 ---
 
