@@ -21,8 +21,9 @@ O projeto está em desenvolvimento e tem como objetivo criar uma experiência ac
 
 ## Proposta
 
-O Velary busca auxiliar mulheres por meio de uma solução digital que incentive o autocuidado, a prevenção e o acompanhamento da saúde feminina.
+O Velary tem como proposta oferecer um espaço digital de apoio, informação e acompanhamento da saúde feminina, ajudando mulheres a compreender melhor seu corpo e suas necessidades em diferentes fases da vida.
 
+A plataforma reúne conteúdos educativos e recursos de organização da rotina de saúde, promovendo mais conhecimento, prevenção e cuidado de forma acessível e personalizada.
 A plataforma foi pensada para acompanhar diferentes momentos da vida, oferecendo informações confiáveis e recursos que contribuam para uma jornada de cuidado mais completa.
 
 ---
