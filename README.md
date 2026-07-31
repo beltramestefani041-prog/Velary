@@ -5,49 +5,6 @@
 </p>
 
 <p align="center">
-  <strong>Plataforma digital de saúde feminina para acompanhamento, informação e cuidado em todas as fases da vida da mulher.</strong>
-</p>
-
----
-
-## 
-O Velary é uma plataforma digital de saúde feminina criada com o propósito de oferecer informação, acompanhamento e suporte para mulheres em diferentes fases da vida, desde a primeira menstruação até a menopausa.
-
-Diferente de aplicativos focados apenas no controle do ciclo menstrual, o Velary busca reunir tecnologia, educação em saúde e cuidado personalizado em um único ambiente, promovendo maior compreensão sobre o corpo feminino e apoio na rotina.
-
-O projeto está em desenvolvimento e tem como objetivo criar uma experiência acessível, intuitiva e acolhedora para mulheres.
-
----
-
-## Proposta
-
-O Velary tem como proposta oferecer um espaço digital de apoio, informação e acompanhamento da saúde feminina, ajudando mulheres a compreender melhor seu corpo e suas necessidades em diferentes fases da vida.
-
-A plataforma reúne conteúdos educativos e recursos de organização da rotina de saúde, promovendo mais conhecimento, prevenção e cuidado de forma acessível e personalizada.
-A plataforma foi pensada para acompanhar diferentes momentos da vida, oferecendo informações confiáveis e recursos que contribuam para uma jornada de cuidado mais completa.
-
----
-
-### Funcionalidades planejadas
-
-O Velary está sendo desenvolvido para oferecer acompanhamento e informações sobre diferentes fases da saúde feminina.
-
-### Acompanhamento
-
-- Acompanhamento do ciclo menstrual;
-- Registro de sintomas físicos e emocionais;
-- Diário emocional para acompanhamento do bem-estar;
-- Histórico de informações de saúde.
-
-### Educação em saúde feminina
-
-- Conteúdos educativos basea# Velary
-
-<p align="center">
-  <img width="300" alt="Velary Logo" src="https://github.com/user-attachments/assets/430aff38-7e6b-4f70-b4de-b6e8bf20b5bc" />
-</p>
-
-<p align="center">
   Plataforma digital de saúde feminina para acompanhamento, informação e cuidado em todas as fases da vida da mulher.
 </p>
 
