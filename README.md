@@ -51,7 +51,7 @@ A pesquisa tem como objetivo auxiliar na identificação de melhorias e funciona
 
 Link da pesquisa:
 
-[Pesquisa de Validação do Velary – Plataforma Digital de Saúde Feminina]([COLE_O_LINK_DO_GOOGLE_FORMS_AQUI](https://docs.google.com/forms/d/e/1FAIpQLScQk1UpHdUZmxxo_71HgvxKhJvYYubR4-_aZtwQAXrjKqgeiA/viewform?usp=preview))
+[Pesquisa de Validação do Velary – Plataforma Digital de Saúde Feminina.(https://docs.google.com/forms/d/e/1FAIpQLScQk1UpHdUZmxxo_71HgvxKhJvYYubR4-_aZtwQAXrjKqgeiA/viewform?usp=preview).
 
 ---
 
