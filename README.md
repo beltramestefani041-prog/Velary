@@ -32,7 +32,7 @@ A plataforma foi pensada para acompanhar diferentes momentos da vida, oferecendo
 
 O Velary está sendo desenvolvido para oferecer acompanhamento e informações sobre diferentes fases da saúde feminina.
 
-### Acompanhamento da saúde
+### Acompanhamento
 
 - Acompanhamento do ciclo menstrual;
 - Registro de sintomas físicos e emocionais;
