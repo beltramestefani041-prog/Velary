@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velary - Endometriose</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #fff5f7; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; padding-bottom: 60px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Cabeçalho */
+        header { background-color: #ffffff; border-bottom: 1px solid #ffe3e8; padding: 15px 0; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(201, 74, 112, 0.05); }
+        .header-top { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: #c94a70; text-decoration: none; }
+        .btn-voltar { color: #555; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        /* Banner Principal com Imagem */
+        .hero-banner { 
+            background: linear-gradient(135deg, #ffffff, #fff0f3); 
+            border: 1px solid #ffe3e8; 
+            border-radius: 16px; 
+            padding: 30px; 
+            margin-bottom: 30px; 
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .hero-text { flex: 1; min-width: 280px; }
+        .hero-banner h1 { color: #c94a70; font-size: 2rem; margin-bottom: 8px; }
+        .hero-banner p { color: #666; font-size: 1rem; line-height: 1.5; }
+        
+        .img-expansivel { 
+            cursor: pointer; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            border-radius: 10px;
+            border: 1px solid #ffd0da;
+        }
+        .img-expansivel:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 8px 20px rgba(201, 74, 112, 0.2); 
+        }
+
+        .hero-img { width: 320px; max-width: 100%; height: auto; object-fit: contain; }
+
+        /* Grid das Ferramentas Interativas */
+        .interativo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card-ferramenta { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .card-ferramenta h2 { color: #c94a70; font-size: 1.2rem; margin-bottom: 15px; }
+
+        /* Formulários e Inputs */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #555; margin-bottom: 5px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #ffd0da; border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; background-color: #fffcfd; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #c94a70; }
+        
+        /* Checkboxes e Mapeamento */
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+        .checkbox-label { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; color: #444; background: #fff0f3; padding: 6px 10px; border-radius: 6px; border: 1px solid #ffd0da; cursor: pointer; }
+        .checkbox-label input { width: auto; cursor: pointer; }
+
+        .btn-salvar { background-color: #c94a70; color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; margin-bottom: 8px; }
+        .btn-salvar:hover { background-color: #b03d5f; }
+        .btn-secundario { background-color: #fff0f3; color: #c94a70; border: 1px solid #ffd0da; }
+        .btn-secundario:hover { background-color: #ffe3e8; }
+
+        /* Lista de Registros */
+        .lista-consultas { list-style: none; margin-top: 10px; }
+        .lista-consultas li { background: #fff0f3; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 6px; color: #444; border-left: 3px solid #c94a70; }
+
+        /* Seções Educativas */
+        .secao-guia { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .secao-guia h2 { color: #c94a70; font-size: 1.4rem; margin-bottom: 15px; border-bottom: 2px solid #fff0f3; padding-bottom: 8px; }
+        
+        .grid-dicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card-dica { background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
+        
+        .card-dica h3 { color: #d6456a; font-size: 1.05rem; margin-bottom: 8px; }
+        .card-dica ul { list-style: square; padding-left: 18px; font-size: 0.88rem; color: #555; line-height: 1.5; }
+        .card-dica p { font-size: 0.88rem; color: #555; line-height: 1.5; }
+
+        .card-dica img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 280px; 
+            object-fit: contain; 
+            background-color: #fff;
+            margin-bottom: 12px;
+        }
+
+        /* Tabela Anti-inflamatória */
+        .tabela-nutricao { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
+        .tabela-nutricao th, .tabela-nutricao td { border: 1px solid #ffd0da; padding: 10px; text-align: left; }
+        .tabela-nutricao th { background-color: #fff0f3; color: #c94a70; }
+
+        /* Guia de Crises */
+        .card-crise { background-color: #fff0f3; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px; margin-top: 20px; }
+        .card-crise h3 { color: #c94a70; font-size: 1.1rem; margin-bottom: 10px; }
+        .grid-crise { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; font-size: 0.85rem; color: #555; }
+        .item-crise { background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8; }
+
+        /* Alerta de Sinais de Atenção */
+        .alerta-medico { background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .alerta-medico h3 { color: #856404; font-size: 1.1rem; margin-bottom: 8px; }
+        .alerta-medico ul { padding-left: 20px; font-size: 0.88rem; color: #856404; line-height: 1.5; }
+
+        /* Destaque Tratamento / SUS */
+        .destaque-sus { background-color: #f0f7ff; border: 1px solid #cce3ff; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .destaque-sus h3 { color: #0056b3; font-size: 1.1rem; margin-bottom: 8px; }
+        .destaque-sus p { font-size: 0.9rem; color: #333; line-height: 1.5; }
+
+        /* MODAL / LIGHTBOX */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        .modal-conteudo {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .modal-fechar {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-top">
+            <a href="index.html" class="logo">Velary</a>
+            <a href="index.html" class="btn-voltar">&larr; Voltar para o Início</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Banner Principal com a Imagem 1 -->
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Endometriose</h1>
+                <p>Sentir dor forte não é normal. Mapeie a intensidade das dores, acompanhe as fases do seu ciclo e organize registros completos para apresentar em suas consultas médicas.</p>
+            </div>
+            <div>
+                <img src="emdometriose.png" alt="Endometriose" class="hero-img img-expansivel" onclick="abrirModal(this.src)">
+                <p style="font-size: 0.75rem; color: #c94a70; text-align: center; margin-top: 5px; font-weight: bold;">Clique para ampliar</p>
+            </div>
+        </div>
+
+        <!-- BLOCOS INTERATIVOS -->
+        <div class="interativo-grid">
+            
+            <!-- Diário de Dor & Fase do Ciclo -->
+            <div class="card-ferramenta">
+                <h2>Diário de Dor & Ciclo</h2>
+                <div class="form-group">
+                    <label>Data do Registro:</label>
+                    <input type="date" id="dataDor">
+                </div>
+                <div class="form-group">
+                    <label>Fase Atual do Ciclo:</label>
+                    <select id="faseCiclo">
+                        <option>Menstruação (Fase Menstrual)</option>
+                        <option>Pós-Menstruação (Fase Folicular)</option>
+                        <option>Período Fértil (Ovulação)</option>
+                        <option>Pré-Menstruação (Fase Lútea)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Intensidade da Dor (EVA 0 a 10):</label>
+                    <select id="nivelDor">
+                        <option>0 - Sem dor</option>
+                        <option>1 a 3 - Leve (Desconforto sem impacto)</option>
+                        <option>4 a 6 - Moderada (Exige analgésico)</option>
+                        <option>7 a 8 - Forte (Atrapalha trabalho/estudos)</option>
+                        <option>9 a 10 - Incapacitante (Cama / Pronto-Socorro)</option>
+                    </select>
+                </div>
+                <button class="btn-salvar" onclick="salvarDor()">Salvar Registro</button>
+                <button class="btn-salvar btn-secundario" onclick="exportarPDF()">Exportar Relatório (PDF)</button>
+            </div>
+
+            <!-- Mapeamento de Sintomas e Locais da Dor -->
+            <div class="card-ferramenta">
+                <h2>Mapeador Local da Dor</h2>
+                <div class="form-group">
+                    <label>Onde você sente desconforto hoje?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" name="localDor" value="Pélvis/Pé da barriga"> Pélvis</label>
+                        <label class="checkbox-label"><input type="checkbox" name="localDor" value="Região Lombar"> Lombar</label>
+                        <label class="checkbox-label"><input type="checkbox" name="localDor" value="Intestino/Evacuação"> Intestino</label>
+                        <label class="checkbox-label"><input type="checkbox" name="localDor" value="Bexiga/Urina"> Bexiga</label>
+                        <label class="checkbox-label"><input type="checkbox" name="localDor" value="Irradiação para Coxas"> Coxas</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Observações Adicionais:</label>
+                    <textarea id="obsDiaria" rows="3" placeholder="Ex: Estufamento abdominal (Endo Belly), cansaço extremo, enjoo..."></textarea>
+                </div>
+                <button class="btn-salvar" onclick="salvarObs()">Guardar Mapeamento</button>
+            </div>
+
+            <!-- Agendamentos & Exames -->
+            <div class="card-ferramenta">
+                <h2>Próxima Consulta / Exame</h2>
+                <div class="form-group">
+                    <label>Data Agendada:</label>
+                    <input type="date" id="dataMedico">
+                </div>
+                <div class="form-group">
+                    <label>Especialidade ou Procedimento:</label>
+                    <input type="text" id="nomeMedico" placeholder="Ex: USG Transvaginal com Preparo Intestinal">
+                </div>
+                <button class="btn-salvar" onclick="agendarMedico()">Agendar Lembrete</button>
+                <ul class="lista-consultas" id="listaConsultas"></ul>
+            </div>
+
+        </div>
+
+        <!-- PRIMEIRAS AÇÕES / PRIMEIROS SOCORROS EM CRISE DE DOR -->
+        <div class="card-crise">
+            <h3>Guia Prático: Alívio Imediato para Crises de Dor</h3>
+            <div class="grid-crise">
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;"> Calor Local</strong>
+                    Alique bolsa de água morna na região pélvica ou lombar por 20 minutos para relaxar a musculatura.
+                </div>
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;"> Posição de Alívio</strong>
+                    Deite-se de lado em posição fetal com um travesseiro entre os joelhos para aliviar a pressão na pélvis.
+                </div>
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;"> Respiração Diafragmática</strong>
+                    Inspire lentamente pelo nariz expandindo o abdômen e solte o ar devagar pela boca para acalmar os nervos.
+                </div>
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;"> Hidratação e Chás</strong>
+                    Beba água e opte por chás mornos de camomila, gengibre ou erva-doce para amenizar o inchaço (*Endo Belly*).
+                </div>
+            </div>
+        </div>
+
+        <!-- GUIA PRÁTICO E INFORMATIVO -->
+        <div class="secao-guia" style="margin-top: 25px;">
+            <h2>Guia Clínico e Mapeamento de Sintomas</h2>
+            <div class="grid-dicas">
+                
+                <div class="card-dica">
+                    <h3>Principais Sinais de Alerta</h3>
+                    <ul>
+                        <li><strong>Dismenorreia:</strong> Cólicas menstruais intensas que incapacitam para tarefas diárias.</li>
+                        <li><strong>Dispareunia:</strong> Dor profunda durante ou após as relações sexuais.</li>
+                        <li><strong>Sintomas Intestinais/Urinários:</strong> Dor para evacuar ou urinar, especialmente no período menstrual.</li>
+                        <li><strong>Endo Belly:</strong> Inchaço abdominal severo e repentino por resposta inflamatória.</li>
+                    </ul>
+                </div>
+
+                <div class="card-dica">
+                    <h3>Diagnóstico por Imagem e Preparo</h3>
+                    <p>Exames comuns nem sempre detectam focos profundos. O protocolo exige médicos especializados:</p>
+                    <ul style="margin-top: 8px;">
+                        <li><strong>Ultrassom Transvaginal com Preparo Intestinal:</strong> Mapeia nódulos na bexiga, intestino e ligamentos pélvicos.</li>
+                        <li><strong>Ressonância Magnética Pélvica:</strong> Delimita a profundeza das lesões para planejamento médico.</li>
+                        <li><strong>Preparo Prévio:</strong> Uso de dieta leve e medicação para esvaziamento intestinal antes do exame.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Tabela Anti-inflamatória detalhada -->
+            <div style="margin-top: 20px; background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px;">
+                <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Estratégia Nutricional Anti-inflamatória</h3>
+                <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">A alimentação equilibrada ajuda na modulação da inflamação e no controle do inchaço abdominal:</p>
+
+                <table class="tabela-nutricao">
+                    <thead>
+                        <tr>
+                            <th>Priorizar (Anti-inflamatórios)</th>
+                            <th>Reduzir / Evitar (Pró-inflamatórios)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Frutas vermelhas, vegetais verde-escuros e cúrcuma.</td>
+                            <td>Alimentos ultraprocessados e embutidos.</td>
+                        </tr>
+                        <tr>
+                            <td>Alimentos ricos em Ômega-3 (salmão, sardinha, chia e linhaça).</td>
+                            <td>Frituras, gorduras trans e óleos refinados.</td>
+                        </tr>
+                        <tr>
+                            <td>Azeite extra virgem, castanhas e chás relaxantes.</td>
+                            <td>Açúcar refinado, bebidas alcoólicas e gaseificadas.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tratamento Multidisciplinar -->
+            <div style="margin-top: 20px; background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px;">
+                <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Pilares do Tratamento Integrado</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 0.85rem; color: #555;">
+                    <div><strong>• Acompanhamento Ginecológico:</strong> Uso de bloqueadores hormonais ou cirurgia por videolaparoscopia.</div>
+                    <div><strong>• Fisioterapia Pélvica:</strong> Atua no relaxamento muscular e alívio da dor miofascial.</div>
+                    <div><strong>• Suporte Psicológico:</strong> Apoio no manejo emocional da dor crônica.</div>
+                    <div><strong>• Atividade Física Leve:</strong> Exercícios de baixo impacto para liberação de endorfinas analgésicas.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DÚVIDAS COM A IMAGEM 2 (MITOS) E ATENDIMENTO SUS -->
+        <div class="secao-guia">
+            <h2>Mitos, Verdades & Atendimento Público</h2>
+            <div class="grid-dicas">
+                
+                <div class="card-dica">
+                    <img src="emdometriosemitos.png" alt="Mitos sobre Endometriose" class="img-expansivel" onclick="abrirModal(this.src)">
+                    <p style="font-size: 0.75rem; color: #c94a70; text-align: center; margin-top: -5px; margin-bottom: 10px; font-weight: bold;">Clique na imagem para ampliar</p>
+                    <h3>Mitos Populares sobre a Doença</h3>
+                    <p>Muitos conceitos equivocados atrasam o diagnóstico. Sempre consulte especialistas para tirar suas dúvidas.</p>
+                </div>
+
+                <div class="card-dica">
+                    <h3>Dúvidas Frequentes</h3>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="background: #ffffff; padding: 10px 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.88rem; display: block; margin-bottom: 3px;">Endometriose causa infertilidade?</strong>
+                            <p style="font-size: 0.83rem; color: #555; margin: 0;">Pode dificultar a gestação em alguns casos, mas não impede a maternidade. O acompanhamento adequado preserva a saúde reprodutiva.</p>
+                        </div>
+                        <div style="background: #ffffff; padding: 10px 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.88rem; display: block; margin-bottom: 3px;">A dor só ocorre no período menstrual?</strong>
+                            <p style="font-size: 0.83rem; color: #555; margin: 0;">Não. Com o avanço do quadro inflamatório, a dor pode ocorrer na ovulação, nas relações sexuais ou tornar-se contínua.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="alerta-medico">
+                <h3>Atenção: Quando procurar atendimento médico urgente?</h3>
+                <ul>
+                    <li>Dores pélvicas intensas e repentinas que não diminuem com medicamentos prescritos.</li>
+                    <li>Sangramento perceptível nas fezes ou na urina durante o período menstrual.</li>
+                    <li>Dificuldade aguda para urinar ou evacuações acompanhadas de febre alta.</li>
+                </ul>
+            </div>
+
+            <div class="destaque-sus">
+                <h3>Atendimento Gratuito pelo SUS</h3>
+                <p>O Sistema Único de Saúde garante atendimento integral para diagnóstico e tratamento da endometriose:</p>
+                <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.88rem; color: #333;">
+                    <li><strong>Triagem e Consultas:</strong> Agendamento inicial via Unidade Básica de Saúde (UBS) para encaminhamento a especialistas.</li>
+                    <li><strong>Exames e Cirurgias:</strong> Acesso a exames de imagem específicos e cirurgia por videolaparoscopia.</li>
+                    <li><strong>Tratamento Medicamentoso:</strong> Fornecimento de medicamentos sob prescrição médica.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DE IMAGEM -->
+    <div id="janelaModal" class="modal" onclick="fecharModal()">
+        <span class="modal-fechar">&times;</span>
+        <img class="modal-conteudo" id="imgExpandida">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function abrirModal(src) {
+            document.getElementById('janelaModal').style.display = 'block';
+            document.getElementById('imgExpandida').src = src;
+        }
+
+        function fecharModal() {
+            document.getElementById('janelaModal').style.display = 'none';
+        }
+
+        function salvarDor() {
+            const data = document.getElementById('dataDor').value;
+            const fase = document.getElementById('faseCiclo').value;
+            if(data) {
+                alert(`Registro salvo com sucesso!\nData: ${data}\nFase: ${fase}`);
+            } else {
+                alert('Por favor, escolha uma data no calendário.');
+            }
+        }
+
+        function exportarPDF() {
+            alert('Gerando Relatório de Endometriose em PDF... (Funcionalidade Velary Premium)');
+        }
+
+        function salvarObs() {
+            const obs = document.getElementById('obsDiaria').value;
+            const locais = Array.from(document.querySelectorAll('input[name="localDor"]:checked')).map(el => el.value);
+            
+            if(locais.length > 0 || obs !== "") {
+                alert('Mapeamento guardado com sucesso!');
+                document.getElementById('obsDiaria').value = '';
+            } else {
+                alert('Selecione pelo menos um local de dor ou digite uma observação.');
+            }
+        }
+
+        function agendarMedico() {
+            const data = document.getElementById('dataMedico').value;
+            const medico = document.getElementById('nomeMedico').value;
+            if(data && medico) {
+                const lista = document.getElementById('listaConsultas');
+                const li = document.createElement('li');
+                li.textContent = `${data} - ${medico}`;
+                lista.appendChild(li);
+                document.getElementById('dataMedico').value = '';
+                document.getElementById('nomeMedico').value = '';
+            } else {
+                alert('Preencha a data e o tipo de agendamento.');
+            }
+        }
+    </script>
+</body>
+</html>

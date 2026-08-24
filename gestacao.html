@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velary - Gestação</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #fff5f7; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; padding-bottom: 60px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Cabeçalho */
+        header { background-color: #ffffff; border-bottom: 1px solid #ffe3e8; padding: 15px 0; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(201, 74, 112, 0.05); }
+        .header-top { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: #c94a70; text-decoration: none; }
+        .btn-voltar { color: #555; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        /* Banner Principal com Imagem */
+        .hero-banner { 
+            background: linear-gradient(135deg, #ffffff, #fff0f3); 
+            border: 1px solid #ffe3e8; 
+            border-radius: 16px; 
+            padding: 30px; 
+            margin-bottom: 30px; 
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .hero-text { flex: 1; min-width: 280px; }
+        .hero-banner h1 { color: #c94a70; font-size: 2rem; margin-bottom: 8px; }
+        .hero-banner p { color: #666; font-size: 1rem; line-height: 1.5; }
+        
+        .img-expansivel { 
+            cursor: pointer; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            border-radius: 10px;
+            border: 1px solid #ffd0da;
+        }
+        .img-expansivel:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 8px 20px rgba(201, 74, 112, 0.2); 
+        }
+
+        .hero-img { width: 320px; max-width: 100%; height: auto; object-fit: contain; }
+
+        /* Grid das Ferramentas Interativas */
+        .interativo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card-ferramenta { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .card-ferramenta h2 { color: #c94a70; font-size: 1.2rem; margin-bottom: 15px; }
+
+        /* Formulários e Inputs */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #555; margin-bottom: 5px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #ffd0da; border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; background-color: #fffcfd; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #c94a70; }
+        
+        /* Checkboxes e Mapeamento */
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+        .checkbox-label { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; color: #444; background: #fff0f3; padding: 6px 10px; border-radius: 6px; border: 1px solid #ffd0da; cursor: pointer; }
+        .checkbox-label input { width: auto; cursor: pointer; }
+
+        .btn-salvar { background-color: #c94a70; color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; margin-bottom: 8px; }
+        .btn-salvar:hover { background-color: #b03d5f; }
+        .btn-secundario { background-color: #fff0f3; color: #c94a70; border: 1px solid #ffd0da; }
+        .btn-secundario:hover { background-color: #ffe3e8; }
+
+        /* Lista de Registros */
+        .lista-consultas { list-style: none; margin-top: 10px; }
+        .lista-consultas li { background: #fff0f3; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 6px; color: #444; border-left: 3px solid #c94a70; }
+
+        /* Seção de Vídeo Compacto */
+        .secao-video { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); text-align: center; }
+        .secao-video h2 { color: #c94a70; font-size: 1.4rem; margin-bottom: 10px; border-bottom: 2px solid #fff0f3; padding-bottom: 8px; text-align: left; }
+        .secao-video p { font-size: 0.9rem; color: #666; margin-bottom: 15px; text-align: left; }
+        
+        .video-container {
+            width: 100%;
+            max-width: 320px; /* Largura menor e controlada */
+            margin: 0 auto;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ffd0da;
+        }
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Seções Educativas */
+        .secao-guia { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .secao-guia h2 { color: #c94a70; font-size: 1.4rem; margin-bottom: 15px; border-bottom: 2px solid #fff0f3; padding-bottom: 8px; }
+        
+        .grid-dicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card-dica { background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
+        
+        .card-dica h3 { color: #d6456a; font-size: 1.05rem; margin-bottom: 8px; }
+        .card-dica ul { list-style: square; padding-left: 18px; font-size: 0.88rem; color: #555; line-height: 1.5; }
+        .card-dica p { font-size: 0.88rem; color: #555; line-height: 1.5; }
+
+        /* Tabela Nutricional / Trimestral */
+        .tabela-nutricao { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
+        .tabela-nutricao th, .tabela-nutricao td { border: 1px solid #ffd0da; padding: 10px; text-align: left; }
+        .tabela-nutricao th { background-color: #fff0f3; color: #c94a70; }
+
+        /* Guia Prático */
+        .card-crise { background-color: #fff0f3; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px; margin-top: 20px; }
+        .card-crise h3 { color: #c94a70; font-size: 1.1rem; margin-bottom: 10px; }
+        .grid-crise { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; font-size: 0.85rem; color: #555; }
+        .item-crise { background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8; }
+
+        /* Alerta de Sinais de Atenção */
+        .alerta-medico { background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .alerta-medico h3 { color: #856404; font-size: 1.1rem; margin-bottom: 8px; }
+        .alerta-medico ul { padding-left: 20px; font-size: 0.88rem; color: #856404; line-height: 1.5; }
+
+        /* MODAL / LIGHTBOX */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        .modal-conteudo {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .modal-fechar {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-top">
+            <a href="index.html" class="logo">Velary</a>
+            <a href="index.html" class="btn-voltar">Voltar para o Inicio</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Banner Principal com a Imagem gestacao.png -->
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Gestação</h1>
+                <p>Acompanhe cada etapa do desenvolvimento do seu bebê, registre o controle de peso, sintomas diários e organize suas consultas de pré-natal com segurança e praticidade.</p>
+            </div>
+            <div>
+                <img src="gestacao.png" alt="Gestação" class="hero-img img-expansivel" onclick="abrirModal(this.src)">
+                <p style="font-size: 0.75rem; color: #c94a70; text-align: center; margin-top: 5px; font-weight: bold;">Clique para ampliar</p>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE VÍDEO LOCAL COMPACTO (videogravidez.mp4) -->
+        <div class="secao-video">
+            <h2>Vídeo Explicativo: Acompanhamento da Gravidez</h2>
+            <p>Assista ao vídeo informativo sobre os cuidados essenciais e o desenvolvimento gestacional.</p>
+            <div class="video-container">
+                <video controls>
+                    <source src="videogravidez.mp4" type="video/mp4">
+                    Seu navegador não suporta a reprodução de vídeos.
+                </video>
+            </div>
+        </div>
+
+        <!-- BLOCOS INTERATIVOS -->
+        <div class="interativo-grid">
+            
+            <!-- Diário Gestacional & Peso -->
+            <div class="card-ferramenta">
+                <h2>Diario Gestacional & Peso</h2>
+                <div class="form-group">
+                    <label>Data do Registro:</label>
+                    <input type="date" id="dataGestacao">
+                </div>
+                <div class="form-group">
+                    <label>Semana Gestacional Atual:</label>
+                    <input type="number" id="semanaAtual" min="1" max="42" placeholder="Ex: 24">
+                </div>
+                <div class="form-group">
+                    <label>Peso Atual (kg):</label>
+                    <input type="number" step="0.1" id="pesoAtual" placeholder="Ex: 68.5">
+                </div>
+                <button class="btn-salvar" onclick="salvarGestacao()">Salvar Registro</button>
+                <button class="btn-salvar btn-secundario" onclick="exportarPDF()">Exportar Relatório (PDF)</button>
+            </div>
+
+            <!-- Mapeamento de Sintomas Diários -->
+            <div class="card-ferramenta">
+                <h2>Mapeador de Sintomas</h2>
+                <div class="form-group">
+                    <label>Quais sintomas você percebeu hoje?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" name="sintomaGestacao" value="Enjoo / Náusea"> Enjoo</label>
+                        <label class="checkbox-label"><input type="checkbox" name="sintomaGestacao" value="Inchaço / Retenção"> Inchaço</label>
+                        <label class="checkbox-label"><input type="checkbox" name="sintomaGestacao" value="Azia / Refluxo"> Azia</label>
+                        <label class="checkbox-label"><input type="checkbox" name="sintomaGestacao" value="Cansaço Extremo"> Cansaço</label>
+                        <label class="checkbox-label"><input type="checkbox" name="sintomaGestacao" value="Movimentos do Bebê"> Movimentos</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Observações Adicionais:</label>
+                    <textarea id="obsGestacao" rows="3" placeholder="Ex: Sono agitado, cãibras leves nas pernas, desejos..."></textarea>
+                </div>
+                <button class="btn-salvar" onclick="salvarObsGestacao()">Guardar Mapeamento</button>
+            </div>
+
+            <!-- Pré-natal & Exames -->
+            <div class="card-ferramenta">
+                <h2>Próximo Pré-natal / Exame</h2>
+                <div class="form-group">
+                    <label>Data Agendada:</label>
+                    <input type="date" id="dataPreNatal">
+                </div>
+                <div class="form-group">
+                    <label>Consulta ou Ultrassom:</label>
+                    <input type="text" id="nomePreNatal" placeholder="Ex: USG Morfológica do Segundo Trimestre">
+                </div>
+                <button class="btn-salvar" onclick="agendarPreNatal()">Agendar Lembrete</button>
+                <ul class="lista-consultas" id="listaPreNatal"></ul>
+            </div>
+
+        </div>
+
+        <!-- ABA DE DIÁRIO LIVRE -->
+        <div class="card-ferramenta" style="margin-bottom: 25px;">
+            <h2>Meu Diário Livre</h2>
+            <p style="font-size: 0.88rem; color: #666; margin-bottom: 15px;">Escreva livremente sobre seus sentimentos, cartas para o bebê, memórias ou relatos especiais desta fase.</p>
+            <div class="form-group">
+                <label>Título do Registro:</label>
+                <input type="text" id="tituloDiarioLivre" placeholder="Ex: Senti o primeiro chute forte hoje!">
+            </div>
+            <div class="form-group">
+                <label>Escreva seus pensamentos e relatos:</label>
+                <textarea id="textoDiarioLivre" rows="4" placeholder="Escreva aqui tudo o que quiser registrar..."></textarea>
+            </div>
+            <button class="btn-salvar" onclick="salvarDiarioLivre()">Salvar no Diário</button>
+            <ul class="lista-consultas" id="listaDiarioLivre" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- GUIA PRÁTICO: CUIDADOS DIÁRIOS -->
+        <div class="card-crise">
+            <h3>Guia Prático: Bem-Estar e Cuidados na Gestação</h3>
+            <div class="grid-crise">
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Hidratação Constante</strong>
+                    Beba bastante água ao longo do dia para auxiliar na formação do líquido amniótico e prevenir infecções urinárias.
+                </div>
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Alimentação Variada</strong>
+                    Priorize refeições ricas em ferro, ácido fólico, cálcio e fibras para apoiar o desenvolvimento saudável do bebê.
+                </div>
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Descanso Adequado</strong>
+                    Deite-se preferencialmente do lado esquerdo para melhorar a circulação sanguínea placentária e uterina.
+                </div>
+                <div class="item-crise">
+                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Atividade Leve</strong>
+                    Pratique caminhadas leves ou alongamentos orientados por seu médico para reduzir dores nas costas e inchaços.
+                </div>
+            </div>
+        </div>
+
+        <!-- GUIA CLÍNICO E TRIMESTRES -->
+        <div class="secao-guia" style="margin-top: 25px;">
+            <h2>Guia Clínico e Desenvolvimento Trimestral</h2>
+            <div class="grid-dicas">
+                
+                <div class="card-dica">
+                    <h3>Exames Essenciais de Pré-natal</h3>
+                    <ul>
+                        <li><strong>Primeiro Trimestre:</strong> Confirmação de idade gestacional, tipagem sanguínea e sorologias de rotina.</li>
+                        <li><strong>Segundo Trimestre:</strong> Ultrassonografia Morfológica para checagem detalhada da anatomia fetal.</li>
+                        <li><strong>Terceiro Trimestre:</strong> Avaliação de posição fetal, ecocardiograma fetal e exames finais de sangue.</li>
+                        <li><strong>Testes de Triagem:</strong> Acompanhamento rigoroso da pressão arterial e glicemia de jejum.</li>
+                    </ul>
+                </div>
+
+                <div class="card-dica">
+                    <h3>Sinais de Desenvolvimento do Bebê</h3>
+                    <p>Cada trimestre traz marcos importantes na formação e crescimento intrauterino:</p>
+                    <ul style="margin-top: 8px;">
+                        <li><strong>1 a 13 Semanas:</strong> Formação dos órgãos principais e início dos batimentos cardíacos.</li>
+                        <li><strong>14 a 27 Semanas:</strong> Ganho de audição, primeiros movimentos perceptíveis e crescimento acelerado.</li>
+                        <li><strong>28 a 40 Semanas:</strong> Maturação pulmonar completa, ganho de peso e posicionamento para o parto.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Tabela Comparativa de Tamanho (Frutas) -->
+            <div style="margin-top: 20px; background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px;">
+                <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Acompanhamento do Crescimento: Tamanho do Bebê por Frutas</h3>
+                <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">Veja uma estimativa aproximada do tamanho do seu bebê a cada fase da gestação:</p>
+
+                <table class="tabela-nutricao">
+                    <thead>
+                        <tr>
+                            <th>Semana Gestacional</th>
+                            <th>Tamanho Aproximado (Comparativo com Frutas)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12 Semanas</td>
+                            <td>Tamanho de um Maracujá</td>
+                        </tr>
+                        <tr>
+                            <td>16 Semanas</td>
+                            <td>Tamanho de um Abacate</td>
+                        </tr>
+                        <tr>
+                            <td>20 Semanas</td>
+                            <td>Tamanho de uma Banana</td>
+                        </tr>
+                        <tr>
+                            <td>24 Semanas</td>
+                            <td>Tamanho de um Milho verde</td>
+                        </tr>
+                        <tr>
+                            <td>28 Semanas</td>
+                            <td>Tamanho de um Berinjela</td>
+                        </tr>
+                        <tr>
+                            <td>32 Semanas</td>
+                            <td>Tamanho de um Abacaxi</td>
+                        </tr>
+                        <tr>
+                            <td>36 a 40 Semanas</td>
+                            <td>Tamanho de uma Melancia pequena</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela Nutricional -->
+            <div style="margin-top: 20px; background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px;">
+                <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Diretrizes Nutricionais para Gestantes</h3>
+                <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">Uma dieta equilibrada garante nutrientes fundamentais para a mãe e para o feto:</p>
+
+                <table class="tabela-nutricao">
+                    <thead>
+                        <tr>
+                            <th>Alimentos Recomendados</th>
+                            <th>Alimentos com Restrição ou Cuidado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Folhas verde-escuras (espinafre, couve) e leguminosas ricas em ferro.</td>
+                            <td>Carnes mal passadas, ovos com gema mole e sushi (risco de toxoplasmose/infecções).</td>
+                        </tr>
+                        <tr>
+                            <td>Frutas frescas, laticínios pasteurizados e grãos integrais.</td>
+                            <td>Peixes de grande porte com alto teor de mercúrio (tubarão, peixe-espada).</td>
+                        </tr>
+                        <tr>
+                            <td>Água em abundância e sucos naturais sem excesso de açúcar.</td>
+                            <td>Excesso de cafeína, chás medicinais sem liberação médica e embutidos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- DUVIDAS E ATENDIMENTO SUS -->
+        <div class="secao-guia">
+            <h2>Dúvidas Frequentes & Rede de Apoio</h2>
+            <div class="grid-dicas">
+                
+                <div class="card-dica">
+                    <h3>Dúvidas Frequentes</h3>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="background: #ffffff; padding: 10px 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.88rem; display: block; margin-bottom: 3px;">Praticar exercícios é seguro?</strong>
+                            <p style="font-size: 0.83rem; color: #555; margin: 0;">Sim, desde que liberado pelo médico e com acompanhamento adequado para evitar esforço excessivo.</p>
+                        </div>
+                        <div style="background: #ffffff; padding: 10px 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.88rem; display: block; margin-bottom: 3px;">Como saber se os movimentos estão normais?</strong>
+                            <p style="font-size: 0.83rem; color: #555; margin: 0;">A partir do segundo trimestre, o bebê costuma ter padrões de atividade. Na dúvida ou ausência prolongada, consulte a maternidade.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-dica">
+                    <h3>Atendimento pelo SUS</h3>
+                    <p>O Sistema Único de Saúde oferece suporte completo durante todo o ciclo gravídico-puerperal:</p>
+                    <ul style="margin-top: 8px;">
+                        <li><strong>Acompanhamento na UBS:</strong> Consultas regulares de pré-natal e exames.</li>
+                        <li><strong>Rede Cegonha:</strong> Acolhimento e vinculação à maternidade para parto seguro.</li>
+                        <li><strong>Puerpério:</strong> Revisão pós-parto e cuidados com o recém-nascido.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="alerta-medico">
+                <h3>Atenção: Sinais de Alerta na Gestação</h3>
+                <ul>
+                    <li>Sangramento vaginal de qualquer intensidade ou perda de líquido amniótico antes do termo.</li>
+                    <li>Dores de cabeça fortes e persistentes acompanhadas de visão turva ou inchaço súbito no rosto e mãos.</li>
+                    <li>Febre alta, calafrios ou diminuição acentuada dos movimentos fetais.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DE IMAGEM -->
+    <div id="janelaModal" class="modal" onclick="fecharModal()">
+        <span class="modal-fechar">&times;</span>
+        <img class="modal-conteudo" id="imgExpandida">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function abrirModal(src) {
+            document.getElementById('janelaModal').style.display = 'block';
+            document.getElementById('imgExpandida').src = src;
+        }
+
+        function fecharModal() {
+            document.getElementById('janelaModal').style.display = 'none';
+        }
+
+        function salvarGestacao() {
+            const data = document.getElementById('dataGestacao').value;
+            const semana = document.getElementById('semanaAtual').value;
+            const peso = document.getElementById('pesoAtual').value;
+            if(data) {
+                alert(`Registro gestacional salvo!\nData: ${data}\nSemana: ${semana}ª\nPeso: ${peso} kg`);
+            } else {
+                alert('Por favor, informe a data do registro.');
+            }
+        }
+
+        function exportarPDF() {
+            alert('Gerando Relatório Gestacional em PDF... (Funcionalidade Velary Premium)');
+        }
+
+        function salvarObsGestacao() {
+            const obs = document.getElementById('obsGestacao').value;
+            const sintomas = Array.from(document.querySelectorAll('input[name="sintomaGestacao"]:checked')).map(el => el.value);
+            
+            if(sintomas.length > 0 || obs !== "") {
+                alert('Mapeamento de sintomas guardado com sucesso!');
+                document.getElementById('obsGestacao').value = '';
+            } else {
+                alert('Selecione pelo menos um sintoma ou digite uma observação.');
+            }
+        }
+
+        function agendarPreNatal() {
+            const data = document.getElementById('dataPreNatal').value;
+            const procedimento = document.getElementById('nomePreNatal').value;
+            if(data && procedimento) {
+                const lista = document.getElementById('listaPreNatal');
+                const li = document.createElement('li');
+                li.textContent = `${data} - ${procedimento}`;
+                lista.appendChild(li);
+                document.getElementById('dataPreNatal').value = '';
+                document.getElementById('nomePreNatal').value = '';
+            } else {
+                alert('Preencha a data e o tipo de agendamento.');
+            }
+        }
+
+        function salvarDiarioLivre() {
+            const titulo = document.getElementById('tituloDiarioLivre').value;
+            const texto = document.getElementById('textoDiarioLivre').value;
+            if(titulo && texto) {
+                const lista = document.getElementById('listaDiarioLivre');
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${titulo}</strong><br>${texto}`;
+                lista.appendChild(li);
+                document.getElementById('tituloDiarioLivre').value = '';
+                document.getElementById('textoDiarioLivre').value = '';
+                alert('Relato salvo no diário com sucesso!');
+            } else {
+                alert('Preencha o título e o texto do diário.');
+            }
+        }
+    </script>
+</body>
+</html>

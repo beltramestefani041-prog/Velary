@@ -1,0 +1,29 @@
+<script>
+    function carregarHistorico() {
+        const sintSalvos = localStorage.getItem('meno_sint');
+        const obsSalva = localStorage.getItem('meno_obs');
+        
+        if (sintSalvos || obsSalva) {
+            document.getElementById('historicoSintomas').style.display = 'block';
+            document.getElementById('exibirSintomas').innerText = sintSalvos || 'Nenhum sintoma marcado';
+            document.getElementById('exibirComentarios').innerText = obsSalva ? `"${obsSalva}"` : '';
+        }
+    }
+
+    window.onload = carregarHistorico;
+
+    document.getElementById('formSintomas').onsubmit = function(e) {
+        e.preventDefault();
+        const checks = document.querySelectorAll('input[name="sintoma"]:checked');
+        let sints = [];
+        checks.forEach(c => sints.push(c.value));
+        const obs = document.getElementById('comentarios').value;
+        
+        localStorage.setItem('meno_sint', sints.join(', '));
+        localStorage.setItem('meno_obs', obs);
+        
+        // Atualiza a tela imediatamente sem recarregar a página
+        carregarHistorico();
+        document.getElementById('formSintomas').reset();
+    };
+</script>

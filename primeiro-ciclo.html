@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velary - Primeiro Ciclo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #fff5f7; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; padding-bottom: 60px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Cabeçalho */
+        header { background-color: #ffffff; border-bottom: 1px solid #ffe3e8; padding: 15px 0; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(201, 74, 112, 0.05); }
+        .header-top { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: #c94a70; text-decoration: none; }
+        .btn-voltar { color: #555; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        /* Banner Principal com Imagem Ampliada */
+        .hero-banner { 
+            background: linear-gradient(135deg, #ffffff, #fff0f3); 
+            border: 1px solid #ffe3e8; 
+            border-radius: 16px; 
+            padding: 30px; 
+            margin-bottom: 30px; 
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .hero-text { flex: 1; min-width: 280px; }
+        .hero-banner h1 { color: #c94a70; font-size: 2rem; margin-bottom: 8px; }
+        .hero-banner p { color: #666; font-size: 1rem; line-height: 1.5; }
+        
+        .img-expansivel { 
+            cursor: pointer; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            border-radius: 10px;
+            border: 1px solid #ffd0da;
+        }
+        .img-expansivel:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 8px 20px rgba(201, 74, 112, 0.2); 
+        }
+
+        .hero-img { width: 320px; max-width: 100%; height: auto; object-fit: contain; }
+
+        /* Grid das Ferramentas Interativas */
+        .interativo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .card-ferramenta { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .card-ferramenta h2 { color: #c94a70; font-size: 1.2rem; margin-bottom: 15px; }
+
+        /* Formulários e Inputs */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #555; margin-bottom: 5px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #ffd0da; border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; background-color: #fffcfd; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #c94a70; }
+        .btn-salvar { background-color: #c94a70; color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; margin-bottom: 8px; }
+        .btn-salvar:hover { background-color: #b03d5f; }
+        .btn-secundario { background-color: #fff0f3; color: #c94a70; border: 1px solid #ffd0da; }
+        .btn-secundario:hover { background-color: #ffe3e8; }
+
+        /* Lista de Lembretes */
+        .lista-consultas { list-style: none; margin-top: 10px; }
+        .lista-consultas li { background: #fff0f3; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 6px; color: #444; border-left: 3px solid #c94a70; }
+
+        /* Seções Educativas */
+        .secao-guia { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .secao-guia h2 { color: #c94a70; font-size: 1.4rem; margin-bottom: 15px; border-bottom: 2px solid #fff0f3; padding-bottom: 8px; }
+        
+        .grid-dicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card-dica { background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
+        
+        .card-dica img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 380px; 
+            object-fit: contain; 
+            background-color: #fff;
+            margin-bottom: 15px; 
+        }
+        .dica-instrucao { font-size: 0.75rem; color: #c94a70; text-align: center; margin-top: -10px; margin-bottom: 12px; font-weight: bold; }
+
+        .card-dica h3 { color: #d6456a; font-size: 1.05rem; margin-bottom: 8px; }
+        .card-dica ul { list-style: square; padding-left: 18px; font-size: 0.88rem; color: #555; line-height: 1.5; }
+        .card-dica p { font-size: 0.88rem; color: #555; line-height: 1.5; }
+
+        /* Alerta de Sinais de Atenção */
+        .alerta-medico { background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .alerta-medico h3 { color: #856404; font-size: 1.1rem; margin-bottom: 8px; }
+        .alerta-medico ul { padding-left: 20px; font-size: 0.88rem; color: #856404; }
+
+        /* Destaque SUS & Prevenção */
+        .destaque-sus { background-color: #f0f7ff; border: 1px solid #cce3ff; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .destaque-sus h3 { color: #0056b3; font-size: 1.1rem; margin-bottom: 8px; }
+        .destaque-sus p { font-size: 0.9rem; color: #333; line-height: 1.5; }
+
+        /* MODAL / LIGHTBOX */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        .modal-conteudo {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .modal-fechar {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-top">
+            <a href="index.html" class="logo">Velary</a>
+            <a href="index.html" class="btn-voltar">&larr; Voltar para o Início</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Banner Principal -->
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Primeiro Ciclo & Menarca</h1>
+                <p>Seu espaço de acolhimento sem tabus. Aqui você monitora seu ciclo, anota seus sintomas, organiza consultas médicas e entende as transformações do seu corpo com total liberdade e segurança.</p>
+            </div>
+            <div>
+                <img src="corpo.png" alt="Transformações do Corpo" class="hero-img img-expansivel" onclick="abrirModal(this.src)">
+                <p class="dica-instrucao">Clique para ampliar</p>
+            </div>
+        </div>
+
+        <!-- BLOCOS INTERATIVOS -->
+        <div class="interativo-grid">
+            
+            <!-- Calendário -->
+            <div class="card-ferramenta">
+                <h2>Meu Ciclo Menstrual</h2>
+                <div class="form-group">
+                    <label>Início da última menstruação:</label>
+                    <input type="date" id="dataInicio">
+                </div>
+                <div class="form-group">
+                    <label>Intensidade do Fluxo:</label>
+                    <select id="fluxo">
+                        <option>Leve</option>
+                        <option>Moderado</option>
+                        <option>Intenso</option>
+                    </select>
+                </div>
+                <button class="btn-salvar" onclick="salvarCiclo()">Salvar no Calendário</button>
+                <button class="btn-salvar btn-secundario" onclick="exportarPDF()">Exportar Relatório (PDF)</button>
+            </div>
+
+            <!-- Observações Diárias -->
+            <div class="card-ferramenta">
+                <h2>Observações & Sintomas</h2>
+                <div class="form-group">
+                    <label>Como você está se sentindo hoje?</label>
+                    <textarea id="obsDiaria" rows="4" placeholder="Ex: Senti leve cólica à tarde, um pouco de cansaço..."></textarea>
+                </div>
+                <button class="btn-salvar" onclick="salvarObs()">Guardar Anotação</button>
+            </div>
+
+            <!-- Agendamento Médico -->
+            <div class="card-ferramenta">
+                <h2>Próxima Consulta Médica</h2>
+                <div class="form-group">
+                    <label>Data da Consulta:</label>
+                    <input type="date" id="dataMedico">
+                </div>
+                <div class="form-group">
+                    <label>Especialidade / Nome do(a) Médico(a):</label>
+                    <input type="text" id="nomeMedico" placeholder="Ex: Ginecologista - Dra. Ana">
+                </div>
+                <button class="btn-salvar" onclick="agendarMedico()">Agendar Lembrete</button>
+                <ul class="lista-consultas" id="listaConsultas"></ul>
+            </div>
+
+        </div>
+
+        <!-- GUIA PRÁTICO DO DIA A DIA -->
+        <div class="secao-guia">
+            <h2>Guia Prático do Dia a Dia</h2>
+            <div class="grid-dicas">
+                
+                <div class="card-dica">
+                    <img src="mochila.png" alt="O que levar na mochila" class="img-expansivel" onclick="abrirModal(this.src)">
+                    <p class="dica-instrucao">Clique para ver em tela cheia</p>
+                    <h3>O que levar no Kit Bolsa?</h3>
+                    <ul>
+                        <li>2 a 3 absorventes de reserva.</li>
+                        <li>Uma calcinha limpa extra.</li>
+                        <li>Lenços umedecidos sem perfume.</li>
+                        <li>Um saquinho plástico discreto para emergências.</li>
+                    </ul>
+                </div>
+
+                <div class="card-dica">
+                    <img src="descarte.png" alt="Descarte correto de absorvente" class="img-expansivel" onclick="abrirModal(this.src)">
+                    <p class="dica-instrucao">Clique para ver em tela cheia</p>
+                    <h3>Como descartar e quando trocar?</h3>
+                    <p>Troque o absorvente a cada <strong>3 a 4 horas</strong>.</p>
+                    <ul style="margin-top: 5px;">
+                        <li>Enrole no papel higiênico ou embalagem.</li>
+                        <li><strong>Nunca jogue no vaso sanitário!</strong></li>
+                        <li>Descarte sempre no lixo do banheiro.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Tipos de Absorventes -->
+            <div style="margin-top: 20px; background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px;">
+                <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Tipos de Proteção: Qual escolher?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 0.85rem; color: #555;">
+                    <div><strong>• Externo (com/sem abas):</strong> O mais comum e fácil para iniciar. As abas ajudam a fixar na calcinha.</div>
+                    <div><strong>• Interno:</strong> Ótimo para praia e piscina. Deve ser trocado no máximo a cada 4 a 6 horas.</div>
+                    <div><strong>• Calcinha Absorvente:</strong> Lavável, ecológica e super confortável para usar em casa ou dormir.</div>
+                    <div><strong>• Coletor Menstrual:</strong> Copinho de silicone reutilizável. Exige um pouco de prática para colocar.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAÚDE, PREVENÇÃO E MITOS -->
+        <div class="secao-guia">
+            <h2>Prevenção, Anticoncepção & Mitos</h2>
+            <div class="grid-dicas">
+                
+                <!-- Mitos e Perguntas -->
+                <div class="card-dica" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 15px;">
+                    <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 280px; max-width: 380px;">
+                            <img src="mitos.png" alt="Mitos e verdades do ciclo" class="img-expansivel" onclick="abrirModal(this.src)" style="margin-bottom: 5px;">
+                            <p class="dica-instrucao">Clique para ver a imagem completa</p>
+                        </div>
+                        <div style="flex: 2; min-width: 280px;">
+                            <h3>Mitos, Verdades & Dúvidas Frequentes</h3>
+                            <p style="font-size: 0.95rem; color: #555; line-height: 1.5;">
+                                A primeira menstruação traz muitas incertezas. Abaixo reunimos as respostas para as perguntas mais comuns para que você passe por essa fase com total segurança!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px;">
+                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Quanto tempo dura a primeira menstruação?</strong>
+                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Em média de 3 a 7 dias. Nos primeiros anos, é super normal o ciclo ser desregulado.</p>
+                        </div>
+                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Menstruação dói sempre?</strong>
+                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Nem sempre. Cólicas leves são normais, mas dores muito fortes precisam de avaliação médica.</p>
+                        </div>
+                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Posso lavar o cabelo ou tomar banho frio?</strong>
+                            <p style="font-size: 0.85rem; color: #555; margin: 0;"><strong>Com certeza!</strong> Isso é um mito antigo. Banho morno ajuda até a aliviar a cólica.</p>
+                        </div>
+                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Posso praticar esportes na educação física?</strong>
+                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Sim! Exercícios leves liberam endorfina, diminuindo o desconforto e melhorando o humor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preservativos e Métodos -->
+                <div class="card-dica" style="grid-column: 1 / -1;">
+                    <h3>Preservativos, Anticoncepcionais & Dupla Proteção</h3>
+                    <p style="margin-bottom: 12px;">Para uma vida sexual segura, o conceito ideal é a <strong>Dupla Proteção</strong>: combinar um anticoncepcional com o preservativo.</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 10px;">
+                        <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <h4 style="color: #c94a70; font-size: 0.95rem; margin-bottom: 5px;">Camisinha</h4>
+                            <p style="font-size: 0.85rem; color: #555;">Único método que protege contra ISTs e gravidez ao mesmo tempo. Grátis no SUS.</p>
+                        </div>
+                        <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <h4 style="color: #c94a70; font-size: 0.95rem; margin-bottom: 5px;">Anticoncepcionais</h4>
+                            <p style="font-size: 0.85rem; color: #555;">Pílulas, DIU, injeções e implantes. Devem ser indicados por um médico para o seu perfil.</p>
+                        </div>
+                        <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
+                            <h4 style="color: #c94a70; font-size: 0.95rem; margin-bottom: 5px;">Emergência</h4>
+                            <p style="font-size: 0.85rem; color: #555;">A Pílula do Dia Seguinte serve apenas para imprevistos (camisinha estourou). Usar até 72h.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Alerta Médico -->
+            <div class="alerta-medico">
+                <h3>Atenção: Quando procurar um médico? (Sinais de Alerta)</h3>
+                <ul>
+                    <li>Cólicas intensas que não melhoram com remédio comum.</li>
+                    <li>Sangramento excessivo (troca de absorvente a cada 1 hora por várias horas).</li>
+                    <li>Menstruação que dura mais de 8 a 10 dias seguidos.</li>
+                    <li>Tonturas, palidez excessiva ou desmaios durante o ciclo.</li>
+                </ul>
+            </div>
+
+            <!-- Bloco SUS -->
+            <div class="destaque-sus">
+                <h3>Direitos e Acesso Gratuito no SUS</h3>
+                <p>Você não precisa pagar para se cuidar! Nas Unidades Básicas de Saúde (Postos de Saúde) do SUS você encontra de graça:</p>
+                <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.88rem; color: #333;">
+                    <li><strong>Preservativos masculinos e femininos:</strong> Retirada livre na recepção.</li>
+                    <li><strong>Exames Rápidos:</strong> Testes gratuitos e confidenciais para HIV, Sífilis e Hepatites (resultado em 15 minutos).</li>
+                    <li><strong>Consultas e Métodos Anticoncepcionais:</strong> Pílulas e inserção de DIU gratuitos pelo posto.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DE IMAGEM -->
+    <div id="janelaModal" class="modal" onclick="fecharModal()">
+        <span class="modal-fechar">&times;</span>
+        <img class="modal-conteudo" id="imgExpandida">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function abrirModal(src) {
+            document.getElementById('janelaModal').style.display = 'block';
+            document.getElementById('imgExpandida').src = src;
+        }
+
+        function fecharModal() {
+            document.getElementById('janelaModal').style.display = 'none';
+        }
+
+        function salvarCiclo() {
+            const data = document.getElementById('dataInicio').value;
+            if(data) alert('Data do ciclo salva com sucesso: ' + data);
+            else alert('Por favor, escolha uma data.');
+        }
+
+        function exportarPDF() {
+            alert('Gerando Relatório Médico em PDF... (Funcionalidade Velary Premium)');
+        }
+
+        function salvarObs() {
+            const obs = document.getElementById('obsDiaria').value;
+            if(obs) {
+                alert('Observação guardada no seu diário!');
+                document.getElementById('obsDiaria').value = '';
+            } else alert('Escreva algo antes de salvar.');
+        }
+
+        function agendarMedico() {
+            const data = document.getElementById('dataMedico').value;
+            const medico = document.getElementById('nomeMedico').value;
+            if(data && medico) {
+                const lista = document.getElementById('listaConsultas');
+                const li = document.createElement('li');
+                li.textContent = `${data} - ${medico}`;
+                lista.appendChild(li);
+                document.getElementById('dataMedico').value = '';
+                document.getElementById('nomeMedico').value = '';
+            } else alert('Preencha a data e o nome do médico.');
+        }
+    </script>
+</body>
+</html>

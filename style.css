@@ -1,0 +1,619 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fdfbfb;
+    color: #333;
+    line-height: 1.6;
+}
+
+hr.divider {
+    border: none;
+    border-top: 1px solid #f0e6e8;
+    margin: 40px auto;
+    max-width: 80%;
+}
+
+/* Layouts Utilitários */
+.container-narrow {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.container-wide {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.subtitle {
+    color: #888;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO E NAVEGAÇÃO
+   ========================================================================== */
+header {
+    background-color: #ffffff;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-logo {
+    height: 45px;
+    width: auto;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.nav-container a:hover {
+    color: #d15b7d;
+}
+
+/* Botões do Menu */
+.btn-premium {
+    color: #d15b7d !important;
+    background-color: #fff0f4;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #fcc1d6;
+    transition: all 0.3s ease !important;
+}
+
+.btn-premium:hover {
+    background-color: #d15b7d;
+    color: #ffffff !important;
+}
+
+.btn-entrar {
+    background-color: #d15b7d;
+    color: #ffffff !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s !important;
+}
+
+.btn-entrar:hover {
+    background-color: #b04363;
+}
+
+/* Dropdown para Fases */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 10px 0;
+    z-index: 1100;
+}
+
+.dropdown-content a {
+    color: #555;
+    padding: 10px 18px;
+    display: block;
+    font-size: 0.9rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #fff5f7;
+    color: #d15b7d;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ==========================================================================
+   3. SEÇÃO HERO (BOAS-VINDAS) & SOBRE
+   ========================================================================== */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 35vh;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff5f7 100%);
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    color: #d15b7d;
+}
+
+.section-sobre {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.section-sobre h2 {
+    font-size: 2.2rem;
+    color: #d15b7d;
+    margin-bottom: 20px;
+}
+
+.section-sobre p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   4. SEÇÃO DE PLANOS / PREÇOS
+   ========================================================================== */
+.section-planos {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.section-planos h2 {
+    font-size: 2.2rem;
+    color: #d15b7d;
+}
+
+.cards-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.card-plano {
+    background: #ffffff;
+    border: 2px solid #f0f0f0;
+    border-radius: 20px;
+    padding: 35px 25px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-plano:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(209, 91, 125, 0.1);
+}
+
+.card-plano h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.card-plano .preco {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #d15b7d;
+    margin-bottom: 10px;
+}
+
+.card-plano .preco span {
+    font-size: 0.9rem;
+    color: #777;
+    font-weight: normal;
+}
+
+.card-plano .descricao {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.card-plano ul {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.card-plano ul li {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.card-destaque {
+    border-color: #fcc1d6;
+    background: linear-gradient(180deg, #ffffff 0%, #fff9fa 100%);
+    box-shadow: 0 8px 20px rgba(209, 91, 125, 0.12);
+}
+
+.card-destaque .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d15b7d;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+/* Botões dos Planos */
+.btn-outline {
+    display: block;
+    padding: 12px;
+    border: 2px solid #d15b7d;
+    color: #d15b7d;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: #d15b7d;
+    color: #ffffff;
+}
+
+.btn-gradient {
+    display: block;
+    padding: 12px;
+    background: linear-gradient(135deg, #d15b7d 0%, #e07a96 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(209, 91, 125, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(209, 91, 125, 0.4);
+}
+
+/* ==========================================================================
+   5. DIÁRIO EMOCIONAL
+   ========================================================================== */
+.section-diario {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.diario-box {
+    background: #ffffff;
+    border: 1px solid #fce4ec;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(209, 91, 125, 0.05);
+}
+
+.diario-box h2 {
+    color: #d15b7d;
+    margin-bottom: 10px;
+}
+
+.mood-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mood-buttons button {
+    background: #fff0f4;
+    border: none;
+    font-size: 1.8rem;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.mood-buttons button:hover {
+    transform: scale(1.2);
+    background-color: #fcc1d6;
+}
+
+.feedback-text {
+    color: #d15b7d;
+    font-weight: 600;
+    min-height: 24px;
+}
+
+.historico-box {
+    display: none;
+    margin-top: 15px;
+    padding: 10px;
+    background: #fff5f7;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.historico-box span {
+    font-weight: bold;
+    color: #d15b7d;
+}
+
+/* ==========================================================================
+   6. FASES DE CUIDADO
+   ========================================================================== */
+.section-fases {
+    padding: 80px 40px;
+    text-align: center;
+    background-color: #fff9fa;
+}
+
+.section-fases h2 {
+    font-size: 2.2rem;
+    color: #d15b7d;
+    margin-bottom: 10px;
+}
+
+.card-fase-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-fase {
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 15px;
+    padding: 35px 25px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+}
+
+.card-fase:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(209, 91, 125, 0.15);
+    border-color: #fcc1d6;
+}
+
+.card-fase .icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.card-fase h3 {
+    color: #d15b7d;
+    font-size: 1.35rem;
+    margin-bottom: 15px;
+}
+
+.card-fase p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.card-fase .saiba-mais {
+    font-weight: bold;
+    color: #d15b7d;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   7. CONTEÚDOS E BEM-ESTAR (SPOTIFY, VÍDEO, ARTIGOS)
+   ========================================================================== */
+.section-conteudos {
+    padding: 80px 40px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.section-conteudos h2 {
+    font-size: 2.2rem;
+    color: #d15b7d;
+    margin-bottom: 10px;
+}
+
+.conteudos-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-conteudo {
+    background: #fff9fa;
+    border: 1px solid #fce4ec;
+    border-radius: 15px;
+    padding: 25px;
+    width: 350px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-conteudo .icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.card-conteudo h3 {
+    color: #d15b7d;
+    margin-bottom: 8px;
+}
+
+.card-conteudo p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.spotify-embed {
+    border-radius: 12px;
+    border: none;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Thumbnail do Vídeo */
+.video-thumb {
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: auto;
+}
+
+.video-thumb img {
+    width: 100%;
+    display: block;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    padding: 5px 15px;
+}
+
+/* Notícias */
+.lista-noticias {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.lista-noticias li {
+    margin-bottom: 10px;
+}
+
+.lista-noticias a {
+    text-decoration: none;
+    color: #444;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+}
+
+.lista-noticias a:hover {
+    color: #d15b7d;
+}
+
+.noticia-destaque {
+    font-weight: bold;
+    color: #d15b7d !important;
+}
+
+.link-todas {
+    display: inline-block;
+    color: #d15b7d;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   8. BOTÃO FLUTUANTE DO WHATSAPP
+   ========================================================================== */
+.whatsapp-flutuante {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-flutuante img {
+    width: 32px;
+    height: 32px;
+}
+
+.whatsapp-flutuante:hover {
+    transform: scale(1.1);
+    background-color: #20ba5a;
+}
+
+/* ==========================================================================
+   9. RESPONSIVIDADE (DISPOSITIVOS MÓVEIS)
+   ========================================================================== */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .card-plano, .card-fase, .card-conteudo {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: #fff5f7;
+        width: 100%;
+    }
+}

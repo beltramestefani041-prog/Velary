@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velary - Jornada Tentantes</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #fff5f7; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; padding-bottom: 60px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Cabeçalho */
+        header { background-color: #ffffff; border-bottom: 1px solid #ffe3e8; padding: 15px 0; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(201, 74, 112, 0.05); }
+        .header-top { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: #c94a70; text-decoration: none; }
+        .btn-voltar { color: #555; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        /* Banner Principal */
+        .hero-banner { 
+            background: linear-gradient(135deg, #ffffff, #fff0f3); 
+            border: 1px solid #ffe3e8; 
+            border-radius: 16px; 
+            padding: 30px; 
+            margin-bottom: 30px; 
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .hero-text { flex: 1; min-width: 280px; }
+        .hero-banner h1 { color: #c94a70; font-size: 2rem; margin-bottom: 8px; }
+        .hero-banner p { color: #666; font-size: 1rem; line-height: 1.5; }
+
+        /* Grid das Ferramentas Interativas */
+        .interativo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card-ferramenta { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
+        .card-ferramenta h2 { color: #c94a70; font-size: 1.2rem; margin-bottom: 15px; }
+
+        /* Formulários e Inputs */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #555; margin-bottom: 5px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #ffd0da; border-radius: 8px; font-family: inherit; font-size: 0.9rem; outline: none; background-color: #fffcfd; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #c94a70; }
+        
+        /* Checkboxes e Mapeamento */
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+        .checkbox-label { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; color: #444; background: #fff0f3; padding: 6px 10px; border-radius: 6px; border: 1px solid #ffd0da; cursor: pointer; }
+        .checkbox-label input { width: auto; cursor: pointer; }
+
+        /* Botões */
+        .btn-salvar { background-color: #c94a70; color: white; border: none; padding: 11px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; margin-bottom: 8px; font-size: 0.9rem; }
+        .btn-salvar:hover { background-color: #b03d5f; }
+        .btn-secundario { background-color: #fff0f3; color: #c94a70; border: 1px solid #ffd0da; }
+        .btn-secundario:hover { background-color: #ffe3e8; }
+        .btn-pdf { background-color: #2b7a78; color: white; border: none; }
+        .btn-pdf:hover { background-color: #205e5c; }
+
+        /* Badge Premium */
+        .badge-premium { background-color: #ffd700; color: #554000; font-size: 0.75rem; font-weight: bold; padding: 3px 8px; border-radius: 12px; text-transform: uppercase; margin-left: 8px; vertical-align: middle; }
+
+        /* Caixa de Destaque da Previsão do Ciclo */
+        .box-previsao { background-color: #fff0f3; border: 1px solid #ffd0da; border-radius: 10px; padding: 15px; margin-top: 15px; text-align: center; }
+        .box-previsao .status-alta { color: #2e7d32; font-weight: bold; font-size: 1.05rem; }
+        .box-previsao p { font-size: 0.85rem; color: #555; margin-top: 5px; }
+
+        /* Chat Conversacional Cônjuge */
+        .chat-container { border: 1px solid #ffd0da; border-radius: 10px; background: #fffcfd; padding: 12px; height: 210px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+        .balao-chat { max-width: 80%; padding: 8px 12px; border-radius: 12px; font-size: 0.83rem; line-height: 1.4; }
+        .balao-conjuge { background-color: #ffe3e8; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .balao-voce { background-color: #c94a70; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .chat-tempo { font-size: 0.7rem; opacity: 0.8; display: block; margin-top: 3px; text-align: right; }
+        .input-chat-box { display: flex; gap: 8px; }
+
+        /* Seções Educativas */
+        .secao-guia { background: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .secao-guia h2 { color: #c94a70; font-size: 1.4rem; margin-bottom: 15px; border-bottom: 2px solid #fff0f3; padding-bottom: 8px; }
+        
+        .grid-dicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card-dica { background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
+        .card-dica h3 { color: #d6456a; font-size: 1.05rem; margin-bottom: 8px; }
+        .card-dica ul { list-style: square; padding-left: 18px; font-size: 0.88rem; color: #555; line-height: 1.5; }
+
+        .grid-fases { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px; }
+        .card-fase { background: #fff0f3; border: 1px solid #ffd0da; border-radius: 10px; padding: 15px; }
+        .card-fase h4 { color: #c94a70; font-size: 0.95rem; margin-bottom: 6px; }
+        .card-fase p { font-size: 0.83rem; color: #555; line-height: 1.4; }
+
+        .alerta-medico { background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .alerta-medico h3 { color: #856404; font-size: 1.1rem; margin-bottom: 8px; }
+        .alerta-medico ul { padding-left: 20px; font-size: 0.88rem; color: #856404; line-height: 1.5; }
+
+        .destaque-sus { background-color: #f0f7ff; border: 1px solid #cce3ff; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .destaque-sus h3 { color: #0056b3; font-size: 1.1rem; margin-bottom: 8px; }
+        .destaque-sus p { font-size: 0.9rem; color: #333; line-height: 1.5; }
+
+        /* Estilo Exclusivo de Impressão / PDF */
+        @media print {
+            body { background-color: #fff !important; color: #000 !important; }
+            header, .btn-voltar, .btn-salvar, .btn-secundario, .btn-pdf, .chat-container, .input-chat-box, .badge-premium, .checkbox-group, select, input, textarea { display: none !important; }
+            .container { max-width: 100% !important; padding: 0 !important; }
+            .hero-banner { border: 1px solid #ccc !important; background: none !important; }
+            .secao-guia, .card-ferramenta { border: 1px solid #ccc !important; box-shadow: none !important; page-break-inside: avoid; }
+            .impressao-relatorio { display: block !important; margin-top: 20px; padding: 15px; border: 2px solid #c94a70; border-radius: 8px; }
+        }
+
+        .impressao-relatorio { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-top">
+            <a href="index.html" class="logo">Velary</a>
+            <a href="index.html" class="btn-voltar">&larr; Voltar para o Início</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Banner Principal -->
+        <div class="hero-banner">
+            <div class="hero-text">
+                <h1>Jornada Tentantes</h1>
+                <p>Decidir trazer uma nova vida ao mundo é transformador. Mapeie seu período fértil, acompanhe sinais biológicos da ovulação e compartilhe dados importantes em sintonia com seu parceiro e médica(o).</p>
+            </div>
+        </div>
+
+        <!-- BLOCOS INTERATIVOS DA TENTANTE -->
+        <div class="interativo-grid">
+            
+            <!-- 1. Calculadora e Previsão do Ciclo -->
+            <div class="card-ferramenta">
+                <div>
+                    <h2>Calculadora e Janela Fértil</h2>
+                    <div class="form-group">
+                        <label>Início da Última Menstruação:</label>
+                        <input type="date" id="dataMenstruacao" onchange="calcularFertilidade()">
+                    </div>
+                    <div class="form-group">
+                        <label>Duração Média do Ciclo:</label>
+                        <select id="duracaoCiclo" onchange="calcularFertilidade()">
+                            <option value="25">25 dias</option>
+                            <option value="26">26 dias</option>
+                            <option value="27">27 dias</option>
+                            <option value="28" selected>28 dias</option>
+                            <option value="29">29 dias</option>
+                            <option value="30">30 dias</option>
+                            <option value="31">31 dias</option>
+                            <option value="32">32 dias</option>
+                            <option value="35">35 dias</option>
+                        </select>
+                    </div>
+
+                    <div class="box-previsao" id="resultadoFertilidade">
+                        <strong>Previsão da Janela Fértil</strong>
+                        <p>Insira a data da última menstruação para calcular a provável ovulação e a data ideal para o teste de gravidez.</p>
+                    </div>
+                </div>
+                <button class="btn-salvar" style="margin-top: 15px;" onclick="salvarCiclo()">Salvar Calendário no Velary</button>
+            </div>
+
+            <!-- 2. Dados Diários & Rastreio de Ovulação -->
+            <div class="card-ferramenta">
+                <div>
+                    <h2>Sinais Diários de Ovulação</h2>
+                    <div class="form-group">
+                        <label>Sintomas Físicos Observados Hoje:</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" name="sintomas" value="Cólica Leve"> Cólica leve</label>
+                            <label class="checkbox-label"><input type="checkbox" name="sintomas" value="Sensibilidade Mamária"> Sensibilidade nas mamas</label>
+                            <label class="checkbox-label"><input type="checkbox" name="sintomas" value="Muco Cervical Clara de Ovo"> Muco tipo "Clara de Ovo"</label>
+                            <label class="checkbox-label"><input type="checkbox" name="sintomas" value="Aumento da Libido"> Aumento da libido</label>
+                            <label class="checkbox-label"><input type="checkbox" name="sintomas" value="Disposição Alta"> Disposição alta</label>
+                            <label class="checkbox-label"><input type="checkbox" name="sintomas" value="Leve Enjoo"> Leve enjoo / fadiga</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Teste de Ovulação (LH em Urina):</label>
+                        <select id="testeLH">
+                            <option value="Não realizado">Não realizado hoje</option>
+                            <option value="Negativo">Negativo (Linha clara)</option>
+                            <option value="Positivo">Positivo (Pico de LH - Ovulação em 24-36h)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Temperatura Basal (°C):</label>
+                        <input type="number" step="0.1" id="tempBasal" placeholder="Ex: 36.5">
+                    </div>
+                </div>
+                <button class="btn-salvar" onclick="salvarSintomasDiarios()">Salvar Mapeamento do Dia</button>
+            </div>
+
+            <!-- 3. Chat com Cônjuge & Sincronização -->
+            <div class="card-ferramenta">
+                <div>
+                    <h2>Chat Conversacional com Cônjuge</h2>
+                    <div class="chat-container" id="chatBox">
+                        <div class="balao-chat balao-conjuge">
+                            Oi amor! Como você está se sentindo hoje?
+                            <span class="chat-tempo">Cônjuge • 10:30</span>
+                        </div>
+                        <div class="balao-chat balao-voce">
+                            Estou bem! Já anotei meus sintomas do dia e salvei nosso calendário por aqui.
+                            <span class="chat-tempo">Você • 10:32</span>
+                        </div>
+                    </div>
+                    <div class="input-chat-box">
+                        <input type="text" id="msgChat" placeholder="Digite uma mensagem para seu parceiro...">
+                        <button class="btn-salvar" style="width: auto; margin-bottom: 0;" onclick="enviarMensagem()">Enviar</button>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; border-top: 1px dashed #ffd0da; padding-top: 10px;">
+                    <label style="font-size: 0.8rem; font-weight: bold; color: #555;">Compartilhamento de Dados <span class="badge-premium">Premium</span></label>
+                    <button class="btn-salvar btn-secundario" style="margin-top: 5px;" onclick="copiarLinkCompartilhado()">Copiar Link para Cônjuge / Médico</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DIÁRIO CLÍNICO DE ANOTAÇÕES DA CONSULTA + BOTÃO GERAR PDF -->
+        <div class="secao-guia">
+            <h2>Anotações & Relatório para a Consulta Médica</h2>
+            <p style="font-size: 0.88rem; color: #666; margin-bottom: 15px;">Escreva dúvidas, resultados de exames ou orientações para discutir na consulta. Você pode gerar um PDF completo com todas as suas anotações e sintomas gravados!</p>
+            
+            <div class="form-group">
+                <textarea id="anotacoesConsultas" rows="4" placeholder="Ex: Perguntar sobre suplementação de Vitamina D, dosagem do Ácido Fólico ou resultado do ultrassom..."></textarea>
+            </div>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-salvar" style="max-width: 220px;" onclick="salvarAnotacoes()">Salvar Anotações</button>
+                <button class="btn-salvar btn-pdf" style="max-width: 280px;" onclick="gerarPDFmedico()">📄 Gerar e Baixar PDF para o Médico</button>
+            </div>
+
+            <!-- Bloco visível apenas no PDF/Impressão -->
+            <div class="impressao-relatorio" id="blocoRelatorioPDF">
+                <h3 style="color: #c94a70; margin-bottom: 10px;">Velary - Relatório Clínico de Acompanhamento Pré-Concepcional</h3>
+                <p><strong>Paciente / Usuária:</strong> Registros do Aplicativo Velary</p>
+                <p id="pdfDataCiclo"><strong>Data do Último Período Menstrual:</strong> Não informada</p>
+                <p id="pdfSintomas"><strong>Sintomas e Sinais Biológicos Registrados:</strong> Nenhum</p>
+                <p id="pdfLH"><strong>Teste de Ovulação (LH):</strong> Não informado</p>
+                <p id="pdfTemp"><strong>Temperatura Basal:</strong> Não informada</p>
+                <hr style="margin: 10px 0; border: 0; border-top: 1px solid #ccc;">
+                <p><strong>Anotações & Dúvidas para a Consulta:</strong></p>
+                <p id="pdfAnotacoesTexto" style="font-style: italic; color: #444;">Sem anotações no momento.</p>
+            </div>
+        </div>
+
+        <!-- GUIA EXPLICATIVO DAS FASES DO CICLO -->
+        <div class="secao-guia">
+            <h2>Entendendo as Fases da Fertilidade</h2>
+            <div class="grid-fases">
+                <div class="card-fase">
+                    <h4>1. Menstruação</h4>
+                    <p>Corresponde ao início do novo ciclo. É a descamação natural do endométrio. Registrar o primeiro dia de fluxo é crucial para prever todo o restante do mês.</p>
+                </div>
+                <div class="card-fase">
+                    <h4>2. Período Fértil</h4>
+                    <p>Janela de cerca de 5 a 6 dias em que o ambiente vaginal favorece a sobrevivência dos espermatozoides (que vivem até 5 dias) até o dia da ovulação.</p>
+                </div>
+                <div class="card-fase">
+                    <h4>3. Dia da Ovulação</h4>
+                    <p>O momento em que o óvulo maduro é liberado do ovário para a trompa. Apresenta a mais alta probabilidade de fertilização no intervalo de 12 a 24 horas.</p>
+                </div>
+                <div class="card-fase">
+                    <h4>4. Fase Lútea (A Espera)</h4>
+                    <p>Período pós-ovulação. Se houver fertilização, o embrião se implanta no endométrio (nidação). Recomenda-se aguardar o atraso menstrual para o teste de gravidez.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- GUIA PRÁTICO E CUIDADOS PRÉ-CONCEPCIONAIS -->
+        <div class="secao-guia">
+            <h2>Cuidados Pré-Concepcionais & Nutrição</h2>
+            <div class="grid-dicas">
+                
+                <div class="card-dica">
+                    <h3>Suplementação e Acompanhamento</h3>
+                    <ul>
+                        <li><strong>Ácido Fólico (Vitamina B9):</strong> Prescrição essencial ao menos 1 a 3 meses antes das tentativas para prevenir defeitos no tubo neural do feto.</li>
+                        <li><strong>Exames Laboratoriais:</strong> Tipagem sanguínea, glicemia, hormônios tireoidianos (TSH), sorologias (Rubéola, Toxoplasmose) e ultrassom pélvico.</li>
+                        <li><strong>Saúde do Cônjuge:</strong> O fator masculino responde por cerca de 40% dos casos de dificuldade de concepção. Acompanhamento urológico e espermograma são indicados.</li>
+                    </ul>
+                </div>
+
+                <div class="card-dica">
+                    <h3>Nutrição & Estilo de Vida Fértil</h3>
+                    <ul>
+                        <li><strong>Alimentos Pró-Fertilidade:</strong> Invista em vegetais verde-escuros, sementes (girassol, abóbora), peixes ricos em Ômega 3, frutas vermelhas e ovos.</li>
+                        <li><strong>O que Reduzir/Evitar:</strong> Evite o consumo de álcool, tabaco e reduza o excesso de cafeína (máximo de 1 a 2 xícaras de café ao dia).</li>
+                        <li><strong>Frequência de Relações:</strong> Relações a cada 1 ou 2 dias durante a janela fértil mantêm a contagem e a motilidade ideal dos espermatozoides.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Alerta Médica sobre Infertilidade -->
+            <div class="alerta-medico">
+                <h3>Quando consultar um Especialista em Reprodução Humana?</h3>
+                <ul>
+                    <li><strong>Abaixo dos 35 anos:</strong> Após 12 meses de tentativas frequentes sem o uso de contraceptivos e sem sucesso.</li>
+                    <li><strong>35 anos ou mais:</strong> Após 6 meses de tentativas, devido à diminuição natural da reserva ovariana.</li>
+                    <li><strong>Histórico Clínico Específico:</strong> Caso a mulher tenha diagnóstico de Endometriose, Síndrome dos Ovários Policísticos (SOP), ciclos muito irregulares ou histórico de cirurgias pélvicas.</li>
+                </ul>
+            </div>
+
+            <!-- Apoio no SUS -->
+            <div class="destaque-sus">
+                <h3>Planejamento Familiar no SUS</h3>
+                <p>O Sistema Único de Saúde assegura atendimento preventivo e orientação completa no planejamento reprodutivo:</p>
+                <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.88rem; color: #333;">
+                    <li><strong>Atendimento Pré-Concepcional:</strong> Disponível nas Unidades Básicas de Saúde (UBS) com médicos da família e ginecologistas.</li>
+                    <li><strong>Exames e Vitaminas Gratuitas:</strong> Acesso à suplementação pré-natal e exames de sorologia totalmente gratuitos.</li>
+                    <li><strong>Investigação Especializada:</strong> Encaminhamento para serviços de referência em reprodução assistida na rede pública de saúde.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts do Velary -->
+    <script>
+        function calcularFertilidade() {
+            const dataInput = document.getElementById('dataMenstruacao').value;
+            const duracao = parseInt(document.getElementById('duracaoCiclo').value);
+            const resBox = document.getElementById('resultadoFertilidade');
+
+            if(!dataInput) {
+                resBox.innerHTML = '<strong>Previsão da Janela Fértil</strong><p>Insira a data da última menstruação para calcular a provável ovulação e a data ideal para o teste de gravidez.</p>';
+                return;
+            }
+
+            const dataInicio = new Date(dataInput + 'T00:00:00');
+            
+            const diaOvulacao = new Date(dataInicio);
+            diaOvulacao.setDate(dataInicio.getDate() + (duracao - 14));
+
+            const inicioJanela = new Date(diaOvulacao);
+            inicioJanela.setDate(diaOvulacao.getDate() - 3);
+
+            const fimJanela = new Date(diaOvulacao);
+            fimJanela.setDate(diaOvulacao.getDate() + 1);
+
+            const dataTeste = new Date(dataInicio);
+            dataTeste.setDate(dataInicio.getDate() + duracao);
+
+            const formatar = (data) => data.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+
+            resBox.innerHTML = `
+                <strong style="color: #c94a70; font-size: 1.05rem;">Provável Ovulação: ${formatar(diaOvulacao)}</strong>
+                <p style="margin-top: 6px; font-size: 0.88rem; color: #333;"><strong>Janela Fértil Recomendada:</strong> de ${formatar(inicioJanela)} a ${formatar(fimJanela)}</p>
+                <p style="margin-top: 4px; font-size: 0.85rem; color: #856404; background: #fff3cd; padding: 5px; border-radius: 6px;"><strong>Data recomendada p/ Teste:</strong> ${formatar(dataTeste)}</p>
+                <span class="status-alta" style="display:inline-block; margin-top:8px;">Probabilidade Alta de Concepção na Janela Fértil</span>
+            `;
+        }
+
+        function salvarCiclo() {
+            const dataInput = document.getElementById('dataMenstruacao').value;
+            if(dataInput) {
+                alert('Dados do ciclo salvos com sucesso no seu perfil Velary!');
+            } else {
+                alert('Por favor, selecione a data do início da sua última menstruação.');
+            }
+        }
+
+        function salvarSintomasDiarios() {
+            const sintomas = Array.from(document.querySelectorAll('input[name="sintomas"]:checked')).map(el => el.value);
+            const lh = document.getElementById('testeLH').value;
+            const temp = document.getElementById('tempBasal').value;
+
+            alert(`Mapeamento Diário Salvo no Velary!\n\nSintomas: ${sintomas.length > 0 ? sintomas.join(', ') : 'Nenhum'}\nTeste LH: ${lh}\nTemperatura Basal: ${temp ? temp + '°C' : 'Não registrada'}`);
+        }
+
+        function enviarMensagem() {
+            const campo = document.getElementById('msgChat');
+            const texto = campo.value.trim();
+            if(texto !== "") {
+                const chatBox = document.getElementById('chatBox');
+                const agora = new Date();
+                const horaStr = agora.getHours().toString().padStart(2, '0') + ':' + agora.getMinutes().toString().padStart(2, '0');
+
+                const novoBalao = document.createElement('div');
+                novoBalao.className = 'balao-chat balao-voce';
+                novoBalao.innerHTML = `${texto} <span class="chat-tempo">Você • ${horaStr}</span>`;
+
+                chatBox.appendChild(novoBalao);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                campo.value = '';
+            }
+        }
+
+        function copiarLinkCompartilhado() {
+            navigator.clipboard.writeText(window.location.href + "?sync=true");
+            alert("Link de sincronização em tempo real copiado para a área de transferência! (Recurso Velary Premium)");
+        }
+
+        function salvarAnotacoes() {
+            const txt = document.getElementById('anotacoesConsultas').value;
+            if(txt.trim() !== "") {
+                alert("Suas anotações médicas foram salvas no Velary!");
+            } else {
+                alert("Escreva alguma anotação antes de salvar.");
+            }
+        }
+
+        // Função de Gerar PDF / Impressão
+        function gerarPDFmedico() {
+            // Atualiza os dados no relatório antes de imprimir
+            const dataInput = document.getElementById('dataMenstruacao').value;
+            const sintomas = Array.from(document.querySelectorAll('input[name="sintomas"]:checked')).map(el => el.value);
+            const lh = document.getElementById('testeLH').value;
+            const temp = document.getElementById('tempBasal').value;
+            const anotacoes = document.getElementById('anotacoesConsultas').value;
+
+            document.getElementById('pdfDataCiclo').innerHTML = `<strong>Data da Última Menstruação:</strong> ${dataInput || 'Não registrada'}`;
+            document.getElementById('pdfSintomas').innerHTML = `<strong>Sintomas do Período:</strong> ${sintomas.length > 0 ? sintomas.join(', ') : 'Nenhum sintoma marcado'}`;
+            document.getElementById('pdfLH').innerHTML = `<strong>Resultado Teste LH:</strong> ${lh}`;
+            document.getElementById('pdfTemp').innerHTML = `<strong>Temperatura Basal:</strong> ${temp ? temp + ' °C' : 'Não registrada'}`;
+            document.getElementById('pdfAnotacoesTexto').innerText = anotacoes.trim() !== "" ? anotacoes : "Nenhuma anotação inserida.";
+
+            // Abre a janela do navegador configurada para salvar como PDF
+            window.print();
+        }
+    </script>
+</body>
+</html>
