@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vídeos recentes e conteúdos educativos sobre saúde feminina, prevenção e autocuidado.">
+  <title>Vídeos educativos | Velary</title>
+  <link rel="stylesheet" href="css/marca-dagua.css">
+  <style>
+    :root { --rosa:#d63378; --rosa-escuro:#a92059; --texto:#45353c; --borda:#f0dce5; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#fff8fb; color:var(--texto); font-family:Arial,sans-serif; line-height:1.65; }
+    header { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:16px max(22px,calc((100% - 1080px)/2)); background:rgba(255,255,255,.95); border-bottom:1px solid var(--borda); }
+    header a { color:var(--rosa-escuro); font-weight:700; text-decoration:none; }
+    .marca { font:700 1.8rem Georgia,serif; }
+    nav { display:flex; flex-wrap:wrap; gap:18px; }
+    main { width:min(1000px,calc(100% - 36px)); margin:48px auto 72px; }
+    .intro { max-width:720px; margin:0 auto 30px; text-align:center; }
+    h1,h2 { color:var(--rosa-escuro); }
+    h1 { font:600 clamp(2.5rem,6vw,3.8rem)/1.1 Georgia,serif; margin:0 0 12px; }
+    .intro p { color:#71636a; }
+    .lista-videos { display:grid; gap:20px; }
+    .video-card { padding:clamp(20px,4vw,32px); border:1px solid var(--borda); border-radius:18px; background:rgba(255,255,255,.94); box-shadow:0 8px 24px rgba(109,39,64,.06); }
+    .video-card time { color:var(--rosa-escuro); font-size:.9rem; font-weight:800; }
+    .video-card h2 { margin:8px 0 10px; color:#46343d; font-size:1.5rem; line-height:1.25; }
+    .video-card p { color:#62565c; }
+    video, iframe { display:block; width:100%; aspect-ratio:16/9; border:0; border-radius:12px; background:#21191c; }
+    .fonte { display:inline-block; margin-top:14px; color:var(--rosa-escuro); font-weight:800; text-decoration:none; }
+    .fonte:hover { text-decoration:underline; }
+    .secao-acervo { margin-top:44px; }
+    .secao-acervo > h2 { font:600 2rem Georgia,serif; }
+    .aviso { margin-top:24px; padding:16px 18px; border-left:4px solid var(--rosa); border-radius:8px; background:rgba(255,255,255,.9); color:#665760; }
+    @media(max-width:650px) { header { align-items:flex-start; flex-direction:column; } nav { gap:10px 16px; } main { margin-top:32px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="marca" href="index.html">Velary</a>
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="temas.html">Temas</a>
+      <a href="noticias.html">Artigos e notícias</a>
+      <a href="videos.html" aria-current="page">Vídeos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>Vídeos educativos</h1>
+      <p>Uma seleção recente de materiais oficiais sobre saúde menstrual, endometriose e cuidado integral. Os vídeos estão organizados da publicação mais recente para a mais antiga.</p>
+    </section>
+
+    <section class="lista-videos" aria-label="Vídeos recentes">
+      <article class="video-card">
+        <time datetime="2026-06-12">12 de junho de 2026 · Saúde menstrual</time>
+        <h2>Saúde e dignidade menstrual</h2>
+        <p>A TV Câmara conversa sobre saúde menstrual como tema de saúde pública e igualdade, incluindo acesso à informação, produtos de higiene e atenção a condições como endometriose.</p>
+        <video controls preload="none" title="Elas Pautam: Saúde e dignidade menstrual">
+          <source src="https://imagem.camara.gov.br/internet/midias/Tv/2026/06/EP%2020260610%20SAUDE%20E%20DIGNIDADE%20MENSTRUAL_LOGO.mp4" type="video/mp4">
+          Seu navegador não consegue reproduzir este vídeo. <a href="https://www.camara.leg.br/tv/elas-pautam-mulheres-na-politica/1281514-elas-pautam-saude-e-dignidade-menstrual/">Acesse o vídeo na TV Câmara.</a>
+        </video>
+        <a class="fonte" href="https://www.camara.leg.br/tv/elas-pautam-mulheres-na-politica/1281514-elas-pautam-saude-e-dignidade-menstrual/" target="_blank" rel="noopener noreferrer">Ver a página oficial da TV Câmara</a>
+      </article>
+
+      <article class="video-card">
+        <time datetime="2026-05-21">21 de maio de 2026 · Saúde menstrual</time>
+        <h2>Dignidade menstrual no ambiente escolar</h2>
+        <p>Webinário do Programa Saúde na Escola sobre equidade, autocuidado, informação segura e enfrentamento dos estigmas relacionados à menstruação.</p>
+        <iframe src="https://www.youtube-nocookie.com/embed/exlgmnWJUbk" title="Webinário PSE pela Dignidade Menstrual" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <a class="fonte" href="https://www.gov.br/mulheres/pt-br/central-de-conteudos/noticias/2026/maio/dignidade-menstrual-no-ambiente-escolar-sera-tema-de-webinario-nacional-nesta-quinta-feira-21" target="_blank" rel="noopener noreferrer">Ver informações do Ministério das Mulheres</a>
+      </article>
+
+      <article class="video-card">
+        <time datetime="2026-03-27">27 de março de 2026 · Endometriose</time>
+        <h2>Endometriose: diagnóstico e tratamento</h2>
+        <p>Especialistas e representantes públicos conversam sobre sintomas, diagnóstico e opções de tratamento individualizado.</p>
+        <iframe src="https://www.youtube-nocookie.com/embed/ZAITbFe13Xg" title="Endometriose: diagnóstico e tratamento, TV Câmara" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <a class="fonte" href="https://www.youtube.com/watch?v=ZAITbFe13Xg" target="_blank" rel="noopener noreferrer">Assistir no canal oficial da Câmara dos Deputados</a>
+      </article>
+    </section>
+
+    <section class="secao-acervo">
+      <h2>Conteúdo do Velary</h2>
+      <article class="video-card">
+        <h2>Como colocar o absorvente</h2>
+        <p>Um passo a passo narrado para apoiar quem está conhecendo o absorvente. Consulte também as instruções da embalagem do produto escolhido.</p>
+        <video controls playsinline preload="metadata" title="Vídeo narrado: como colocar o absorvente">
+          <source src="videos/como-colocar-absorvente-narrado.mp4" type="video/mp4">
+          Seu navegador não conseguiu reproduzir este vídeo. <a href="videos/como-colocar-absorvente-narrado.mp4">Abrir ou baixar o vídeo.</a>
+        </video>
+      </article>
+      <article class="video-card">
+        <h2>Gestação</h2>
+        <p>Vídeo educativo disponível no acervo do projeto.</p>
+        <video controls preload="metadata" title="Vídeo do Velary sobre gestação">
+          <source src="videogravidez.mp4" type="video/mp4">
+          Seu navegador não consegue reproduzir este vídeo.
+        </video>
+      </article>
+    </section>
+
+    <p class="aviso"><strong>Nota:</strong> os vídeos são materiais educativos e não substituem avaliação, diagnóstico ou orientação individual de profissionais de saúde.</p>
+    <p class="aviso"><a class="fonte" href="premium.html">Conheça as ideias em estudo para o Velary Premium</a>.</p>
+  </main>
+</body>
+</html>

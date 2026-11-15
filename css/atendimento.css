@@ -1,0 +1,158 @@
+body.pagina-atendimento{background:#fff8fb}
+body.pagina-atendimento .conteudo-app{width:min(1180px,calc(100% - 36px));margin-top:26px}
+body.pagina-atendimento .cabecalho-app{min-height:0;margin:0 0 20px;padding:clamp(24px,4vw,42px);border-left:5px solid #d63378;border-radius:4px 18px 18px 4px;background:#fff;box-shadow:0 5px 18px rgba(109,39,64,.045)}
+body.pagina-atendimento .cabecalho-app h1{max-width:none;font-size:clamp(.625rem,3.85vw,3rem);white-space:nowrap}
+body.pagina-atendimento .cabecalho-app .texto-suave{max-width:none;margin:0;font-size:1.03rem;white-space:nowrap}
+body.pagina-atendimento .etiqueta{margin:0 0 5px;letter-spacing:.04em}
+body.pagina-atendimento .aviso-privacidade.nota-demo{margin:0 0 22px;border-left-color:#a92059}
+.etapas-consulta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 0 24px;padding:0;list-style:none}
+.etapas-consulta li{position:relative;display:flex;align-items:center;gap:11px;min-height:64px;padding:8px 14px;border-bottom:2px solid #eadde3;color:#796773}
+.etapas-consulta li:not(:last-child)::after{position:absolute;right:0;bottom:-2px;width:16px;height:2px;background:#eadde3;content:""}
+.etapas-consulta li>span{display:grid;flex:none;width:30px;height:30px;place-items:center;border:1px solid #d9c6ce;border-radius:50%;font-size:.85rem;font-weight:800}
+.etapas-consulta li div{display:grid;gap:1px}
+.etapas-consulta strong{font-size:.9rem}
+.etapas-consulta small{font-size:.78rem}
+.etapas-consulta .etapa-atual{border-color:#d63378;color:#791a43}
+.etapas-consulta .etapa-atual>span{border-color:#d63378;background:#d63378;color:#fff}
+.grade-atendimento{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.8fr);align-items:start;gap:22px}
+.coluna-registros{display:grid;gap:22px}
+.painel-registros,.painel-exames,.painel-pedido,.painel-resumo{margin:0}
+.painel-registros .linha-titulo{margin-bottom:8px}
+.painel-registros .linha-titulo h2,.painel-exames .linha-titulo h2{margin:0;color:#791a43}
+.painel-registros .texto-suave{margin:0;max-width:65ch}
+.lista-sintomas{margin:15px 0 18px}
+.lista-sintomas li{padding:13px 0}
+.formulario-sintoma{margin-top:18px;padding-top:16px;border-top:1px solid #f1e5ea}
+.formulario-sintoma>label,.formulario-sintoma label{display:grid;gap:6px}
+.formulario-sintoma input,.formulario-sintoma select,.formulario-sintoma textarea,.painel-pedido select{width:100%;min-height:44px;padding:10px 12px;border:1px solid #e2c9d4;border-radius:10px;background:#fff;color:#44333d;font:inherit}
+.formulario-sintoma textarea{resize:vertical}
+.campos-sintoma{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.formulario-sintoma .botao{justify-self:start;margin-top:4px}
+.painel-exames{border-top:3px solid #d63378}
+.painel-exames .linha-titulo{margin-bottom:10px}
+.icone-documento,.arquivo-simbolo{display:grid;flex:none;place-items:center;border-radius:8px;background:#fff0f5;color:#a92059;font-size:.68rem;font-weight:900;letter-spacing:.02em}
+.icone-documento{width:42px;height:42px}
+.lista-exames{display:grid;gap:0;margin:10px 0;padding:0;list-style:none}
+.lista-exames li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f1e5ea}
+.arquivo-simbolo{width:38px;height:42px}
+.arquivo-detalhes{display:grid;min-width:0;gap:2px}
+.arquivo-detalhes strong{color:#44333d;font-size:.91rem}
+.arquivo-detalhes small{color:#796773;font-size:.82rem}
+.estado-exame{margin-left:auto;color:#8a6427;font-size:.78rem;font-weight:800;text-align:right}
+.painel-exames .botao{margin-top:4px}
+.mensagem-status{min-height:1.4em;margin:8px 0 0;color:#27613c;font-size:.86rem}
+.painel-pedido{position:sticky;top:18px;border-top:3px solid #791a43}
+.painel-pedido h2{margin-bottom:8px;color:#791a43}
+.painel-pedido .texto-suave{margin:0 0 16px}
+.painel-pedido .formulario{gap:8px}
+.painel-pedido .formulario label{margin-top:5px;font-size:.9rem}
+.painel-pedido .botao{width:100%;margin-top:8px}
+.estado-pedido{display:flex;align-items:flex-start;gap:10px;margin-top:18px;padding:13px;border-radius:11px;background:#fff7e8;color:#684c1d}
+.estado-pedido>div,.estado-pedido-texto{display:grid;gap:3px}
+.estado-pedido strong{font-size:.86rem}
+.estado-pedido small{font-size:.79rem;line-height:1.45}
+.ponto-estado{flex:none;width:9px;height:9px;margin-top:5px;border-radius:50%;background:#c58a24}
+.nota-fluxo{margin:12px 0 0;color:#796773;font-size:.82rem;line-height:1.5}
+.painel-equipe,.painel-integracao,.painel-trilhas{margin-top:24px}
+.cabecalho-equipe{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.cabecalho-equipe h2{margin:0 0 7px;color:#791a43}
+.cabecalho-equipe .texto-suave{max-width:70ch;margin:0}
+.indicadores-equipe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.indicadores-equipe article{display:grid;gap:5px;padding:16px;border:1px solid #f0dce5;border-radius:13px;background:#fffafd}
+.indicadores-equipe strong{color:#a92059;font-size:1.7rem;line-height:1}
+.indicadores-equipe span{color:#665760;font-size:.84rem;font-weight:700}
+.metas-piloto{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-4px 0 14px;color:#665760;font-size:.76rem}
+.metas-piloto strong{width:100%;color:#791a43;font-size:.82rem}
+.metas-piloto span{padding:6px 9px;border-radius:20px;background:#f7f0f3}
+.fila-equipe{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.fila-equipe li{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(125px,.7fr) auto;align-items:center;gap:14px;padding:15px 0;border-top:1px solid #f1e5ea}
+.caso-descricao{display:grid;gap:3px;min-width:0}
+.codigo-caso{color:#a92059;font-size:.68rem;font-weight:900;letter-spacing:.07em}
+.caso-descricao strong{color:#44333d;font-size:.93rem}
+.caso-descricao small{color:#796773;font-size:.8rem;line-height:1.4}
+.estado-fila{width:max-content;max-width:100%;padding:6px 9px;border-radius:20px;background:#fff4df;color:#76531c;font-size:.75rem;font-weight:800}
+.fila-equipe li.concluida .estado-fila{background:#e9f6ee;color:#27613c}
+.fila-equipe .botao{margin:0;font-size:.78rem}
+.acoes-equipe{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px}
+.acoes-equipe p{margin:0}
+.selo-conexao{display:inline-flex;align-items:center;gap:8px;flex:none;padding:8px 11px;border:1px solid #eadde3;border-radius:30px;background:#fff7e8;color:#684c1d;font-size:.78rem;font-weight:800}
+.selo-conexao span{width:8px;height:8px;border-radius:50%;background:#c58a24}
+.integracao-etapas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:20px}
+.integracao-etapas article{padding:16px;border:1px solid #f0dce5;border-radius:13px;background:#fffafd}
+.integracao-etapas article>span{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:#fce5ee;color:#a92059;font-size:.72rem;font-weight:900}
+.integracao-etapas h3{margin:10px 0 6px;color:#791a43;font-size:.98rem}
+.integracao-etapas p{margin:0;color:#665760;font-size:.84rem;line-height:1.5}
+.aviso-integracao{margin-top:16px;padding:14px 16px;border-left:3px solid #d63378;border-radius:0 10px 10px 0;background:#fff5f8;color:#665760;font-size:.86rem;line-height:1.55}
+.painel-mamas,.painel-referencias{margin-top:24px}
+.painel-mamas h2,.painel-referencias h2{margin:0 0 7px;color:#791a43}
+.painel-mamas .cabecalho-equipe .texto-suave{max-width:70ch;margin:0}
+.grade-mamas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.grade-mamas article{padding:17px;border:1px solid #f0dce5;border-radius:13px;background:#fffafd}
+.numero-mama{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:#fce5ee;color:#a92059;font-size:.72rem;font-weight:900}
+.grade-mamas h3{margin:12px 0 7px;color:#791a43;font-size:.98rem}
+.grade-mamas p,.grade-mamas li{color:#665760;font-size:.84rem;line-height:1.55}
+.grade-mamas p{margin:0}
+.grade-mamas ul{display:grid;gap:6px;margin:0 0 10px;padding-left:18px}
+.grade-mamas a{display:inline-block;margin-top:12px;color:#a92059;font-size:.81rem;font-weight:800;line-height:1.4;text-underline-offset:3px}
+.painel-mamas>.nota-fluxo{margin-top:16px}
+.painel-referencias .referencias-sus{margin-top:12px;padding-top:0;border:0}
+.referencias-sus{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:18px;padding-top:14px;border-top:1px solid #f1e5ea;font-size:.78rem}
+.referencias-sus strong{width:100%;color:#665760}
+.referencias-sus a{color:#a92059;font-weight:800;text-underline-offset:3px}
+.texto-resumo{margin:0;color:#44333d;font-size:.88rem;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.painel-resumo{margin-top:24px;border-top:3px solid #d63378}
+.cabecalho-resumo{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.cabecalho-resumo h2{margin-bottom:5px;color:#791a43}
+.cabecalho-resumo .texto-suave{margin:0}
+.cabecalho-resumo .botao{flex:none;margin:0}
+.resumo-grade{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-top:22px}
+.resumo-grade section{padding-top:13px;border-top:1px solid #eadde3}
+.resumo-grade h3{margin:0 0 9px;color:#a92059;font-family:'Nunito Sans','Segoe UI',Arial,sans-serif;font-size:.94rem}
+.resumo-lista{display:grid;gap:6px;margin:0;padding-left:18px;color:#44333d;font-size:.88rem}
+.resumo-pedido{grid-column:1/-1}
+.resumo-pedido p{max-width:80ch;margin:0;color:#44333d;font-size:.9rem;line-height:1.55}
+.nota-laudo{margin:20px 0 0;padding-top:13px;border-top:1px solid #eadde3;color:#796773;font-size:.82rem;line-height:1.5}
+.painel-resumo>.texto-rodape-demo{margin-bottom:0}
+.pagina-atendimento :focus-visible{outline:3px solid #f2cadb;outline-offset:3px}
+@media(max-width:760px){
+  body.pagina-atendimento .conteudo-app{width:calc(100% - 28px);margin-top:18px}
+  body.pagina-atendimento .cabecalho-app{padding:20px 12px}
+  body.pagina-atendimento .cabecalho-app .texto-suave{font-size:.7rem}
+  .grade-atendimento{grid-template-columns:1fr}
+  .painel-pedido{position:static}
+  .fila-equipe li{grid-template-columns:1fr auto}
+  .caso-descricao{grid-column:1/-1}
+  .integracao-etapas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grade-mamas{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .etapas-consulta li{align-items:flex-start;flex-direction:column;gap:5px;padding:8px}
+  .etapas-consulta li>span{width:26px;height:26px}
+  .etapas-consulta small{font-size:.7rem}
+  .campos-sintoma,.resumo-grade{grid-template-columns:1fr}
+  .resumo-pedido{grid-column:auto}
+  .cabecalho-resumo{flex-direction:column}
+  .cabecalho-resumo .botao{width:100%}
+  .lista-exames li{align-items:flex-start;flex-wrap:wrap}
+  .estado-exame{width:100%;margin-left:50px;text-align:left}
+  .cabecalho-equipe,.acoes-equipe{align-items:flex-start;flex-direction:column}
+  .indicadores-equipe{gap:7px}
+  .indicadores-equipe article{padding:11px}
+  .indicadores-equipe span{font-size:.7rem}
+  .fila-equipe li{grid-template-columns:1fr}
+  .fila-equipe .botao{width:100%}
+  .integracao-etapas{grid-template-columns:1fr}
+}
+@media print{
+  @page{size:A4;margin:18mm}
+  body.pagina-atendimento{background:#fff}
+  body.pagina-atendimento *{visibility:hidden!important}
+  body.pagina-atendimento #resumo-consulta,
+  body.pagina-atendimento #resumo-consulta *{visibility:visible!important}
+  body.pagina-atendimento #resumo-consulta{position:absolute;inset:0 auto auto 0;width:100%;margin:0;padding:0;border:0;box-shadow:none}
+  body.pagina-atendimento .cabecalho-resumo .botao,
+  body.pagina-atendimento .painel-resumo>.texto-rodape-demo{display:none!important}
+  body.pagina-atendimento .painel-resumo h2{font-size:24pt}
+  body.pagina-atendimento .resumo-grade{grid-template-columns:1fr 1fr}
+  body.pagina-atendimento .resumo-pedido{grid-column:1/-1}
+}

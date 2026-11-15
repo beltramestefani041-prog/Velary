@@ -1,29 +1,103 @@
-<script>
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Informações e registro pessoal sobre climatério e menopausa no Velary.">
+  <title>Climatério e menopausa | Velary</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background:#fff8fa; color:#44363b; font-family:Arial,sans-serif; line-height:1.6; }
+    main { max-width:900px; margin:36px auto; padding:24px; }
+    header, .painel { background:#fff; border:1px solid #f2dce4; border-radius:16px; padding:24px; margin-bottom:20px; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+    a { color:#a92059; } h1,h2 { color:#a92059; }
+    .opcoes { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin:16px 0; }
+    .opcoes label { padding:12px; background:#fff6f9; border-radius:10px; }
+    textarea { width:100%; min-height:100px; padding:12px; border:1px solid #e4c4d0; border-radius:10px; font:inherit; }
+    button { margin-top:14px; border:0; border-radius:22px; padding:12px 20px; color:white; background:#b83268; font-weight:bold; cursor:pointer; }
+    #historicoSintomas { display:none; }
+  </style>
+    <link rel="stylesheet" href="css/marca-dagua.css">
+    <link rel="stylesheet" href="css/pagina-tema.css">
+</head>
+<body class="pagina-tema">
+<header class="tema-cabecalho">
+  <div class="tema-cabecalho-interno">
+    <a href="index.html" class="tema-marca">Velary</a>
+    <nav class="tema-nav" aria-label="Navegação da página temática">
+      <a href="temas.html">Todos os temas</a>
+      <a href="index.html">Início</a>
+    </nav>
+  </div>
+</header>
+  <main class="tema-conteudo">
+    <section class="painel">
+      <h1>Climatério e menopausa</h1>
+      <p>O climatério pode trazer mudanças diferentes para cada pessoa. Use este espaço para registrar sintomas e organizar dúvidas para uma conversa com um profissional de saúde.</p>
+    </section>
+    <section class="painel">
+      <h2>Meu registro de hoje</h2>
+      <form id="formSintomas">
+        <div class="opcoes">
+          <label><input type="checkbox" name="sintoma" value="Ondas de calor"> Ondas de calor</label>
+          <label><input type="checkbox" name="sintoma" value="Alterações do sono"> Alterações do sono</label>
+          <label><input type="checkbox" name="sintoma" value="Mudanças de humor"> Mudanças de humor</label>
+          <label><input type="checkbox" name="sintoma" value="Suores noturnos"> Suores noturnos</label>
+          <label><input type="checkbox" name="sintoma" value="Ressecamento vaginal"> Ressecamento vaginal</label>
+          <label><input type="checkbox" name="sintoma" value="Cansaço"> Cansaço</label>
+        </div>
+        <label for="comentarios">Observações</label>
+        <textarea id="comentarios" placeholder="Anote quando começou, o que ajudou ou dúvidas para sua consulta."></textarea>
+        <button type="submit">Salvar registro neste dispositivo</button>
+        <p class="nota-local">O registro fica apenas neste navegador. Não é enviado ao Velary nem sincronizado. Você pode apagá-lo a qualquer momento.</p>
+        <button type="button" class="apagar-registro" onclick="apagarHistorico()">Apagar meu registro deste dispositivo</button>
+      </form>
+    </section>
+    <section class="painel" id="historicoSintomas" aria-live="polite">
+      <h2>Registro guardado neste navegador</h2>
+      <p id="exibirSintomas"></p><p id="exibirComentarios"></p>
+    </section>
+  </main>
+  <script>
+    const form = document.getElementById('formSintomas');
+    const historico = document.getElementById('historicoSintomas');
     function carregarHistorico() {
-        const sintSalvos = localStorage.getItem('meno_sint');
-        const obsSalva = localStorage.getItem('meno_obs');
-        
-        if (sintSalvos || obsSalva) {
-            document.getElementById('historicoSintomas').style.display = 'block';
-            document.getElementById('exibirSintomas').innerText = sintSalvos || 'Nenhum sintoma marcado';
-            document.getElementById('exibirComentarios').innerText = obsSalva ? `"${obsSalva}"` : '';
-        }
+      const sintomas = localStorage.getItem('meno_sint');
+      const observacoes = localStorage.getItem('meno_obs');
+      if (!sintomas && !observacoes) {
+        historico.style.display = 'none';
+        return;
+      }
+      historico.style.display = 'block';
+      document.getElementById('exibirSintomas').textContent = sintomas || 'Nenhum sintoma marcado';
+      document.getElementById('exibirComentarios').textContent = observacoes ? `Observações: ${observacoes}` : '';
     }
-
-    window.onload = carregarHistorico;
-
-    document.getElementById('formSintomas').onsubmit = function(e) {
-        e.preventDefault();
-        const checks = document.querySelectorAll('input[name="sintoma"]:checked');
-        let sints = [];
-        checks.forEach(c => sints.push(c.value));
-        const obs = document.getElementById('comentarios').value;
-        
-        localStorage.setItem('meno_sint', sints.join(', '));
-        localStorage.setItem('meno_obs', obs);
-        
-        // Atualiza a tela imediatamente sem recarregar a página
-        carregarHistorico();
-        document.getElementById('formSintomas').reset();
-    };
-</script>
+    function apagarHistorico() {
+      localStorage.removeItem('meno_sint');
+      localStorage.removeItem('meno_obs');
+      document.getElementById('exibirSintomas').textContent = '';
+      document.getElementById('exibirComentarios').textContent = '';
+      historico.style.display = 'none';
+      form.reset();
+    }
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const sintomas = [...form.querySelectorAll('input[name="sintoma"]:checked')].map((item) => item.value);
+      localStorage.setItem('meno_sint', sintomas.join(', '));
+      localStorage.setItem('meno_obs', document.getElementById('comentarios').value.trim());
+      carregarHistorico();
+      form.reset();
+    });
+    carregarHistorico();
+  </script>
+  <aside class="aviso-educativo-padrao" role="note"><strong>Informação importante:</strong> este conteúdo é educativo e não substitui consulta, diagnóstico ou tratamento individual. Para orientações sobre o seu caso, converse com um profissional de saúde.</aside>
+  <footer class="rodape-tema" aria-label="Links do Velary">
+    <a href="index.html">Início</a>
+    <a href="temas.html">Todos os temas</a>
+    <a href="noticias.html">Artigos e notícias</a>
+    <a href="videos.html">Vídeos</a>
+    <a href="premium.html">Ideias Premium</a>
+  </footer>
+</body>
+</html>

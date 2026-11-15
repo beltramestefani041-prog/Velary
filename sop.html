@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOP / SOMP - Acompanhamento</title>
+    <title>SOP — conteúdo educativo</title>
     <link rel="stylesheet" href="home.css">
     <style>
         /* Base do Layout do Site */
@@ -471,31 +471,36 @@
             border-radius: 6px;
         }
     </style>
+    <link rel="stylesheet" href="css/marca-dagua.css">
+    <link rel="stylesheet" href="css/pagina-tema.css">
 </head>
-<body>
+<body class="pagina-tema">
+
+<header class="tema-cabecalho">
+  <div class="tema-cabecalho-interno">
+    <a href="index.html" class="tema-marca">Velary</a>
+    <nav class="tema-nav" aria-label="Navegação da página temática">
+      <a href="temas.html">Todos os temas</a>
+      <a href="index.html">Início</a>
+    </nav>
+  </div>
+</header>
 
     <div class="container">
-        
-        <div class="nav-superior">
-            <a href="index.html" class="btn-voltar">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-                </svg>
-                Voltar para o Início
-            </a>
-        </div>
-
         <div class="header-sop">
-            <h1>SOP / SOMP - Acompanhamento</h1>
+            <h1>SOP — conteúdo educativo</h1>
+            <p>A síndrome dos ovários policísticos exige avaliação profissional. Sintomas ou cálculos de ciclo, por si só, não confirmam diagnóstico. Esta página mostra um calendário demonstrativo e não interpreta exames.</p>
+            <p><a href="https://www.gov.br/saude/pt-br/assuntos/pcdt/s/sindrome-de-ovarios-policisticos" target="_blank" rel="noopener noreferrer">Consultar o protocolo do Ministério da Saúde sobre SOP</a>.</p>
         </div>
 
         <div class="painel-duplo">
             <div class="bloco-conteudo">
-                <h2>Dados Diários & Clínicos</h2>
+                <h2>Observações sobre o ciclo</h2>
+                <p class="nota-ferramenta">Calculadora demonstrativa: mostra datas inseridas por você, não estima diagnóstico e não guarda informações.</p>
                 
                 <div class="contador-ciclo">
-                    <span class="contador-numero" id="dias-ciclo-display">35</span>
-                    <span class="contador-texto">Dias de Ciclo Atual</span>
+                    <span class="contador-numero" id="dias-ciclo-display">—</span>
+                    <span class="contador-texto">Dia do ciclo informado</span>
                 </div>
 
                 <div style="margin-bottom: 20px;">
@@ -519,7 +524,7 @@
                 <div class="config-periodo" style="border-radius: 12px 12px 0 0; border: 1px solid #ffe3e8;">
                     <div class="input-grupo">
                         <label for="data-ultimo-fluxo">Início da última menstruação:</label>
-                        <input type="date" id="data-ultimo-fluxo" value="2026-06-10">
+                        <input type="date" id="data-ultimo-fluxo" >
                     </div>
                     <button class="btn-salvar" onclick="calcularSOP()">Atualizar</button>
                 </div>
@@ -527,91 +532,58 @@
             </div>
         </div>
 
-        <div class="secao-premium">
-            
-            <div class="bloqueio-overlay">
-                <div class="bloqueio-conteudo">
-                    <div class="icone-cadeado">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
-                        </svg>
-                    </div>
-                    <h4 class="bloqueio-titulo font-bold">Funcionalidade Exclusiva Premium</h4>
-                    <p class="bloqueio-texto">
-                        Libere o cálculo do índice HOMA-IR, acompanhamento de taxas de testosterona e exportação de PDF completo para médicos.
-                    </p>
-                    <button class="btn-assinar-premium" onclick="assinarPremiumSimulacao()">Assinar Premium por R$ 9,90</button>
-                </div>
-            </div>
-
-            <span class="badge-premium">Recursos Premium</span>
-            <h2 class="titulo-premium">Central de Monitoramento Metabólico & Relatórios</h2>
-
-            <div class="grid-premium">
-                
-                <div class="cartao-premium">
-                    <h3>Registro de Exames Recentes</h3>
-                    <div class="input-premium-grupo">
-                        <label>Insulina de Jejum (µUI/mL):</label>
-                        <input type="number" placeholder="Bloqueado" disabled>
-                    </div>
-                    <div class="input-premium-grupo">
-                        <label>Glicemia (mg/dL):</label>
-                        <input type="number" placeholder="Bloqueado" disabled>
-                    </div>
-                </div>
-
-                <div class="cartao-premium">
-                    <h3>Relatório para o Ginecologista</h3>
-                    <p>Mapeie os desequilíbrios com dados prontos para impressão.</p>
-                    <button style="background: #ccc; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 8px;" disabled>
-                        Exportar PDF
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
+        <section class="secao-premium" id="premium-ideias">
+            <h2 class="titulo-premium">Recursos opcionais em estudo</h2>
+            <p>Organização de anotações e resumos pessoais são ideias para uma versão futura. Não há assinatura, pagamento, interpretação de exames ou acompanhamento clínico neste protótipo.</p>
+            <a class="btn-assinar-premium" href="premium.html" style="display:inline-block;text-align:center;text-decoration:none;">Conhecer ideias para o Premium</a>
+        </section>
     </div>
 
     <script>
         // Função do Calendário Gratuito
         function calcularSOP() {
             const dataInput = document.getElementById('data-ultimo-fluxo').value;
-            if(!dataInput) return;
-            const dataUltimoFluxo = new Date(dataInput);
-            const hoje = new Date("2026-07-15");
-
-            const diferencaTempo = hoje.getTime() - dataUltimoFluxo.getTime();
-            const diferencaDias = Math.floor(diferencaTempo / (1000 * 60 * 60 * 24));
-            
-            document.getElementById('dias-ciclo-display').innerText = diferencaDias > 0 ? diferencaDias : 0;
-            gerarCalendarioHtml(dataUltimoFluxo.getDate() + 1);
+            if (!dataInput) {
+                alert('Informe a data para ver o calendário demonstrativo.');
+                return;
+            }
+            const [ano, mes, dia] = dataInput.split('-').map(Number);
+            const dataUltimoFluxo = new Date(ano, mes - 1, dia);
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+            if (dataUltimoFluxo > hoje) {
+                alert('A data informada está no futuro. Confira a data para ver o calendário demonstrativo.');
+                return;
+            }
+            const diasDesdeInicio = Math.floor((hoje - dataUltimoFluxo) / 86400000);
+            document.getElementById('dias-ciclo-display').innerText = diasDesdeInicio >= 0 ? diasDesdeInicio + 1 : 0;
+            gerarCalendarioHtml(dataUltimoFluxo);
         }
 
-        function gerarCalendarioHtml(inicioM) {
+        function gerarCalendarioHtml(dataInicio) {
             const grade = document.getElementById('grade-calendario');
+            const primeiroDia = new Date(dataInicio.getFullYear(), dataInicio.getMonth(), 1).getDay();
+            const diasNoMes = new Date(dataInicio.getFullYear(), dataInicio.getMonth() + 1, 0).getDate();
             let html = `
                 <div class="dia-semana">Dom</div><div class="dia-semana">Seg</div><div class="dia-semana">Ter</div>
                 <div class="dia-semana">Qua</div><div class="dia-semana">Qui</div><div class="dia-semana">Sex</div>
-                <div class="dia-semana">Sáb</div><div class="dia"></div><div class="dia"></div>
-            `;
-            for (let i = 1; i <= 31; i++) {
-                let classe = "dia";
-                if (i >= inicioM && i < inicioM + 5) classe += " menstruacao-dia";
-                html += `<div class="${classe}">${i}</div>`;
+                <div class="dia-semana">Sáb</div>`;
+            for (let i = 0; i < primeiroDia; i++) html += '<div class="dia"></div>';
+            for (let dia = 1; dia <= diasNoMes; dia++) {
+                const classe = dia === dataInicio.getDate() ? 'dia menstruacao-dia' : 'dia';
+                html += `<div class="${classe}">${dia}</div>`;
             }
             grade.innerHTML = html;
         }
 
-        // Simulador de Assinatura
-        function assinarPremiumSimulacao() {
-            alert("Parabéns! Você simulou a ativação do Plano Premium. Em um sistema real, aqui abriria a tela de pagamento (Pix/Cartão).");
-        }
-
-        window.onload = function() {
-            gerarCalendarioHtml(10);
-        };
     </script>
+  <aside class="aviso-educativo-padrao" role="note"><strong>Informação importante:</strong> este conteúdo é educativo e não substitui consulta, diagnóstico ou tratamento individual. Para orientações sobre o seu caso, converse com um profissional de saúde.</aside>
+  <footer class="rodape-tema" aria-label="Links do Velary">
+    <a href="index.html">Início</a>
+    <a href="temas.html">Todos os temas</a>
+    <a href="noticias.html">Artigos e notícias</a>
+    <a href="videos.html">Vídeos</a>
+    <a href="premium.html">Ideias Premium</a>
+  </footer>
 </body>
 </html>

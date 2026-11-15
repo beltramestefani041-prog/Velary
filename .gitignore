@@ -1,0 +1,25 @@
+# Maven build output
+/velary-java/target/
+
+# Local SQLite database files
+*.db
+*.db-*
+
+# Java build output
+*.class
+
+# Local secrets and configuration
+.env
+.env.*
+!.env.example
+
+# IDE and operating-system files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files from local review/export workflows
+/tmp/
+/curriculo-stefani-cristina-ai-builder.pdf

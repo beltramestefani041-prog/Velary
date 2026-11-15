@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8fb">
+  <title>Perfil de saúde | Velary</title>
+  <link rel="stylesheet" href="css/acompanhamento.css">
+  <link rel="stylesheet" href="css/velary-intro.css">
+  <script src="velary-intro.js" defer></script>
+</head>
+<body class="acompanhamento">
+  <dialog class="velary-intro" id="velary-intro" aria-labelledby="velary-intro-title" aria-describedby="velary-intro-description" hidden>
+    <h2 class="velary-intro__sr-only" id="velary-intro-title">Velary — cuidando de você em cada fase</h2>
+    <p class="velary-intro__sr-only" id="velary-intro-description">Animação de abertura. A flor se abre e revela a marca Velary.</p>
+    <button class="velary-intro__skip" type="button" autofocus>Pular animação</button>
+    <div class="velary-intro__stage" aria-hidden="true">
+      <svg class="velary-intro__art" viewBox="0 0 1774 887" role="presentation" focusable="false">
+        <defs>
+          <linearGradient id="velary-petal" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f16b9d" />
+            <stop offset="1" stop-color="#d63378" />
+          </linearGradient>
+        </defs>
+        <g class="velary-intro__petal petal-top"><path d="M376 286C326 242 334 174 379 122c48 58 47 126 9 165Z" /></g>
+        <g class="velary-intro__petal petal-upper-left"><path d="M340 294c-64-4-104-39-125-83 63-5 113 18 145 70Z" /></g>
+        <g class="velary-intro__petal petal-upper-right"><path d="M401 281c30-59 79-86 137-77-24 58-68 91-126 101Z" /></g>
+        <g class="velary-intro__petal petal-right"><path d="M414 312c63-29 119-13 157 31-51 36-108 32-159 5Z" /></g>
+        <g class="velary-intro__petal petal-lower-right"><path d="M405 349c55 31 80 81 69 137-57-26-88-71-91-127Z" /></g>
+        <g class="velary-intro__petal petal-lower-left"><path d="M352 353c-46 44-66 98-47 151 52-36 78-83 74-139Z" /></g>
+        <g class="velary-intro__petal petal-left"><path d="M334 330c-57 39-113 37-159 12 38-50 94-66 155-39Z" /></g>
+        <path class="velary-intro__core" d="M376 285c-20 0-40 23-40 54 0 30 20 50 40 50s40-20 40-50c0-31-20-54-40-54Z" />
+        <path class="velary-intro__stem" d="M378 386c8 62 48 107 29 184-10 43-42 75-50 125" />
+        <g class="velary-intro__arm arm-left">
+          <path d="M392 548c-64-55-137-80-199-68 25 62 101 91 199 68Z" />
+          <path class="velary-intro__vein" d="M389 546c-55-31-111-52-177-64" />
+        </g>
+        <g class="velary-intro__arm arm-right">
+          <path d="M393 548c61-58 127-87 195-78-21 65-96 99-195 78Z" />
+          <path class="velary-intro__vein" d="M396 546c47-36 106-60 172-74" />
+        </g>
+        <text class="velary-intro__wordmark" x="610" y="506">VELARY</text>
+        <path class="velary-intro__rule" d="M610 565h402m94 0h402" />
+        <path class="velary-intro__heart" d="M1060 583c-24-20-42-43-42-59 0-20 27-29 42-8 15-21 42-12 42 8 0 16-18 39-42 59Z" />
+        <text class="velary-intro__tagline" x="1110" y="647" text-anchor="middle">Cuidando de você em cada fase</text>
+      </svg>
+    </div>
+  </dialog>
+
+  <header class="barra-app">
+    <div class="marca-perfil">
+      <a class="marca" href="index.html">Velary</a>
+      <a href="saude.html" aria-current="page">Perfil</a>
+    </div>
+    <nav aria-label="Navegação principal">
+      <a href="acompanhamento.html">Acompanhamento</a>
+      <a href="index.html">Início</a>
+      <a href="privacidade.html">Privacidade</a>
+    </nav>
+  </header>
+
+  <main class="conteudo-app">
+    <section class="cabecalho-app">
+      <div>
+        <p class="etiqueta">SEU ACOMPANHAMENTO FEMININO</p>
+        <h1>Perfil de saúde</h1>
+        <p class="texto-suave">Registre os dados essenciais do ciclo menstrual para acompanhar datas e sintomas no Velary.</p>
+      </div>
+    </section>
+
+    <section class="painel painel-servicos" id="servicos-proximos" aria-labelledby="titulo-servicos">
+      <div class="cabecalho-servicos">
+        <div>
+          <p class="etiqueta">CUIDADO NO SEU TERRITÓRIO</p>
+          <h2 id="titulo-servicos">Serviços perto de você</h2>
+          <p class="texto-suave">Escolha seu estado e município para filtrar todos os serviços. Depois, se quiser, acrescente bairro, CEP ou endereço.</p>
+        </div>
+        <a class="botao botao-urgencia" href="tel:192" aria-label="Ligar para o SAMU pelo número 192">Emergência · ligar 192</a>
+      </div>
+
+      <div class="busca-servicos">
+        <div class="grade-regiao">
+          <label for="estado-servicos">Estado
+            <select id="estado-servicos" name="estado-servicos" required>
+              <option value="">Carregando estados…</option>
+            </select>
+          </label>
+          <label for="buscar-municipio">Encontre seu município
+            <input id="buscar-municipio" name="buscar-municipio" type="search" autocomplete="off" placeholder="Digite o nome da cidade" disabled>
+          </label>
+          <label class="campo-municipio-select" for="municipio-servicos">Selecione na lista
+            <select id="municipio-servicos" name="municipio-servicos" required disabled>
+              <option value="">Selecione primeiro o estado</option>
+            </select>
+          </label>
+        </div>
+        <div class="linha-busca-regiao">
+          <label for="endereco-servicos">Bairro, CEP ou endereço <span class="opcional">(opcional)</span>
+            <input id="endereco-servicos" name="endereco-servicos" type="text" autocomplete="street-address" placeholder="Ex.: Centro ou Rua das Flores, 123">
+          </label>
+          <button class="botao botao-secundario" id="usar-localizacao" type="button">Usar localização atual</button>
+        </div>
+        <div class="acoes-localizacao">
+          <button class="botao" id="aplicar-regiao" type="button">Aplicar filtro da região</button>
+          <label class="opcao-memoria" for="lembrar-localizacao"><input id="lembrar-localizacao" type="checkbox"> Lembrar minha região e endereço neste navegador</label>
+          <button class="link-perigo" id="remover-localizacao" type="button" hidden>Remover localização salva</button>
+        </div>
+        <p class="nota-modelo" id="status-localizacao" aria-live="polite">Escolha o estado e o município, use a busca para localizar sua cidade e aplique o filtro. Os mapas ficam bloqueados até aplicar uma região ou usar a localização atual.</p>
+      </div>
+
+      <div class="grade-servicos" aria-label="Escolha um serviço para abrir no mapa">
+        <a class="cartao-servico desativado" data-servico="UBS ou posto de saúde" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">＋</span><strong>UBS e postos de saúde</strong><span>Consultas, prevenção e acompanhamento</span><span class="acao-servico">Ver no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="UPA 24 horas" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">◷</span><strong>UPA 24 horas</strong><span>Atendimento de urgência</span><span class="acao-servico">Ver no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="hospital ou pronto-socorro" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">✚</span><strong>Hospitais e pronto-socorros</strong><span>Confirme se a unidade atende urgências</span><span class="acao-servico">Ver no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="CAPS" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">♡</span><strong>CAPS</strong><span>Atenção psicossocial</span><span class="acao-servico">Ver no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="CRAS" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">⌂</span><strong>CRAS</strong><span>Orientação e assistência social</span><span class="acao-servico">Ver no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="Delegacia Especializada de Atendimento à Mulher DEAM" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">⚖</span><strong>Delegacia da Mulher</strong><span>Delegacias especializadas e unidades de atendimento</span><span class="acao-servico">Ver no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="Casa da Mulher Brasileira ou Centro de Referência de Atendimento à Mulher CRAM" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">♡</span><strong>Casa da Mulher e Centros de Referência</strong><span>Acolhimento e orientação especializada</span><span class="acao-servico">Ver no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="ginecologista" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">＋</span><strong>Ginecologia</strong><span>Buscar profissionais na região selecionada</span><span class="acao-servico">Buscar no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="psicóloga saúde da mulher" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">♡</span><strong>Psicologia</strong><span>Buscar apoio profissional na região</span><span class="acao-servico">Buscar no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="fisioterapia pélvica" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">⌖</span><strong>Fisioterapia pélvica</strong><span>Buscar profissionais na região selecionada</span><span class="acao-servico">Buscar no mapa ↗</span>
+        </a>
+        <a class="cartao-servico desativado" data-servico="endocrinologista" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
+          <span class="icone-servico" aria-hidden="true">＋</span><strong>Endocrinologia</strong><span>Buscar profissionais na região selecionada</span><span class="acao-servico">Buscar no mapa ↗</span>
+        </a>
+      </div>
+
+      <div class="nota-urgencia">
+        <strong>Em uma emergência com risco à vida, ligue 192.</strong>
+        <span>As buscas de profissionais abrem resultados do Google Maps; o Velary não verifica cadastro, disponibilidade, preço ou qualidade. O mapa também não confirma horário ou adequação do atendimento. Confirme as informações diretamente antes de se deslocar. Para localizar CRAS em fonte oficial, consulte o <a href="https://www.gov.br/mds/pt-br/cadunico/consulta-cidadao/atendimento-mops" target="_blank" rel="noopener noreferrer">MOPS do Ministério do Desenvolvimento e Assistência Social</a>.</span>
+      </div>
+    </section>
+
+    <div class="duas-colunas">
+      <section class="painel">
+        <h2>Dados do ciclo</h2>
+        <p>Preencha com valores fictícios para ver a próxima tela.</p>
+        <form class="formulario" id="form-saude">
+          <label for="ultima-menstruacao">Quando começou sua última menstruação?</label>
+          <input id="ultima-menstruacao" name="ultima-menstruacao" type="date" required>
+          <small>Essa data ajuda a organizar o calendário do ciclo.</small>
+
+          <label for="fim-menstruacao">Quando terminou? <span class="opcional">(opcional)</span></label>
+          <input id="fim-menstruacao" name="fim-menstruacao" type="date">
+
+          <label for="duracao-ciclo">Em média, quantos dias tem seu ciclo? <span class="opcional">(opcional)</span></label>
+          <input id="duracao-ciclo" name="duracao-ciclo" type="number" min="15" max="60" inputmode="numeric" placeholder="Ex.: 28">
+          <small>Se não souber, pode deixar em branco.</small>
+          <label for="fluxo-ciclo">Fluxo menstrual (opcional)</label>
+          <select id="fluxo-ciclo" name="fluxo-ciclo"><option value="">Prefiro não informar</option><option>Leve</option><option>Moderado</option><option>Intenso</option></select>
+          <label for="observacoes-ciclo">Observações do ciclo (opcional)</label>
+          <textarea id="observacoes-ciclo" name="observacoes-ciclo" rows="3"></textarea>
+
+          <button class="botao" type="submit">Ver meu acompanhamento</button>
+        </form>
+      </section>
+
+      <aside class="painel painel-explicativo">
+        <h2>Você decide o que compartilhar</h2>
+        <p>Os dados informados nesta tela servem para visualizar o acompanhamento do ciclo nesta demonstração.</p>
+        <p>Não pedimos CPF. A região só é lembrada se você marcar essa opção; ela fica salva neste navegador e pode ser removida a qualquer momento. A localização atual por GPS nunca é salva.</p>
+        <div class="aviso-privacidade">
+          <strong>Protótipo visual:</strong> os dados de saúde não são enviados nem guardados. A região só fica salva neste navegador se você marcar essa opção; o endereço é compartilhado com o Google Maps apenas quando você abre uma busca. No produto real, será necessária uma explicação clara antes de qualquer registro.
+          <a href="privacidade.html">Ler o aviso de privacidade</a>
+        </div>
+      </aside>
+    </div>
+    <section class="painel painel-protecao" id="direitos-e-protecao" aria-labelledby="titulo-protecao">
+      <div class="cabecalho-servicos">
+        <div>
+          <p class="etiqueta">DIREITOS E APOIO</p>
+          <h2 id="titulo-protecao">Rede de proteção para mulheres</h2>
+          <p class="texto-suave">Informações oficiais para encontrar orientação, atendimento especializado e apoio perto de você.</p>
+        </div>
+      </div>
+
+      <div class="grade-protecao">
+        <article class="cartao-protecao">
+          <span class="icone-servico" aria-hidden="true">180</span>
+          <h3>Ligue 180</h3>
+          <p>Orientação sobre direitos, acolhimento e localização de serviços da rede. Atendimento gratuito, 24 horas.</p>
+          <div class="acoes-protecao">
+            <a class="botao" href="tel:180">Ligar 180</a>
+            <a class="link-simples" href="https://wa.me/556196100180" target="_blank" rel="noopener noreferrer">WhatsApp oficial ↗</a>
+          </div>
+        </article>
+
+        <article class="cartao-protecao">
+          <span class="icone-servico" aria-hidden="true">⌖</span>
+          <h3>Delegacia da Mulher e rede de atendimento</h3>
+          <p>Consulte unidades especializadas, Centros de Referência e Casas da Mulher Brasileira pelo painel oficial.</p>
+          <a class="link-simples" href="https://www.gov.br/mulheres/pt-br/ligue180/painel-da-rede-de-atendimento" target="_blank" rel="noopener noreferrer">Abrir Painel da Rede ↗</a>
+        </article>
+
+        <article class="cartao-protecao">
+          <span class="icone-servico" aria-hidden="true">190</span>
+          <h3>Perigo imediato</h3>
+          <p>Se a violência está acontecendo agora ou há risco imediato, acione a Polícia Militar.</p>
+          <a class="botao botao-urgencia" href="tel:190">Ligar 190</a>
+        </article>
+
+        <article class="cartao-protecao">
+          <span class="icone-servico" aria-hidden="true">§</span>
+          <h3>Conheça seus direitos</h3>
+          <p>Informações oficiais sobre a Lei Maria da Penha, medidas de proteção e como buscar ajuda.</p>
+          <a class="link-simples" href="https://www.gov.br/mulheres/pt-br/central-de-conteudos/campanhas/2026/20-anos-da-lei-maria-da-penha" target="_blank" rel="noopener noreferrer">Ler orientação oficial ↗</a>
+        </article>
+      </div>
+
+      <p class="nota-seguranca"><strong>Sobre casas-abrigo:</strong> o Velary direciona para a rede oficial e para o Ligue 180, que orienta sobre o atendimento mais adequado. Endereços de acolhimento protegido não serão exibidos diretamente no mapa do perfil.</p>
+    </section>
+
+  </main>
+
+  <script>
+    const seletorEstado = document.getElementById("estado-servicos");
+    const campoBuscaMunicipio = document.getElementById("buscar-municipio");
+    const seletorMunicipio = document.getElementById("municipio-servicos");
+    const campoEndereco = document.getElementById("endereco-servicos");
+    const statusLocalizacao = document.getElementById("status-localizacao");
+    const checkboxLembrar = document.getElementById("lembrar-localizacao");
+    const botaoRemoverLocalizacao = document.getElementById("remover-localizacao");
+    const chaveLocalizacao = "velary_localizacao_servicos";
+    let coordenadasBusca = "";
+    let regiaoAplicada = null;
+    let municipiosDisponiveis = [];
+    let localizacaoSalva = null;
+
+    try {
+      localizacaoSalva = JSON.parse(localStorage.getItem(chaveLocalizacao) || "null");
+    } catch {
+      localizacaoSalva = null;
+    }
+
+    function bloquearMapas(bloqueado) {
+      document.querySelectorAll("[data-servico]").forEach(link => {
+        link.classList.toggle("desativado", bloqueado);
+        link.setAttribute("aria-disabled", String(bloqueado));
+        link.tabIndex = bloqueado ? -1 : 0;
+      });
+    }
+
+    function atualizarMapas() {
+      const endereco = campoEndereco.value.trim();
+      const regiao = regiaoAplicada
+        ? [endereco, regiaoAplicada.municipioNome, regiaoAplicada.ufSigla, "Brasil"].filter(Boolean).join(", ")
+        : "";
+      const local = coordenadasBusca || regiao;
+      const links = document.querySelectorAll("[data-servico]");
+      bloquearMapas(!local);
+
+      links.forEach(link => {
+        if (!local) {
+          link.href = "#";
+          return;
+        }
+        const url = new URL("https://www.google.com/maps/search/");
+        url.searchParams.set("api", "1");
+        url.searchParams.set("query", `${link.dataset.servico} perto de ${local}`);
+        link.href = url.toString();
+      });
+    }
+
+    function normalizarTexto(texto) {
+      return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("pt-BR");
+    }
+
+    function renderizarMunicipios(termo = "", municipioInicial = "") {
+      const busca = normalizarTexto(termo.trim());
+      const encontrados = municipiosDisponiveis.filter(municipio =>
+        normalizarTexto(municipio.nome).includes(busca)
+      );
+      seletorMunicipio.innerHTML = encontrados.length
+        ? '<option value="">Selecione o município</option>'
+        : '<option value="">Nenhum município encontrado</option>';
+      encontrados.forEach(municipio => {
+        const opcao = document.createElement("option");
+        opcao.value = String(municipio.id);
+        opcao.textContent = municipio.nome;
+        seletorMunicipio.appendChild(opcao);
+      });
+      seletorMunicipio.disabled = encontrados.length === 0;
+      if (municipioInicial) seletorMunicipio.value = String(municipioInicial);
+    }
+
+    function salvarLocalizacao() {
+      if (!checkboxLembrar.checked || !regiaoAplicada) return false;
+      const dadosSalvos = { ...regiaoAplicada, endereco: campoEndereco.value.trim() };
+      try {
+        localStorage.setItem(chaveLocalizacao, JSON.stringify(dadosSalvos));
+        localizacaoSalva = dadosSalvos;
+        botaoRemoverLocalizacao.hidden = false;
+        return true;
+      } catch {
+        checkboxLembrar.checked = false;
+        statusLocalizacao.textContent = "Este navegador não permitiu salvar a região. O filtro continua ativo enquanto esta página estiver aberta.";
+        return false;
+      }
+    }
+
+    function apagarLocalizacaoSalva() {
+      try { localStorage.removeItem(chaveLocalizacao); } catch { }
+      localizacaoSalva = null;
+      botaoRemoverLocalizacao.hidden = true;
+    }
+
+    async function carregarMunicipios(estadoId, municipioInicial = "") {
+      seletorMunicipio.disabled = true;
+      campoBuscaMunicipio.disabled = true;
+      campoBuscaMunicipio.value = "";
+      seletorMunicipio.innerHTML = '<option value="">Carregando municípios…</option>';
+      try {
+        const resposta = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${encodeURIComponent(estadoId)}/municipios?orderBy=nome`);
+        if (!resposta.ok) throw new Error("Falha ao carregar municípios");
+        municipiosDisponiveis = await resposta.json();
+        campoBuscaMunicipio.disabled = false;
+        renderizarMunicipios("", municipioInicial);
+      } catch {
+        municipiosDisponiveis = [];
+        seletorMunicipio.innerHTML = '<option value="">Não foi possível carregar; tente novamente</option>';
+        campoBuscaMunicipio.disabled = true;
+        statusLocalizacao.textContent = "Não conseguimos carregar a lista oficial de municípios. Verifique sua conexão e escolha o estado novamente.";
+      }
+    }
+
+    async function carregarEstados() {
+      try {
+        const resposta = await fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome");
+        if (!resposta.ok) throw new Error("Falha ao carregar estados");
+        const estados = await resposta.json();
+        seletorEstado.innerHTML = '<option value="">Selecione o estado</option>';
+        estados.forEach(estado => {
+          const opcao = document.createElement("option");
+          opcao.value = String(estado.id);
+          opcao.textContent = `${estado.nome} (${estado.sigla})`;
+          opcao.dataset.sigla = estado.sigla;
+          seletorEstado.appendChild(opcao);
+        });
+
+        if (localizacaoSalva && localizacaoSalva.ufId && localizacaoSalva.municipioId) {
+          seletorEstado.value = String(localizacaoSalva.ufId);
+          await carregarMunicipios(seletorEstado.value, localizacaoSalva.municipioId);
+          campoEndereco.value = localizacaoSalva.endereco || "";
+          const estado = estados.find(item => String(item.id) === String(localizacaoSalva.ufId));
+          const municipio = municipiosDisponiveis.find(item => String(item.id) === String(localizacaoSalva.municipioId));
+          if (estado && municipio) {
+            regiaoAplicada = { ufId: String(estado.id), ufSigla: estado.sigla, ufNome: estado.nome, municipioId: String(municipio.id), municipioNome: municipio.nome };
+            checkboxLembrar.checked = true;
+            botaoRemoverLocalizacao.hidden = false;
+            statusLocalizacao.textContent = `Região lembrada neste navegador: ${municipio.nome} – ${estado.sigla}. Você pode alterá-la ou removê-la quando quiser.`;
+          } else if (!campoBuscaMunicipio.disabled) {
+            apagarLocalizacaoSalva();
+          } else {
+            checkboxLembrar.checked = true;
+            botaoRemoverLocalizacao.hidden = false;
+          }
+        }
+      } catch {
+        seletorEstado.innerHTML = '<option value="">Não foi possível carregar os estados</option>';
+        statusLocalizacao.textContent = "Não conseguimos carregar a lista oficial de estados. Verifique sua conexão e recarregue a página.";
+      }
+      atualizarMapas();
+    }
+
+    seletorEstado.addEventListener("change", async () => {
+      regiaoAplicada = null;
+      coordenadasBusca = "";
+      municipiosDisponiveis = [];
+      campoBuscaMunicipio.value = "";
+      campoBuscaMunicipio.disabled = true;
+      seletorMunicipio.innerHTML = '<option value="">Selecione primeiro o estado</option>';
+      seletorMunicipio.disabled = true;
+      if (seletorEstado.value) {
+        await carregarMunicipios(seletorEstado.value);
+        if (!campoBuscaMunicipio.disabled) {
+          statusLocalizacao.textContent = "Digite parte do nome da cidade, selecione o município na lista e aplique o filtro.";
+        }
+      } else {
+        statusLocalizacao.textContent = "Escolha o estado e o município para filtrar os serviços.";
+      }
+      atualizarMapas();
+    });
+
+    campoBuscaMunicipio.addEventListener("input", () => {
+      regiaoAplicada = null;
+      coordenadasBusca = "";
+      renderizarMunicipios(campoBuscaMunicipio.value);
+      atualizarMapas();
+      statusLocalizacao.textContent = seletorMunicipio.options.length > 1
+        ? "Agora selecione sua cidade na lista e aplique o filtro para liberar os mapas."
+        : "Nenhuma cidade encontrada com esse nome. Confira a escrita ou tente outro trecho.";
+    });
+
+    seletorMunicipio.addEventListener("change", () => {
+      regiaoAplicada = null;
+      coordenadasBusca = "";
+      atualizarMapas();
+      statusLocalizacao.textContent = "A região mudou. Aplique o filtro para atualizar os mapas.";
+    });
+
+    campoEndereco.addEventListener("input", () => {
+      coordenadasBusca = "";
+      atualizarMapas();
+      if (checkboxLembrar.checked && regiaoAplicada) {
+        if (salvarLocalizacao()) {
+          statusLocalizacao.textContent = "Endereço atualizado e lembrado neste navegador. Ele só será enviado ao Google Maps quando você abrir um mapa.";
+        }
+      } else if (regiaoAplicada) {
+        statusLocalizacao.textContent = "Complemento atualizado. Ele só será enviado ao Google Maps quando você abrir um mapa.";
+      }
+    });
+
+    document.getElementById("aplicar-regiao").addEventListener("click", () => {
+      const estado = seletorEstado.options[seletorEstado.selectedIndex];
+      const municipio = municipiosDisponiveis.find(item => String(item.id) === seletorMunicipio.value);
+      if (!estado || !estado.value || !municipio) {
+        regiaoAplicada = null;
+        atualizarMapas();
+        statusLocalizacao.textContent = "Selecione um estado e um município para filtrar os resultados.";
+        return;
+      }
+
+      coordenadasBusca = "";
+      regiaoAplicada = {
+        ufId: estado.value,
+        ufSigla: estado.dataset.sigla,
+        ufNome: estado.textContent.replace(/\s\([A-Z]{2}\)$/, ""),
+        municipioId: String(municipio.id),
+        municipioNome: municipio.nome
+      };
+      atualizarMapas();
+      if (checkboxLembrar.checked) {
+        if (salvarLocalizacao()) {
+          statusLocalizacao.textContent = `Filtro aplicado e região lembrada neste navegador: ${municipio.nome} – ${estado.dataset.sigla}.`;
+        }
+      } else {
+        statusLocalizacao.textContent = `Filtro aplicado: ${municipio.nome} – ${estado.dataset.sigla}. Para manter essa região na próxima visita, marque “Lembrar minha região e endereço neste navegador”.`;
+      }
+    });
+
+    checkboxLembrar.addEventListener("change", () => {
+      if (checkboxLembrar.checked) {
+        if (!regiaoAplicada) {
+          checkboxLembrar.checked = false;
+          statusLocalizacao.textContent = "Aplique primeiro um estado e município para lembrar essa região neste navegador.";
+          return;
+        }
+        if (salvarLocalizacao()) {
+          statusLocalizacao.textContent = `Região lembrada neste navegador: ${regiaoAplicada.municipioNome} – ${regiaoAplicada.ufSigla}. Você pode desmarcar ou remover quando quiser.`;
+        }
+      } else {
+        apagarLocalizacaoSalva();
+        statusLocalizacao.textContent = "A região salva foi removida. O filtro atual continua ativo até você sair ou atualizar a página.";
+      }
+    });
+
+    botaoRemoverLocalizacao.addEventListener("click", () => {
+      apagarLocalizacaoSalva();
+      checkboxLembrar.checked = false;
+      regiaoAplicada = null;
+      coordenadasBusca = "";
+      seletorEstado.value = "";
+      campoBuscaMunicipio.value = "";
+      campoBuscaMunicipio.disabled = true;
+      municipiosDisponiveis = [];
+      seletorMunicipio.innerHTML = '<option value="">Selecione primeiro o estado</option>';
+      seletorMunicipio.disabled = true;
+      campoEndereco.value = "";
+      atualizarMapas();
+      statusLocalizacao.textContent = "Localização removida deste navegador. Escolha novamente o estado e o município para buscar.";
+    });
+
+    document.getElementById("usar-localizacao").addEventListener("click", () => {
+      if (!navigator.geolocation) {
+        statusLocalizacao.textContent = "Este navegador não oferece localização automática. Escolha um estado e município para continuar.";
+        return;
+      }
+
+      coordenadasBusca = "";
+      atualizarMapas();
+      statusLocalizacao.textContent = "Aguardando sua autorização para acessar a localização deste aparelho…";
+      navigator.geolocation.getCurrentPosition(
+        posicao => {
+          coordenadasBusca = `${posicao.coords.latitude.toFixed(5)},${posicao.coords.longitude.toFixed(5)}`;
+          atualizarMapas();
+          statusLocalizacao.textContent = "Localização atual selecionada. As coordenadas não são salvas pelo Velary; só serão enviadas ao Google Maps quando você abrir um mapa.";
+        },
+        () => {
+          statusLocalizacao.textContent = "Não conseguimos acessar sua localização. Escolha estado e município para buscar no mapa.";
+        },
+        { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
+      );
+    });
+
+    carregarEstados();
+
+    document.getElementById("form-saude").addEventListener("submit", event => {
+      event.preventDefault();
+      window.location.href = "acompanhamento.html";
+    });
+  </script>
+</body>
+</html>

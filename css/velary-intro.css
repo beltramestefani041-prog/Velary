@@ -1,0 +1,40 @@
+[hidden].velary-intro{display:none!important}
+.velary-intro{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;padding:0;overflow:hidden;border:0;background:radial-gradient(ellipse at 50% 44%,#fffafd 0%,#fff0f6 58%,#f9d7e5 100%);color:#a92059;opacity:0;transition:opacity .45s ease}
+.velary-intro[open]{display:grid;place-items:center}
+.velary-intro::backdrop{background:transparent}
+.velary-intro.is-open{opacity:1}
+.velary-intro.is-leaving{opacity:0;pointer-events:none}
+.velary-intro__stage{position:relative;width:min(95vw,1240px);aspect-ratio:1774/887}
+.velary-intro__art{position:absolute;inset:0;display:block;width:100%;height:100%}
+.velary-intro__art{overflow:visible}
+.velary-intro__petal{fill:url(#velary-petal);opacity:0;transform-box:fill-box;transform-origin:center}
+.velary-intro.is-open .velary-intro__petal{animation:velary-petal-open .82s cubic-bezier(.2,.75,.25,1) var(--petal-delay,0s) forwards}
+.petal-top{--petal-delay:.12s}.petal-upper-left{--petal-delay:.25s}.petal-upper-right{--petal-delay:.32s}.petal-right{--petal-delay:.43s}.petal-lower-right{--petal-delay:.54s}.petal-lower-left{--petal-delay:.61s}.petal-left{--petal-delay:.68s}
+.velary-intro__core{fill:#e83e80;opacity:0;transform-box:fill-box;transform-origin:center}
+.velary-intro.is-open .velary-intro__core{animation:velary-core-open .55s .55s cubic-bezier(.2,.75,.25,1) forwards}
+.velary-intro__stem{fill:none;stroke:#d63378;stroke-width:10;stroke-linecap:round;stroke-dasharray:360;stroke-dashoffset:360;opacity:.95}
+.velary-intro.is-open .velary-intro__stem{animation:velary-stem-grow 1s .55s ease-out forwards}
+.velary-intro__arm{fill:url(#velary-petal);opacity:0;transform-box:view-box;transform-origin:22% 62%}
+.arm-right{transform-origin:22% 62%;transform-box:view-box}
+.velary-intro.is-open .arm-left{animation:velary-arm-left .95s 1.15s cubic-bezier(.18,.8,.25,1) forwards}
+.velary-intro.is-open .arm-right{animation:velary-arm-right .95s 1.15s cubic-bezier(.18,.8,.25,1) forwards}
+.velary-intro__vein{fill:none;stroke:#ffe2ec;stroke-width:5;stroke-linecap:round}
+.velary-intro__wordmark{fill:#a92059;font-family:'Cormorant Garamond',Georgia,serif;font-size:225px;font-weight:600;letter-spacing:7px;opacity:0}
+.velary-intro.is-open .velary-intro__wordmark{animation:velary-word-reveal .7s 2.15s ease-out forwards}
+.velary-intro__rule{fill:none;stroke:#e94e8a;stroke-width:4;stroke-linecap:round;opacity:0}
+.velary-intro__heart{fill:#e94e8a;opacity:0}
+.velary-intro__tagline{fill:#a92059;font-family:'Cormorant Garamond',Georgia,serif;font-size:47px;opacity:0}
+.velary-intro.is-open .velary-intro__rule,.velary-intro.is-open .velary-intro__heart,.velary-intro.is-open .velary-intro__tagline{animation:velary-word-reveal .7s 2.25s ease-out forwards}
+.velary-intro.is-reduced .velary-intro__petal,.velary-intro.is-reduced .velary-intro__core,.velary-intro.is-reduced .velary-intro__arm,.velary-intro.is-reduced .velary-intro__wordmark,.velary-intro.is-reduced .velary-intro__rule,.velary-intro.is-reduced .velary-intro__heart,.velary-intro.is-reduced .velary-intro__tagline{opacity:1;transform:none}
+.velary-intro.is-reduced .velary-intro__stem{stroke-dashoffset:0}
+.velary-intro__skip{position:absolute;z-index:2;top:20px;right:22px;min-height:40px;padding:8px 14px;border:1px solid #d63378;border-radius:24px;background:rgba(255,255,255,.78);color:#791a43;font:700 .9rem 'Nunito Sans','Segoe UI',Arial,sans-serif;cursor:pointer}
+.velary-intro__skip:hover,.velary-intro__skip:focus-visible{background:#fff;outline:3px solid #f2cadb;outline-offset:2px}
+.velary-intro__sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@keyframes velary-petal-open{from{opacity:0;transform:translateY(13px) scale(.28) rotate(-14deg)}to{opacity:1;transform:translateY(0) scale(1) rotate(0)}}
+@keyframes velary-core-open{from{opacity:0;transform:scale(.25)}to{opacity:1;transform:scale(1)}}
+@keyframes velary-stem-grow{to{stroke-dashoffset:0}}
+@keyframes velary-arm-left{from{opacity:0;transform:rotate(18deg) scaleX(.18)}to{opacity:1;transform:rotate(-3deg) scaleX(1)}}
+@keyframes velary-arm-right{from{opacity:0;transform:rotate(-18deg) scaleX(.18)}to{opacity:1;transform:rotate(3deg) scaleX(1)}}
+@keyframes velary-word-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.velary-intro__stage{width:100vw}.velary-intro__skip{top:12px;right:12px;min-height:38px;padding:7px 12px;font-size:.82rem}.velary-intro__tagline{font-size:47px}}
+@media(prefers-reduced-motion:reduce){.velary-intro,.velary-intro *{animation:none!important;transition:none!important}}

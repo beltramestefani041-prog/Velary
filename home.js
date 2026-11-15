@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carrega o nome do usuário salvo
     const boasVindasEl = document.getElementById('boas-vindas');
     const usuarioSalvo = localStorage.getItem('velary_nome');
-    boasVindasEl.textContent = usuarioSalvo ? `Boas-vindas, ${usuarioSalvo}!` : 'Boas-vindas!';
+    if (boasVindasEl) {
+        boasVindasEl.textContent = usuarioSalvo ? `Boas-vindas, ${usuarioSalvo}!` : 'Boas-vindas!';
+    }
 
     // Carrega o humor salvo previamente
     const humorSalvo = localStorage.getItem('velary_humor');
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!button) return;
 
             const nomeHumor = button.getAttribute('data-humor');
-            const emoji = button.getAttribute('data-emoji');
+            const emoji = button.getAttribute('data-emoji') || '';
             
             if (nomeHumor && emoji) {
                 registarHumor(nomeHumor, emoji);
@@ -31,7 +33,7 @@ function registarHumor(nomeHumor, emoji) {
     const feedback = document.getElementById('feedback-humor');
     const textoHumor = `${emoji} ${nomeHumor}`;
     
-    feedback.textContent = `Humor "${nomeHumor}" registrado com sucesso! 💕`;
+    feedback.textContent = `Humor "${nomeHumor}" registrado com sucesso!`;
     localStorage.setItem('velary_humor', textoHumor);
     
     exibirHumorSalvo(textoHumor);

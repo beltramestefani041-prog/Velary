@@ -1,0 +1,27 @@
+html.velary-login-gate body.pagina-cadastro{display:grid;min-height:100vh;place-items:center;padding:24px;background:radial-gradient(ellipse at 15% 16%,rgba(214,51,120,.32),transparent 38%),radial-gradient(ellipse at 86% 82%,rgba(169,32,89,.23),transparent 39%),linear-gradient(135deg,#fbe3ed 0%,#f4cfdf 52%,#fff0f6 100%)}
+html.velary-login-gate body.pagina-cadastro::before{position:fixed;inset:0;z-index:0;content:"";pointer-events:none;background-image:url("../img/velary-padrao.svg");background-repeat:repeat;background-position:left top;background-size:720px 420px;opacity:.2}
+html.velary-login-gate body.pagina-cadastro .auth-card{position:relative;z-index:1;display:block;width:min(100%,370px);max-width:370px;min-height:0;margin:0;padding:0;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none}
+html.velary-login-gate body.pagina-cadastro .auth-card::before,html.velary-login-gate body.pagina-cadastro .auth-card::after{display:none}
+html.velary-login-gate .login-panel{position:relative;width:100%;padding:22px 24px 18px;border:1px solid rgba(201,161,79,.72);border-radius:25px;background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(255,255,255,.12));box-shadow:0 20px 50px rgba(121,26,67,.16),inset 0 1px 0 rgba(255,255,255,.82),inset 0 -1px 0 rgba(169,32,89,.08),0 0 0 1px rgba(255,243,215,.45);backdrop-filter:blur(30px) saturate(145%)}
+html.velary-login-gate .login-emblema{display:grid;width:58px;height:58px;place-items:center;margin:0 auto 5px;border:1px solid rgba(255,255,255,.82);border-radius:50%;background:rgba(255,255,255,.3);box-shadow:0 5px 16px rgba(169,32,89,.08);backdrop-filter:blur(12px)}
+html.velary-login-gate .login-emblema svg{display:block;width:36px;height:36px;fill:#d63378}
+html.velary-login-gate .login-panel .marca{display:block;color:#a92059;text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:700;letter-spacing:.02em;line-height:1}
+html.velary-login-gate .login-panel .marca::after{display:block;margin-top:3px;color:#796773;content:'Cuidando de você em cada fase';font-family:'Nunito Sans','Segoe UI',Arial,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:0}
+html.velary-login-gate .login-panel .etiqueta{margin:11px 0 2px;color:#a92059;font-size:.68rem;letter-spacing:.06em}
+html.velary-login-gate .login-panel h1{margin:0 0 7px;color:#791a43;font-size:clamp(1.45rem,4vw,1.7rem);line-height:1.15}
+html.velary-login-gate .login-panel .texto-suave{margin:0 0 10px;color:#796773;font-size:.88rem}
+html.velary-login-gate .login-panel .abas-conta{gap:5px;margin:10px 0 13px;padding:4px;background:rgba(255,255,255,.28)}
+html.velary-login-gate .login-panel .aba-conta{min-height:36px;font-size:.86rem}
+html.velary-login-gate .login-panel .atalho-perfil-demo,html.velary-login-gate .login-panel .voltar{display:none}
+html.velary-login-gate .login-panel .aviso-privacidade{margin-top:12px;padding:9px 11px;border-left:3px solid #d63378;border-radius:8px;background:rgba(255,255,255,.28);color:#665760;font-size:.72rem;line-height:1.45}
+html.velary-login-gate .login-panel .aviso-privacidade a{margin-top:3px}
+html.velary-login-gate .login-panel .formulario{gap:5px}
+html.velary-login-gate .login-panel .formulario label{display:flex;align-items:center;gap:7px;margin-top:3px;color:#665760;font-size:.82rem}
+html.velary-login-gate .login-panel .formulario label svg{width:16px;height:16px;flex:none;fill:none;stroke:#a92059;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+html.velary-login-gate .login-panel .formulario input{min-height:39px;padding:8px 10px;border:1px solid rgba(255,255,255,.68);border-radius:10px;background:rgba(255,255,255,.28);font-size:.9rem;backdrop-filter:blur(10px)}
+html.velary-login-gate .login-panel .formulario input:focus-visible{border-color:#d63378;outline:3px solid rgba(214,51,120,.16);outline-offset:1px}
+html.velary-login-gate .login-panel .botao{width:100%;min-height:41px;margin-top:8px;padding:9px 16px;background:linear-gradient(100deg,#d63378,#a92059);box-shadow:0 8px 18px rgba(169,32,89,.18);font-size:.88rem}
+html.velary-login-gate .login-panel .botao:hover{background:linear-gradient(100deg,#c42c6c,#8e1d4e)}
+@media(max-width:700px){html.velary-login-gate body.pagina-cadastro::before{background-size:540px 315px;opacity:.16}}
+@media(max-width:520px){html.velary-login-gate body.pagina-cadastro{padding:14px}html.velary-login-gate .login-panel{padding:20px 19px 16px;border-radius:22px}html.velary-login-gate .login-emblema{width:54px;height:54px}}
+@media(prefers-reduced-transparency:reduce){html.velary-login-gate .login-panel{background:rgba(255,255,255,.88);backdrop-filter:none}}

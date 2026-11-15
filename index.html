@@ -1,206 +1,901 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velary - Saúde Íntima Feminina</title>
+
+    <meta name="description"
+        content="Velary: educação em saúde feminina, informação e autocuidado em todas as fases da vida.">
+
+    <title>Velary | Cuidando de você em cada fase</title>
+
+    <script>
+        (() => {
+            const parametros = new URLSearchParams(window.location.search);
+            const entradaConfirmada = parametros.get("entrada") === "1";
+            let acessoDemo = false;
+            try {
+                acessoDemo = sessionStorage.getItem("velary_acesso_demo") === "1";
+            } catch {
+                // A entrada demonstrativa ainda pode seguir pelo parâmetro de retorno.
+            }
+            if (!acessoDemo && !entradaConfirmada) {
+                window.location.replace("cadastro.html?login=1");
+            }
+        })();
+    </script>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #fff5f7; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; padding-bottom: 60px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Cabeçalho e Menu */
-        header { background-color: #ffffff; border-bottom: 1px solid #ffe3e8; padding: 15px 0; box-shadow: 0 2px 8px rgba(201, 74, 112, 0.05); margin-bottom: 30px; }
-        .header-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; }
-        .logo-box { display: flex; align-items: center; gap: 10px; font-weight: bold; color: #c94a70; font-size: 1.2rem; }
-        .logo-box img { height: 40px; }
-        
-        .user-actions { display: flex; align-items: center; gap: 12px; }
-        .btn-premium-nav { background-color: #c94a70; color: #fff !important; padding: 8px 18px !important; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 0.88rem; }
-        .btn-entrar { color: #555; text-decoration: none; font-weight: 600; font-size: 0.88rem; padding: 6px 12px; }
-        
-        nav { border-top: 1px solid #fff0f3; padding-top: 12px; }
-        .nav-menu { display: flex; align-items: center; justify-content: space-between; gap: 10px; list-style: none; flex-wrap: wrap; }
-        .nav-menu a { text-decoration: none; color: #555; font-size: 0.88rem; font-weight: 600; padding: 4px 0; transition: color 0.2s; }
-        .nav-menu a:hover { color: #c94a70; }
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================= */
 
-        /* Banner Hero */
-        .hero-secao { background-color: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 35px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .hero-secao h1 { color: #c94a70; font-size: 2.2rem; margin-bottom: 10px; }
-        .hero-secao h2 { color: #d6456a; font-size: 1.4rem; margin-bottom: 15px; }
-        .hero-secao p { font-size: 0.98rem; line-height: 1.6; color: #555; margin-bottom: 15px; }
+        :root {
+            --rosa: #D63378;
+            --rosa-escuro: #A92059;
+            --rosa-profundo: #791A43;
+            --rosa-medio: #EA76A2;
+            --rosa-claro: #FFF0F6;
+            --rosa-fundo: #FFF8FB;
+            --rosa-borda: #F2CADB;
+            --branco: #FFFFFF;
+            --texto: #44333D;
+            --texto-suave: #796773;
+            --sombra: 0 10px 28px rgba(169, 32, 89, 0.07);
+        }
 
-        /* Fases de Cuidado - Grid */
-        .secao-titulo { color: #c94a70; font-size: 1.6rem; margin-bottom: 15px; border-left: 4px solid #c94a70; padding-left: 10px; }
-        .grid-fases { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .card-fase { background: #fff; border: 1px solid #ffe3e8; border-radius: 10px; padding: 20px; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; }
-        .card-fase:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(201, 74, 112, 0.1); }
-        .card-fase h3 { color: #c94a70; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .card-fase p { font-size: 0.88rem; color: #666; line-height: 1.4; margin-bottom: 10px; }
-        .card-fase .link-fase { color: #c94a70; font-weight: bold; font-size: 0.85rem; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* Mídia e Notícias */
-        .secao-midia { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
-        @media (max-width: 768px) { .secao-midia { grid-template-columns: 1fr; } }
-        .bloco-midia { background-color: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 20px; }
-        .bloco-midia h3 { color: #c94a70; font-size: 1.1rem; margin-bottom: 15px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .lista-noticias { list-style: none; }
-        .lista-noticias li { margin-bottom: 12px; }
-        .lista-noticias a { color: #d6456a; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-        .lista-noticias a:hover { text-decoration: underline; }
+        body {
+            position: relative;
+            isolation: isolate;
+            background: var(--rosa-fundo);
+            color: var(--texto);
+            font-family: 'Nunito Sans', Arial, sans-serif;
+            line-height: 1.7;
+        }
+a {
+            color: inherit;
+        }
 
-        /* Planos */
-        .planos-titulo { text-align: center; margin-bottom: 25px; }
-        .planos-titulo h2 { color: #c94a70; font-size: 1.8rem; }
-        .grid-planos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .card-plano { background-color: #ffffff; border: 1px solid #ffe3e8; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; position: relative; }
-        .card-plano.destaque { border: 2px solid #c94a70; background-color: #fffcfd; }
-        .tag-badge { position: absolute; top: -12px; right: 20px; background-color: #c94a70; color: #fff; font-size: 0.75rem; font-weight: bold; padding: 4px 12px; border-radius: 12px; }
-        .plano-nome { font-size: 1.4rem; color: #c94a70; font-weight: bold; }
-        .plano-preco { font-size: 1.8rem; font-weight: bold; margin: 10px 0; }
-        .plano-recursos { list-style: none; margin: 20px 0; flex: 1; }
-        .plano-recursos li { margin-bottom: 8px; font-size: 0.9rem; }
-        .btn-acao { display: block; text-align: center; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; }
-        .btn-free { background-color: #fff0f3; color: #c94a70; border: 1px solid #ffd0da; }
-        .btn-premium { background-color: #c94a70; color: white; }
+        .container {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
 
-        /* WhatsApp Flutuante */
-        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-        .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
+        h1,
+        h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           CABEÇALHO E LOGO
+        ========================= */
+
+        .cabecalho {
+            position: relative;
+            z-index: 50;
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--rosa-borda);
+            box-shadow: 0 3px 15px rgba(169, 32, 89, 0.04);
+        }
+
+        .cabecalho-interno {
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .logo img {
+            display: block;
+            width: 165px;
+            max-width: 165px;
+            max-height: 68px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .logo-texto {
+            color: var(--rosa);
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .logo-perfil-grupo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-shrink: 0;
+        }
+
+        .perfil-cabecalho {
+            color: var(--texto);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .perfil-cabecalho:hover { color: #FFFFFF; }
+        .menu {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: var(--texto);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .menu a:hover {
+            color: var(--rosa);
+        }
+
+        .botao-menu {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 17px;
+            border-radius: 30px;
+            background: var(--rosa);
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .botao-menu:hover {
+            background: var(--rosa-escuro);
+        }
+
+
+        /* =========================
+           DROPDOWN DE TEMAS
+        ========================= */
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-trigger {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 100;
+            min-width: 280px;
+            max-width: calc(100vw - 28px);
+            padding: 8px 0;
+            background: #FFFFFF;
+            border: 1px solid var(--rosa-borda);
+            border-radius: 14px;
+            box-shadow: var(--sombra);
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content {
+            display: block;
+        }
+
+        .menu .dropdown-content a {
+            display: block;
+            padding: 9px 18px;
+            color: var(--texto);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .menu .dropdown-content a:hover {
+            background: var(--rosa-claro);
+            color: var(--rosa);
+        }
+
+
+        /* =========================
+           APRESENTAÇÃO PRINCIPAL
+        ========================= */
+
+        .hero {
+            padding: 48px 0 40px;
+        }
+
+        .hero-painel {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(30px, 5vw, 60px);
+            border: 1px solid var(--rosa-borda);
+            border-radius: 25px;
+            background:
+                radial-gradient(circle at 95% 10%,
+                    rgba(234, 118, 162, 0.18),
+                    transparent 31%),
+                linear-gradient(120deg, #FFFFFF, #FFF0F6);
+            box-shadow: var(--sombra);
+        }
+
+        .etiqueta {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 7px 13px;
+            border-radius: 30px;
+            background: #FCE0EB;
+            color: var(--rosa-escuro);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 790px;
+            margin-bottom: 18px;
+            color: var(--rosa-profundo);
+            font-size: clamp(45px, 6vw, 76px);
+            line-height: 1.02;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--rosa);
+            font-style: italic;
+        }
+
+        .hero-descricao {
+            max-width: 720px;
+            margin-bottom: 25px;
+            color: var(--texto-suave);
+            font-size: 16px;
+        }
+
+        .hero-acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .botao-principal,
+        .botao-secundario {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 45px;
+            padding: 11px 19px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .botao-principal {
+            background: var(--rosa);
+            color: #FFFFFF;
+        }
+
+        .botao-principal:hover {
+            background: var(--rosa-escuro);
+            transform: translateY(-2px);
+        }
+
+        .botao-secundario {
+            background: #FFFFFF;
+            border: 1px solid var(--rosa-borda);
+            color: var(--rosa-escuro);
+        }
+
+        .botao-secundario:hover {
+            background: var(--rosa-claro);
+        }
+
+
+        /* =========================
+           TÍTULO DAS SEÇÕES
+        ========================= */
+
+        .secao {
+            padding: 34px 0 48px;
+        }
+
+        .secao-cabecalho {
+            max-width: 860px;
+            margin-bottom: 27px;
+        }
+
+        .secao-etiqueta {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--rosa);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+        .secao-cabecalho h2 {
+            margin-bottom: 9px;
+            color: var(--rosa-profundo);
+            font-size: clamp(28px, 3.2vw, 36px);
+            line-height: 1.15;
+        }
+
+        .secao-cabecalho p {
+            color: var(--texto-suave);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+
+        /* =========================
+           CARTÕES DE TEMAS
+        ========================= */
+
+        .grid-temas {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .cartao-tema {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 225px;
+            padding: 24px;
+            background: #FFFFFF;
+            border: 1px solid var(--rosa-borda);
+            border-radius: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 18px rgba(169, 32, 89, 0.035);
+            transition:
+                transform 0.25s,
+                border-color 0.25s,
+                box-shadow 0.25s;
+        }
+
+        .cartao-tema:hover {
+            transform: translateY(-5px);
+            border-color: var(--rosa-medio);
+            box-shadow: var(--sombra);
+        }
+
+        .icone-tema {
+            display: grid;
+            place-items: center;
+            width: 47px;
+            height: 47px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            background: var(--rosa-claro);
+            color: var(--rosa);
+            font-size: 24px;
+        }
+
+        .cartao-tema h3 {
+            margin-bottom: 8px;
+            color: var(--rosa-escuro);
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        .cartao-tema p {
+            margin-bottom: 16px;
+            color: var(--texto-suave);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .link-tema {
+            margin-top: auto;
+            color: var(--rosa);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           ACESSO A VÍDEOS E NOTÍCIAS
+        ========================= */
+
+        .grid-conteudos {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .cartao-conteudo {
+            display: flex;
+            align-items: flex-start;
+            gap: 17px;
+            padding: 25px;
+            background: #FFFFFF;
+            border: 1px solid var(--rosa-borda);
+            border-radius: 18px;
+            text-decoration: none;
+            transition: 0.25s;
+        }
+
+        .cartao-conteudo:hover {
+            border-color: var(--rosa-medio);
+            box-shadow: var(--sombra);
+            transform: translateY(-3px);
+        }
+
+        .cartao-conteudo h3 {
+            margin-bottom: 6px;
+            color: var(--rosa-escuro);
+            font-size: 17px;
+        }
+
+        .cartao-conteudo p {
+            margin-bottom: 10px;
+            color: var(--texto-suave);
+            font-size: 14px;
+        }
+
+        .cartao-conteudo span:last-child {
+            color: var(--rosa);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           SOBRE O PROJETO
+        ========================= */
+
+        .sobre {
+            padding: 30px;
+            background: linear-gradient(120deg, #FFFFFF, #FFF0F6);
+            border: 1px solid var(--rosa-borda);
+            border-radius: 20px;
+        }
+
+        .sobre h2 {
+            margin-bottom: 12px;
+            color: var(--rosa-profundo);
+            font-size: clamp(28px, 3vw, 34px);
+            line-height: 1.2;
+        }
+
+        .sobre p {
+            max-width: 760px;
+            margin-bottom: 12px;
+            color: var(--texto-suave);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .aviso-saude {
+            margin-top: 18px;
+            padding: 15px 18px;
+            border-left: 4px solid var(--rosa);
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: #704A5B;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
+        .rodape {
+            margin-top: 20px;
+            padding: 29px 0;
+            background: var(--rosa-profundo);
+            color: #FFFFFF;
+        }
+
+        .rodape-interno {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .rodape .logo img {
+            width: 125px;
+            max-width: 125px;
+            max-height: 45px;
+        }
+
+        .rodape .logo-texto {
+            color: #FFFFFF;
+        }
+
+        .rodape p,
+        .rodape small {
+            color: #FBE6EF;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .cabecalho-interno {
+                flex-wrap: wrap;
+            }
+
+            .menu {
+                order: 3;
+                width: 100%;
+                padding-top: 12px;
+                border-top: 1px solid var(--rosa-borda);
+                justify-content: flex-start;
+            }
+
+            .grid-temas {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: calc(100% - 28px);
+            }
+
+            .logo img {
+                width: 140px;
+                max-width: 140px;
+                max-height: 58px;
+            }
+
+            .botao-menu {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .menu {
+                gap: 10px 15px;
+            }
+
+            .menu a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding-top: 26px;
+            }
+
+            .hero-painel {
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .grid-temas,
+            .grid-conteudos {
+                grid-template-columns: 1fr;
+            }
+
+            .cartao-tema {
+                min-height: 190px;
+            }
+
+            .sobre {
+                padding: 22px;
+            }
+
+            .rodape-interno {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="css/marca-dagua.css">
+    <link rel="stylesheet" href="css/guia-flutuante.css">
+    <script src="guia-flutuante.js" defer></script>
 </head>
+
 <body>
 
-    <header>
-        <div class="container">
-            <div class="header-top">
-                <div class="logo-box">
-                    <span> Velary</span>
-                </div>
-                <div class="user-actions">
-                    <a href="#" class="btn-premium-nav">★ Seja Premium</a>
-                    <a href="cadastro.html" class="btn-entrar">Entrar / Cadastrar</a>
-                </div>
-            </div>
+    <!-- CABEÇALHO -->
 
-            <nav>
-                <ul class="nav-menu">
+    <header class="cabecalho">
+
+        <div class="container cabecalho-interno">
+
+            <div class="logo-perfil-grupo"><a href="index.html" class="logo logo-wordmark" aria-label="Página inicial do Velary">Velary</a><a href="cadastro.html" class="perfil-cabecalho botao-menu">Perfil</a></div>
+
+            <nav aria-label="Menu principal">
+
+                <ul class="menu">
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="primeiro-ciclo.html">Primeiro Ciclo</a></li>
-                    <li><a href="endometriose.html">Endometriose</a></li>
-                    <li><a href="tentantes.html">Tentantes</a></li>
-                    <li><a href="gestacao.html">Gestação</a></li>
-                    <li><a href="sop.html">SOP</a></li>
-                    <li><a href="menopausa.html">Menopausa</a></li>
-                    <li><a href="maturidade.html">Maturidade</a></li>
-                    <li><a href="vida-sexual.html">Vida Sexual</a></li>
-                    <li><a href="saude-integral.html">Saúde Integral</a></li>
-                    <li><a href="noticias.html">Notícias</a></li>
+
+                    <li><a href="noticias.html">Artigos e notícias</a></li>
+                    <li><a href="videos.html">Vídeos</a></li>
+                    <li><a href="atendimento.html">Atendimento preventivo</a></li>
+                    
+                    <li><a href="#sobre">Sobre</a></li>
                 </ul>
+
             </nav>
+
+            <a href="temas.html" class="botao-menu">
+                Explorar temas
+            </a>
+
         </div>
+
     </header>
 
-    <div class="container">
-        <!-- Hero -->
-        <div class="hero-secao">
-            <h1>Boas-vindas!</h1>
-            <h2>Nossa História 🌸</h2>
-            <p>O <strong>Velary</strong> nasceu do desejo de criar um espaço seguro, acolhedor e totalmente focado no universo feminino. Sabemos que cada corpo é único e que passar pelas diferentes fases da vida exige informação de confiança e suporte contínuo.</p>
-            <p>Nossa proposta é oferecer um <strong>sistema completo de acompanhamento da saúde íntima feminina</strong> direto no seu celular.</p>
-        </div>
 
-        <!-- Fases de Cuidado -->
-        <h2 class="secao-titulo">Nossas Fases de Cuidado</h2>
-        <div class="grid-fases">
-            <a href="primeiro-ciclo.html" class="card-fase">
-                <h3>🌸 Primeiro Ciclo</h3>
-                <p>Menarca, dúvidas frequentes e acolhimento para o início da jornada.</p>
-                <span class="link-fase">Saber mais →</span>
-            </a>
-            <a href="saude-integral.html" class="card-fase">
-                <h3>✨ Saúde Integral</h3>
-                <p>Prevenção, ciclos, bem-estar e suporte completo para o seu dia a dia.</p>
-                <span class="link-fase">Saber mais →</span>
-            </a>
-            <a href="maturidade.html" class="card-fase">
-                <h3>🤍 Plenitude & Maturidade</h3>
-                <p>Climatério, menopausa e qualidade de vida na melhor fase.</p>
-                <span class="link-fase">Saber mais →</span>
-            </a>
-        </div>
+    <!-- CONTEÚDO PRINCIPAL -->
 
-        <!-- Conteúdos e Mídia -->
-        <h2 class="secao-titulo">Conteúdos & Bem-Estar</h2>
-        <div class="secao-midia">
-            <div class="bloco-midia">
-                <h3>🎧 Áudios & Playlists Relaxantes</h3>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpd332595?utm_source=generator" width="100%" height="250" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
+    <main>
 
-            <div class="bloco-midia">
-                <h3>📹 Palestras e Vídeos</h3>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Vídeo Velary" allowfullscreen></iframe>
+        <!-- APRESENTAÇÃO -->
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-painel">
+
+                    <span class="etiqueta">
+                        Informação, acolhimento e autocuidado
+                    </span>
+
+                    <h1>
+                        Conhecer seu corpo é um cuidado para
+                        <span>a vida toda.</span>
+                    </h1>
+
+                    <p class="hero-descricao">
+                        O Velary é uma proposta de plataforma digital
+                        de educação em saúde feminina. Reunimos temas
+                        sobre o corpo, prevenção e bem-estar para
+                        apoiar o conhecimento e o autocuidado em
+                        diferentes fases da vida.
+                    </p>
+
                 </div>
-            </div>
-        </div>
 
-        <!-- Notícias -->
-        <div class="bloco-midia" style="margin-bottom: 40px;">
-            <h3>📰 Notícias & Artigos</h3>
-            <ul class="lista-noticias">
-                <li><a href="noticias.html">🔥 NOVO: IA mapeia saúde uterina em tempo real</a></li>
-                <li><a href="noticias.html">🔹 Alimentação e Ciclo: O que comer?</a></li>
-                <li><a href="noticias.html">🔹 A importância do sono no Climatério</a></li>
-            </ul>
-        </div>
-
-        <!-- Planos -->
-        <div class="planos-titulo">
-            <h2>Escolha o seu plano no Velary</h2>
-            <p>Cuide da sua saúde hormonal com as melhores ferramentas à sua disposição.</p>
-        </div>
-
-        <div class="grid-planos">
-            <div class="card-plano">
-                <div class="plano-nome">Velary Free</div>
-                <div class="plano-preco">R$ 0</div>
-                <p>O essencial para começar a monitorar o seu bem-estar diário.</p>
-                <ul class="plano-recursos">
-                    <li>✓ Diário emocional básico</li>
-                    <li>✓ Registro diário de sintomas</li>
-                    <li>✓ Acesso a artigos gerais</li>
-                </ul>
-                <a href="cadastro.html" class="btn-acao btn-free">Começar Agora</a>
             </div>
 
-            <div class="card-plano destaque">
-                <span class="tag-badge">Mais Recomendado</span>
-                <div class="plano-nome">Velary Premium ★</div>
-                <div class="plano-preco">R$ 19,90/mês</div>
-                <p>Acompanhamento completo, relatórios médicos e suporte especializado.</p>
-                <ul class="plano-recursos">
-                    <li>✓ <strong>Tudo do plano gratuito</strong></li>
-                    <li>✓ Relatórios em PDF para médicos</li>
-                    <li>✓ Gráficos de evolução mensal</li>
-                    <li>✓ Meditações guiadas para sono</li>
-                    <li>✓ Dicas de IA personalizadas</li>
-                </ul>
-                <a href="cadastro.html" class="btn-acao btn-premium">Assinar Premium</a>
-            </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- WhatsApp -->
-    <a href="#" class="whatsapp-float" title="Suporte via WhatsApp">
-        <svg viewBox="0 0 32 32">
-            <path d="M16 2a13.9 13.9 0 0 0-12 21L2 30l7.2-1.9A13.9 13.9 0 1 0 16 2zm0 25.4a11.5 11.5 0 0 1-5.9-1.6l-.4-.2-4.4 1.1 1.2-4.3-.3-.4a11.5 11.5 0 1 1 9.8 5.4zm6.3-8.6c-.3-.2-2-.1-2.3.1s-.6.5-.8.8-.4.3-.7.1a9.2 9.2 0 0 1-2.7-1.7 10.1 10.1 0 0 1-1.9-2.3c-.2-.3 0-.5.1-.7s.3-.4.5-.6l.3-.5c.1-.2 0-.4 0-.5s-.8-2-.1-2.7c.3-.3.6-.4.8-.4h.6c.2 0 .5 0 .7.5l1 2.4c.1.3.1.5 0 .7l-.5.6c-.1.2-.2.3 0 .6a11.6 11.6 0 0 0 2.1 2.6 10.4 10.4 0 0 0 2.9 1.8c.3.1.5.1.7-.1l.9-1.1c.2-.3.5-.3.8-.2l2.5 1.2c.3.1.5.3.5.5s0 1.2-.5 1.6z"/>
-        </svg>
-    </a>
+
+
+
+
+        <!-- QUEM SOMOS -->
+
+        <section class="secao" id="sobre">
+
+            <div class="container">
+
+                <div class="sobre">
+
+                    <h2>Quem somos</h2>
+
+                    <p>
+                        O Velary é uma proposta acadêmica de plataforma
+                        digital voltada à educação em saúde feminina.
+                        Sua proposta é organizar informações sobre
+                        diferentes fases da vida em páginas específicas,
+                        oferecendo uma experiência mais clara e acolhedora.
+                    </p>
+
+                    <p>
+                        A plataforma busca incentivar o conhecimento
+                        do próprio corpo, a prevenção e o autocuidado,
+                        respeitando as particularidades de cada mulher.
+                    </p>
+
+                    <div class="aviso-saude">
+
+                        <strong>Informação com responsabilidade:</strong>
+                        o Velary tem finalidade educativa. Seus conteúdos
+                        não substituem consultas, exames, diagnósticos
+                        ou tratamentos indicados por profissionais
+                        de saúde qualificados.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- OUTRAS ÁREAS DO VELARY -->
+
+        <section class="secao">
+
+            <div class="container">
+
+                <div class="secao-cabecalho">
+
+                    <span class="secao-etiqueta">
+                        Continue explorando
+                    </span>
+
+                    <h2>
+                        Informação para além das páginas temáticas
+                    </h2>
+
+                    <p>
+                        Acesse conteúdos complementares sem sobrecarregar
+                        a página inicial.
+                    </p>
+
+                </div>
+
+
+                <div class="grid-conteudos">
+
+                    <a href="videos.html" class="cartao-conteudo">
+
+                        <div>
+
+                            <h3>Vídeos educativos</h3>
+
+                            <p>
+                                Assista a vídeos e palestras sobre
+                                saúde feminina, prevenção e bem-estar.
+                            </p>
+
+                            <span>Explorar vídeos →</span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="noticias.html" class="cartao-conteudo">
+
+                        <div>
+
+                            <h3>Artigos, estudos e notícias</h3>
+
+                            <p>
+                                Consulte matérias e publicações de
+                                instituições e fontes científicas.
+                            </p>
+
+                            <span>Ler conteúdos →</span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer class="rodape">
+
+        <div class="container rodape-interno">
+
+            <a href="index.html" class="logo logo-wordmark" aria-label="Página inicial do Velary">Velary</a>
+
+            <p>
+                Velary — educação em saúde feminina e autocuidado.
+            </p>
+
+            <small>
+                Projeto acadêmico • ADS
+            </small>
+            <a href="premium.html">Ideias para o Velary Premium</a>
+
+        </div>
+
+    </footer>
+
+    <aside class="guia-velary" aria-label="Mini tutorial do Velary">
+        <section class="guia-velary__painel" id="guia-velary-painel" aria-labelledby="guia-velary-titulo" hidden>
+            <div class="guia-velary__cabecalho">
+                <div>
+                    <span class="guia-velary__etiqueta">Guia rápido</span>
+                    <h2 id="guia-velary-titulo">Por onde você quer começar?</h2>
+                </div>
+                <button class="guia-velary__fechar" type="button" aria-label="Fechar mini tutorial">×</button>
+            </div>
+            <p class="guia-velary__pergunta" id="guia-velary-pergunta">Escolha a área que combina com seu momento:</p>
+            <div class="guia-velary__areas" id="guia-velary-areas">
+                <button type="button" data-guia-area="primeiro-ciclo">Primeira menstruação</button>
+                <button type="button" data-guia-area="tentantes">Tentantes e fertilidade</button>
+                <button type="button" data-guia-area="gestacao">Gestação</button>
+                <button type="button" data-guia-area="saude-integral">Saúde e autocuidado</button>
+                <button type="button" data-guia-area="menopausa">Climatério e menopausa</button>
+                <button type="button" data-guia-area="maturidade">Maturidade</button>
+            </div>
+            <section class="guia-velary__passos" id="guia-velary-passos" aria-live="polite" hidden>
+                <button class="guia-velary__voltar" type="button">← Escolher outra área</button>
+                <div class="guia-velary__mini-tela" aria-hidden="true">
+                    <div class="guia-velary__mini-topo"><span class="guia-velary__mini-pontos"><i></i><i></i><i></i></span><span>Velary</span></div>
+                    <div class="guia-velary__mini-conteudo">
+                        <span class="guia-velary__mini-etiqueta" id="guia-velary-mini-etiqueta">Prévia da tela</span>
+                        <strong id="guia-velary-mini-titulo"></strong>
+                        <p id="guia-velary-mini-resumo"></p>
+                        <div class="guia-velary__mini-cartoes"><span id="guia-velary-mini-card-1"></span><span id="guia-velary-mini-card-2"></span></div>
+                    </div>
+                </div>
+                <h3 id="guia-velary-area-titulo"></h3>
+                <div class="guia-velary__slide-info" aria-live="polite">
+                    <span id="guia-velary-slide-contador">Tela 1 de 3</span>
+                    <strong id="guia-velary-slide-titulo"></strong>
+                    <p id="guia-velary-area-descricao"></p>
+                </div>
+                <div class="guia-velary__controles" aria-label="Navegação do mini tutorial">
+                    <button id="guia-velary-anterior" type="button" aria-label="Tela anterior">‹ Anterior</button>
+                    <div class="guia-velary__pontos" role="group" aria-label="Escolher tela do mini tutorial">
+                        <button type="button" data-guia-slide="0" aria-label="Tela 1 de 3" aria-current="step"></button>
+                        <button type="button" data-guia-slide="1" aria-label="Tela 2 de 3"></button>
+                        <button type="button" data-guia-slide="2" aria-label="Tela 3 de 3"></button>
+                    </div>
+                    <button id="guia-velary-proxima" type="button" aria-label="Próxima tela">Próxima ›</button>
+                </div>
+                <a class="guia-velary__abrir" id="guia-velary-link" href="temas.html">Abrir este tema</a>
+                <small>O Velary oferece informação educativa e não substitui acompanhamento profissional.</small>
+            </section>
+        </section>
+        <button class="guia-velary__lancador" id="guia-velary-toggle" type="button" aria-expanded="false" aria-controls="guia-velary-painel">
+            <span class="guia-velary__flor" aria-hidden="true">✿</span>
+            <span class="guia-velary__texto"><strong>Primeira vez aqui?</strong><small>Abra o mini tutorial</small></span>
+            <span class="guia-velary__seta" aria-hidden="true">⌃</span>
+        </button>
+    </aside>
 
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -147,15 +147,20 @@
             cursor: pointer;
         }
     </style>
+    <link rel="stylesheet" href="css/marca-dagua.css">
+    <link rel="stylesheet" href="css/pagina-tema.css">
 </head>
-<body>
+<body class="pagina-tema">
 
-    <header>
-        <div class="container header-top">
-            <a href="index.html" class="logo">Velary</a>
-            <a href="index.html" class="btn-voltar">Voltar para o Inicio</a>
-        </div>
-    </header>
+    <header class="tema-cabecalho">
+  <div class="tema-cabecalho-interno">
+    <a href="index.html" class="tema-marca">Velary</a>
+    <nav class="tema-nav" aria-label="Navegação da página temática">
+      <a href="temas.html">Todos os temas</a>
+      <a href="index.html">Início</a>
+    </nav>
+  </div>
+</header>
 
     <div class="container">
         
@@ -163,10 +168,10 @@
         <div class="hero-banner">
             <div class="hero-text">
                 <h1>Gestação</h1>
-                <p>Acompanhe cada etapa do desenvolvimento do seu bebê, registre o controle de peso, sintomas diários e organize suas consultas de pré-natal com segurança e praticidade.</p>
+                <p>Consulte informações educativas sobre gestação e pré-natal. Os registros desta página são demonstrativos e não fazem acompanhamento clínico da gravidez.</p>
             </div>
             <div>
-                <img src="gestacao.png" alt="Gestação" class="hero-img img-expansivel" onclick="abrirModal(this.src)">
+                <img src="img/gestacao.png" alt="Gestação" class="hero-img img-expansivel" onclick="abrirModal(this.src)">
                 <p style="font-size: 0.75rem; color: #c94a70; text-align: center; margin-top: 5px; font-weight: bold;">Clique para ampliar</p>
             </div>
         </div>
@@ -188,7 +193,7 @@
             
             <!-- Diário Gestacional & Peso -->
             <div class="card-ferramenta">
-                <h2>Diario Gestacional & Peso</h2>
+                <h2>Diário gestacional demonstrativo</h2>
                 <div class="form-group">
                     <label>Data do Registro:</label>
                     <input type="date" id="dataGestacao">
@@ -201,8 +206,8 @@
                     <label>Peso Atual (kg):</label>
                     <input type="number" step="0.1" id="pesoAtual" placeholder="Ex: 68.5">
                 </div>
-                <button class="btn-salvar" onclick="salvarGestacao()">Salvar Registro</button>
-                <button class="btn-salvar btn-secundario" onclick="exportarPDF()">Exportar Relatório (PDF)</button>
+                <button class="btn-salvar" onclick="salvarGestacao()">Testar registro (demonstração)</button>
+                <button class="btn-salvar btn-secundario" type="button" onclick="exportarPDF()">Imprimir ou salvar resumo para consulta</button>
             </div>
 
             <!-- Mapeamento de Sintomas Diários -->
@@ -222,7 +227,7 @@
                     <label>Observações Adicionais:</label>
                     <textarea id="obsGestacao" rows="3" placeholder="Ex: Sono agitado, cãibras leves nas pernas, desejos..."></textarea>
                 </div>
-                <button class="btn-salvar" onclick="salvarObsGestacao()">Guardar Mapeamento</button>
+                <button class="btn-salvar" onclick="salvarObsGestacao()">Testar mapeamento (demonstração)</button>
             </div>
 
             <!-- Pré-natal & Exames -->
@@ -236,7 +241,7 @@
                     <label>Consulta ou Ultrassom:</label>
                     <input type="text" id="nomePreNatal" placeholder="Ex: USG Morfológica do Segundo Trimestre">
                 </div>
-                <button class="btn-salvar" onclick="agendarPreNatal()">Agendar Lembrete</button>
+                <button class="btn-salvar" onclick="agendarPreNatal()">Adicionar lembrete temporário</button>
                 <ul class="lista-consultas" id="listaPreNatal"></ul>
             </div>
 
@@ -254,134 +259,21 @@
                 <label>Escreva seus pensamentos e relatos:</label>
                 <textarea id="textoDiarioLivre" rows="4" placeholder="Escreva aqui tudo o que quiser registrar..."></textarea>
             </div>
-            <button class="btn-salvar" onclick="salvarDiarioLivre()">Salvar no Diário</button>
+            <button class="btn-salvar" onclick="salvarDiarioLivre()">Testar anotação (demonstração)</button>
             <ul class="lista-consultas" id="listaDiarioLivre" style="margin-top: 15px;"></ul>
         </div>
 
-        <!-- GUIA PRÁTICO: CUIDADOS DIÁRIOS -->
-        <div class="card-crise">
-            <h3>Guia Prático: Bem-Estar e Cuidados na Gestação</h3>
-            <div class="grid-crise">
-                <div class="item-crise">
-                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Hidratação Constante</strong>
-                    Beba bastante água ao longo do dia para auxiliar na formação do líquido amniótico e prevenir infecções urinárias.
-                </div>
-                <div class="item-crise">
-                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Alimentação Variada</strong>
-                    Priorize refeições ricas em ferro, ácido fólico, cálcio e fibras para apoiar o desenvolvimento saudável do bebê.
-                </div>
-                <div class="item-crise">
-                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Descanso Adequado</strong>
-                    Deite-se preferencialmente do lado esquerdo para melhorar a circulação sanguínea placentária e uterina.
-                </div>
-                <div class="item-crise">
-                    <strong style="color: #c94a70; display: block; margin-bottom: 4px;">Atividade Leve</strong>
-                    Pratique caminhadas leves ou alongamentos orientados por seu médico para reduzir dores nas costas e inchaços.
-                </div>
-            </div>
-        </div>
-
-        <!-- GUIA CLÍNICO E TRIMESTRES -->
-        <div class="secao-guia" style="margin-top: 25px;">
-            <h2>Guia Clínico e Desenvolvimento Trimestral</h2>
-            <div class="grid-dicas">
-                
-                <div class="card-dica">
-                    <h3>Exames Essenciais de Pré-natal</h3>
-                    <ul>
-                        <li><strong>Primeiro Trimestre:</strong> Confirmação de idade gestacional, tipagem sanguínea e sorologias de rotina.</li>
-                        <li><strong>Segundo Trimestre:</strong> Ultrassonografia Morfológica para checagem detalhada da anatomia fetal.</li>
-                        <li><strong>Terceiro Trimestre:</strong> Avaliação de posição fetal, ecocardiograma fetal e exames finais de sangue.</li>
-                        <li><strong>Testes de Triagem:</strong> Acompanhamento rigoroso da pressão arterial e glicemia de jejum.</li>
-                    </ul>
-                </div>
-
-                <div class="card-dica">
-                    <h3>Sinais de Desenvolvimento do Bebê</h3>
-                    <p>Cada trimestre traz marcos importantes na formação e crescimento intrauterino:</p>
-                    <ul style="margin-top: 8px;">
-                        <li><strong>1 a 13 Semanas:</strong> Formação dos órgãos principais e início dos batimentos cardíacos.</li>
-                        <li><strong>14 a 27 Semanas:</strong> Ganho de audição, primeiros movimentos perceptíveis e crescimento acelerado.</li>
-                        <li><strong>28 a 40 Semanas:</strong> Maturação pulmonar completa, ganho de peso e posicionamento para o parto.</li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Tabela Comparativa de Tamanho (Frutas) -->
-            <div style="margin-top: 20px; background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px;">
-                <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Acompanhamento do Crescimento: Tamanho do Bebê por Frutas</h3>
-                <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">Veja uma estimativa aproximada do tamanho do seu bebê a cada fase da gestação:</p>
-
-                <table class="tabela-nutricao">
-                    <thead>
-                        <tr>
-                            <th>Semana Gestacional</th>
-                            <th>Tamanho Aproximado (Comparativo com Frutas)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>12 Semanas</td>
-                            <td>Tamanho de um Maracujá</td>
-                        </tr>
-                        <tr>
-                            <td>16 Semanas</td>
-                            <td>Tamanho de um Abacate</td>
-                        </tr>
-                        <tr>
-                            <td>20 Semanas</td>
-                            <td>Tamanho de uma Banana</td>
-                        </tr>
-                        <tr>
-                            <td>24 Semanas</td>
-                            <td>Tamanho de um Milho verde</td>
-                        </tr>
-                        <tr>
-                            <td>28 Semanas</td>
-                            <td>Tamanho de um Berinjela</td>
-                        </tr>
-                        <tr>
-                            <td>32 Semanas</td>
-                            <td>Tamanho de um Abacaxi</td>
-                        </tr>
-                        <tr>
-                            <td>36 a 40 Semanas</td>
-                            <td>Tamanho de uma Melancia pequena</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Tabela Nutricional -->
-            <div style="margin-top: 20px; background: #fffcfd; border: 1px solid #ffd0da; border-radius: 12px; padding: 18px;">
-                <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Diretrizes Nutricionais para Gestantes</h3>
-                <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">Uma dieta equilibrada garante nutrientes fundamentais para a mãe e para o feto:</p>
-
-                <table class="tabela-nutricao">
-                    <thead>
-                        <tr>
-                            <th>Alimentos Recomendados</th>
-                            <th>Alimentos com Restrição ou Cuidado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Folhas verde-escuras (espinafre, couve) e leguminosas ricas em ferro.</td>
-                            <td>Carnes mal passadas, ovos com gema mole e sushi (risco de toxoplasmose/infecções).</td>
-                        </tr>
-                        <tr>
-                            <td>Frutas frescas, laticínios pasteurizados e grãos integrais.</td>
-                            <td>Peixes de grande porte com alto teor de mercúrio (tubarão, peixe-espada).</td>
-                        </tr>
-                        <tr>
-                            <td>Água em abundância e sucos naturais sem excesso de açúcar.</td>
-                            <td>Excesso de cafeína, chás medicinais sem liberação médica e embutidos.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <!-- INFORMAÇÕES DE PRÉ-NATAL -->
+        <section class="secao-guia">
+            <h2>Pré-natal e informações confiáveis</h2>
+            <p>O pré-natal acompanha a saúde da pessoa gestante e do bebê. Procure uma UBS assim que descobrir ou suspeitar de uma gravidez; a equipe orienta consultas, exames, vacinas e o serviço de referência para cada caso.</p>
+            <p>Exames, atividade física, alimentação, medicamentos e suplementos devem ser conversados com a equipe que acompanha a gestação. Necessidades variam, por isso esta página não apresenta um calendário clínico individual nem prescreve condutas.</p>
+            <ul>
+                <li><a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/g/gravidez/pre-natal" target="_blank" rel="noopener noreferrer">Orientações oficiais sobre pré-natal</a></li>
+                <li><a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/g/gravidez/exames-e-vacinas/exames-e-vacinas/" target="_blank" rel="noopener noreferrer">Exames e vacinas na gestação</a></li>
+                <li><a href="https://bvsms.saude.gov.br/bvs/publicacoes/caderneta_brasileira_gestante.pdf" target="_blank" rel="noopener noreferrer">Caderneta Brasileira da Gestante</a></li>
+            </ul>
+        </section>
 
         <!-- DUVIDAS E ATENDIMENTO SUS -->
         <div class="secao-guia">
@@ -393,21 +285,21 @@
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div style="background: #ffffff; padding: 10px 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
                             <strong style="color: #c94a70; font-size: 0.88rem; display: block; margin-bottom: 3px;">Praticar exercícios é seguro?</strong>
-                            <p style="font-size: 0.83rem; color: #555; margin: 0;">Sim, desde que liberado pelo médico e com acompanhamento adequado para evitar esforço excessivo.</p>
+                            <p style="font-size: 0.83rem; color: #555; margin: 0;">A atividade física deve ser conversada com a equipe do pré-natal, considerando sua saúde e a gestação.</p>
                         </div>
                         <div style="background: #ffffff; padding: 10px 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
                             <strong style="color: #c94a70; font-size: 0.88rem; display: block; margin-bottom: 3px;">Como saber se os movimentos estão normais?</strong>
-                            <p style="font-size: 0.83rem; color: #555; margin: 0;">A partir do segundo trimestre, o bebê costuma ter padrões de atividade. Na dúvida ou ausência prolongada, consulte a maternidade.</p>
+                            <p style="font-size: 0.83rem; color: #555; margin: 0;">Se notar mudança ou diminuição dos movimentos do bebê, siga as orientações da sua equipe e procure o serviço de referência para avaliação.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-dica">
                     <h3>Atendimento pelo SUS</h3>
-                    <p>O Sistema Único de Saúde oferece suporte completo durante todo o ciclo gravídico-puerperal:</p>
+                    <p>O pré-natal pelo SUS pode começar na UBS, que orienta exames, consultas e encaminhamentos conforme cada gestação.</p>
                     <ul style="margin-top: 8px;">
                         <li><strong>Acompanhamento na UBS:</strong> Consultas regulares de pré-natal e exames.</li>
-                        <li><strong>Rede Cegonha:</strong> Acolhimento e vinculação à maternidade para parto seguro.</li>
+                        <li><strong>Referência para o parto:</strong> Pergunte à equipe qual maternidade ou serviço atende sua região.</li>
                         <li><strong>Puerpério:</strong> Revisão pós-parto e cuidados com o recém-nascido.</li>
                     </ul>
                 </div>
@@ -415,13 +307,14 @@
             </div>
 
             <div class="alerta-medico">
-                <h3>Atenção: Sinais de Alerta na Gestação</h3>
+                <h3>Procure atendimento imediatamente</h3>
                 <ul>
-                    <li>Sangramento vaginal de qualquer intensidade ou perda de líquido amniótico antes do termo.</li>
-                    <li>Dores de cabeça fortes e persistentes acompanhadas de visão turva ou inchaço súbito no rosto e mãos.</li>
-                    <li>Febre alta, calafrios ou diminuição acentuada dos movimentos fetais.</li>
+                    <li>Sangramento vaginal, perda de líquido ou dor forte ou persistente.</li>
+                    <li>Dor de cabeça intensa, alteração na visão, falta de ar, dor no peito, desmaio ou convulsão.</li>
+                    <li>Febre ou diminuição/ausência dos movimentos do bebê.</li>
                 </ul>
             </div>
+            <p><a href="https://www.gov.br/mulheres/pt-br/central-de-conteudos/noticias/2026/agosto-defeso-eleitoral/pre-natal-cuidados-desde-as-primeiras-semanas-tornam-a-gestacao-mais-segura" target="_blank" rel="noopener noreferrer">Consulte os sinais de alerta e orientações do Ministério da Saúde.</a> Em caso de urgência, procure a maternidade de referência ou um serviço de emergência.</p>
         </div>
 
     </div>
@@ -433,6 +326,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="consult-report.js"></script>
     <script>
         function abrirModal(src) {
             document.getElementById('janelaModal').style.display = 'block';
@@ -448,14 +342,26 @@
             const semana = document.getElementById('semanaAtual').value;
             const peso = document.getElementById('pesoAtual').value;
             if(data) {
-                alert(`Registro gestacional salvo!\nData: ${data}\nSemana: ${semana}ª\nPeso: ${peso} kg`);
+                alert(`Demonstração: o registro não é armazenado nem acompanhado clinicamente.\nData: ${data}\nSemana: ${semana}ª\nPeso: ${peso} kg`);
             } else {
                 alert('Por favor, informe a data do registro.');
             }
         }
 
         function exportarPDF() {
-            alert('Gerando Relatório Gestacional em PDF... (Funcionalidade Velary Premium)');
+            const sintomas = Array.from(document.querySelectorAll('input[name="sintomaGestacao"]:checked')).map(el => el.value);
+            const consultas = Array.from(document.querySelectorAll('#listaPreNatal li')).map(el => el.textContent.trim());
+            const consultaAtual = [document.getElementById('dataPreNatal').value, document.getElementById('nomePreNatal').value.trim()].filter(Boolean).join(' — ');
+            const diario = [document.getElementById('tituloDiarioLivre').value.trim(), document.getElementById('textoDiarioLivre').value.trim()].filter(Boolean).join(' — ');
+            window.velaryImprimirResumo('Resumo pessoal para consulta — Gestação', [
+                ['Data do registro', document.getElementById('dataGestacao').value],
+                ['Semana informada', document.getElementById('semanaAtual').value],
+                ['Peso informado', document.getElementById('pesoAtual').value ? document.getElementById('pesoAtual').value + ' kg' : ''],
+                ['Sintomas marcados', sintomas.join(', ')],
+                ['Observações', document.getElementById('obsGestacao').value.trim()],
+                ['Pré-natal ou exame', [consultaAtual, ...consultas].filter(Boolean).join('; ')],
+                ['Anotação pessoal', diario]
+            ]);
         }
 
         function salvarObsGestacao() {
@@ -463,7 +369,7 @@
             const sintomas = Array.from(document.querySelectorAll('input[name="sintomaGestacao"]:checked')).map(el => el.value);
             
             if(sintomas.length > 0 || obs !== "") {
-                alert('Mapeamento de sintomas guardado com sucesso!');
+                alert('Demonstração: o mapeamento não é armazenado nesta versão.');
                 document.getElementById('obsGestacao').value = '';
             } else {
                 alert('Selecione pelo menos um sintoma ou digite uma observação.');
@@ -491,15 +397,25 @@
             if(titulo && texto) {
                 const lista = document.getElementById('listaDiarioLivre');
                 const li = document.createElement('li');
-                li.innerHTML = `<strong>${titulo}</strong><br>${texto}`;
+                const tituloEl = document.createElement('strong');
+                tituloEl.textContent = titulo;
+                li.append(tituloEl, document.createElement('br'), document.createTextNode(texto));
                 lista.appendChild(li);
                 document.getElementById('tituloDiarioLivre').value = '';
                 document.getElementById('textoDiarioLivre').value = '';
-                alert('Relato salvo no diário com sucesso!');
+                alert('Demonstração: o relato não é armazenado nesta versão.');
             } else {
                 alert('Preencha o título e o texto do diário.');
             }
         }
     </script>
+  <aside class="aviso-educativo-padrao" role="note"><strong>Informação importante:</strong> este conteúdo é educativo e não substitui consulta, diagnóstico ou tratamento individual. Para orientações sobre o seu caso, converse com um profissional de saúde.</aside>
+  <footer class="rodape-tema" aria-label="Links do Velary">
+    <a href="index.html">Início</a>
+    <a href="temas.html">Todos os temas</a>
+    <a href="noticias.html">Artigos e notícias</a>
+    <a href="videos.html">Vídeos</a>
+    <a href="premium.html">Ideias Premium</a>
+  </footer>
 </body>
 </html>

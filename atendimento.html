@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8fb">
+  <title>Atendimento preventivo | Velary</title>
+  <link rel="stylesheet" href="css/acompanhamento.css">
+  <link rel="stylesheet" href="css/atendimento.css">
+</head>
+<body class="acompanhamento pagina-atendimento">
+  <header class="barra-app">
+    <div class="marca-perfil">
+      <a class="marca" href="index.html">Velary</a>
+      <a href="acompanhamento.html">Meu acompanhamento</a>
+    </div>
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="primeiro-ciclo.html">Primeiro ciclo</a>
+      <a href="#painel-equipe">Visão da UBS</a>
+      <a href="#integracao-sus">Integração SUS</a>
+    </nav>
+  </header>
+
+  <main class="conteudo-app">
+    <section class="cabecalho-app">
+      <div>
+        <p class="etiqueta">Consulta preventiva</p>
+        <h1>Chegue à consulta com tudo reunido</h1>
+        <p class="texto-suave">Leve sintomas, exames e dúvidas à consulta.</p>
+      </div>
+    </section>
+
+    <div class="aviso-privacidade nota-demo">
+      <strong>Demonstração com dados fictícios.</strong>
+      Use apenas exemplos. O que você digitar aparece nesta tela, não é salvo nem enviado à UBS ou ao SUS.
+    </div>
+
+    <ol class="etapas-consulta" aria-label="Etapas do cuidado demonstrativo">
+      <li class="etapa-atual"><span>1</span><div><strong>Preparar</strong><small>Sintomas e exames</small></div></li>
+      <li><span>2</span><div><strong>Solicitar</strong><small>Consulta na unidade</small></div></li>
+      <li><span>3</span><div><strong>Levar</strong><small>Resumo para conversar</small></div></li>
+    </ol>
+
+    <div class="grade-atendimento">
+      <div class="coluna-registros">
+        <section class="painel painel-registros">
+          <div class="linha-titulo">
+            <div>
+              <p class="etiqueta">Para conversar com a equipe</p>
+              <h2>O que você quer contar?</h2>
+            </div>
+            <span class="selo-exemplo">Exemplos fictícios</span>
+          </div>
+          <p class="texto-suave">Anote quando começou e o que percebeu. Este registro não avalia sintomas nem indica diagnóstico.</p>
+
+          <ul class="lista-registros lista-sintomas" id="lista-sintomas">
+            <li data-resumo="Cólica — intensidade 2 de 5 — 10/11/2026">
+              <span><strong>Cólica</strong><small class="detalhe-registro">Leve · intensidade 2 de 5</small></span>
+              <time datetime="2026-11-10">10 nov</time>
+            </li>
+            <li data-resumo="Cansaço — intensidade 1 de 5 — 09/11/2026">
+              <span><strong>Cansaço</strong><small class="detalhe-registro">Leve · intensidade 1 de 5</small></span>
+              <time datetime="2026-11-09">9 nov</time>
+            </li>
+          </ul>
+
+          <form class="formulario formulario-sintoma" id="form-sintoma">
+            <label for="tipo-sintoma">Adicionar um exemplo de sintoma</label>
+            <select id="tipo-sintoma" required>
+              <option value="">Escolha uma opção</option>
+              <option>Cólica</option>
+              <option>Dor de cabeça</option>
+              <option>Cansaço</option>
+              <option>Alteração de humor</option>
+              <option>Outro</option>
+            </select>
+            <div class="campos-sintoma">
+              <label for="intensidade">Intensidade
+                <select id="intensidade" required>
+                  <option value="">Selecione</option>
+                  <option value="1">1 — Leve</option>
+                  <option value="2">2</option>
+                  <option value="3">3 — Moderada</option>
+                  <option value="4">4</option>
+                  <option value="5">5 — Intensa</option>
+                </select>
+              </label>
+              <label for="data-sintoma">Data
+                <input id="data-sintoma" type="date" value="2026-11-11" required>
+              </label>
+            </div>
+            <label for="medicamentos-consulta">Medicamentos que quer mencionar (opcional)
+              <textarea id="medicamentos-consulta" rows="2" maxlength="300" placeholder="Exemplo fictício: nome e horário de uso"></textarea>
+            </label>
+            <label for="perguntas-consulta">O que quer perguntar à equipe? (opcional)
+              <textarea id="perguntas-consulta" rows="3" maxlength="500" placeholder="Escreva dúvidas para lembrar durante a consulta"></textarea>
+            </label>
+            <button class="botao botao-secundario" type="submit">Adicionar à demonstração</button>
+            <p class="texto-rodape-demo" id="aviso-registro" aria-live="polite">O registro fica só nesta tela até atualizar ou fechar a página.</p>
+          </form>
+        </section>
+
+        <section class="painel painel-exames">
+          <div class="linha-titulo">
+            <div>
+              <p class="etiqueta">Documentos de exemplo</p>
+              <h2>Exames para revisar</h2>
+            </div>
+            <span class="icone-documento" aria-hidden="true">PDF</span>
+          </div>
+          <ul class="lista-exames" id="lista-exames">
+            <li data-resumo="Documento de exame — exemplo fictício — 06/11/2026 — revisão profissional pendente">
+              <span class="arquivo-simbolo" aria-hidden="true">PDF</span>
+              <span class="arquivo-detalhes"><strong>Documento de exame</strong><small>Exemplo fictício · 6 nov 2026</small></span>
+              <span class="estado-exame">Aguardando revisão</span>
+            </li>
+          </ul>
+          <p class="texto-rodape-demo">O arquivo mostrado é ilustrativo e não contém resultado clínico.</p>
+          <button class="botao botao-secundario" id="simular-exame" type="button">Simular recebimento de exame</button>
+          <p class="mensagem-status" id="estado-exame" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <aside class="painel painel-pedido">
+        <p class="etiqueta">Acesso à unidade</p>
+        <h2>Pedido de consulta</h2>
+        <p class="texto-suave">A unidade e a equipe definem os horários e confirmam o atendimento.</p>
+
+        <form class="formulario" id="form-pedido">
+          <label for="motivo-consulta">O que você procura?</label>
+          <select id="motivo-consulta" required>
+            <option value="">Escolha uma opção</option>
+            <option selected>Consulta preventiva</option>
+            <option>Conversar sobre sintomas</option>
+            <option>Levar um exame para revisão</option>
+          </select>
+          <label for="unidade-saude">Unidade de referência (exemplo)</label>
+          <select id="unidade-saude" required>
+            <option>UBS Jardim das Flores — fictícia</option>
+            <option>UBS Central — fictícia</option>
+          </select>
+          <label for="periodo-consulta">Período de preferência</label>
+          <select id="periodo-consulta" required>
+            <option>Manhã</option>
+            <option>Tarde</option>
+          </select>
+          <button class="botao" type="submit">Simular pedido de consulta</button>
+        </form>
+
+        <div class="estado-pedido" id="estado-pedido" role="status" aria-live="polite">
+          <span class="ponto-estado" aria-hidden="true"></span>
+          <div><strong>Nenhum pedido enviado</strong><small>Esta demonstração não se conecta à UBS.</small></div>
+        </div>
+        <p class="nota-fluxo">Em uma integração real, o status só mudaria após resposta do sistema da unidade.</p>
+      </aside>
+    </div>
+
+    <section class="painel painel-equipe" id="painel-equipe" aria-labelledby="titulo-equipe">
+      <div class="cabecalho-equipe">
+        <div>
+          <p class="etiqueta">Demonstração para a Atenção Primária</p>
+          <h2 id="titulo-equipe">A equipe acompanha cada etapa do cuidado</h2>
+          <p class="texto-suave">Uma visão de pendências ajuda a consulta, o exame e o retorno a não se perderem no caminho.</p>
+        </div>
+        <span class="selo-exemplo">Casos e números fictícios</span>
+      </div>
+
+      <div class="indicadores-equipe" aria-label="Indicadores fictícios do fluxo">
+        <article><strong id="contagem-consulta">1</strong><span>consultas para organizar</span></article>
+        <article><strong id="contagem-exame">1</strong><span>exames para revisar</span></article>
+        <article><strong id="contagem-retorno">1</strong><span>retornos para acompanhar</span></article>
+      </div>
+      <div class="metas-piloto" aria-label="Indicadores sugeridos para avaliar um piloto">
+        <strong>Como medir se o piloto ajuda a UBS</strong>
+        <span>Pedidos que viram consulta</span>
+        <span>Exames com avaliação e próximo passo</span>
+        <span>Faltas recuperadas e tempo da equipe</span>
+      </div>
+
+      <ul class="fila-equipe" id="fila-equipe" aria-label="Fila de demonstração da equipe">
+        <li data-pendencia="consulta">
+          <div class="caso-descricao"><span class="codigo-caso">CASO DEMO 01</span><strong>Pedido de consulta</strong><small>Solicitação ilustrativa aguardando organização pela unidade.</small></div>
+          <span class="estado-fila">Aguardando agenda</span>
+          <button class="botao botao-secundario" type="button" data-concluir-pendencia>Simular agenda organizada</button>
+        </li>
+        <li data-pendencia="exame">
+          <div class="caso-descricao"><span class="codigo-caso">CASO DEMO 02</span><strong>Resultado de exame</strong><small>Registro ilustrativo aguardando revisão profissional.</small></div>
+          <span class="estado-fila">Revisão pendente</span>
+          <button class="botao botao-secundario" type="button" data-concluir-pendencia>Simular revisão concluída</button>
+        </li>
+        <li data-pendencia="retorno">
+          <div class="caso-descricao"><span class="codigo-caso">CASO DEMO 03</span><strong>Continuidade do cuidado</strong><small>Consulta ilustrativa realizada; próximo passo ainda não organizado.</small></div>
+          <span class="estado-fila">Retorno pendente</span>
+          <button class="botao botao-secundario" type="button" data-concluir-pendencia>Simular retorno organizado</button>
+        </li>
+      </ul>
+      <div class="acoes-equipe">
+        <p class="texto-rodape-demo" id="estado-equipe" role="status" aria-live="polite">Ações nesta fila são apenas simulações locais.</p>
+        <button class="botao botao-secundario" id="reiniciar-fila" type="button">Reiniciar demonstração</button>
+      </div>
+      <p class="nota-fluxo">A tela demonstra coordenação do cuidado, não prontuário nem decisão clínica. Em um piloto, a unidade definiria os fluxos, os perfis de acesso e quais dados podem ser compartilhados.</p>
+    </section>
+
+    <section class="painel painel-mamas" id="saude-das-mamas" aria-labelledby="titulo-mamas">
+      <div class="cabecalho-equipe">
+        <div>
+          <p class="etiqueta">Informação para a usuária</p>
+          <h2 id="titulo-mamas">Saúde das mamas: perceba mudanças e procure orientação</h2>
+          <p class="texto-suave">Conhecer o que é habitual ajuda a notar alterações. A UBS acolhe e orienta em qualquer idade.</p>
+        </div>
+      </div>
+
+      <div class="grade-mamas">
+        <article>
+          <span class="numero-mama">01</span>
+          <h3>Conheça suas mamas</h3>
+          <p>Observe e toque quando se sentir confortável, no banho, ao se vestir ou em outro momento do dia a dia. Não é necessário seguir uma técnica ou uma rotina fixa de autoexame.</p>
+        </article>
+        <article>
+          <span class="numero-mama">02</span>
+          <h3>Procure a UBS se notar uma mudança</h3>
+          <ul>
+            <li>Caroço novo na mama ou na axila, ou que aumenta.</li>
+            <li>Saída espontânea de líquido pelo mamilo, principalmente com sangue.</li>
+            <li>Mudança recente no formato do mamilo ou na pele, como ferida, retração ou aspecto de casca de laranja.</li>
+          </ul>
+          <p>Se perceber uma alteração, procure a unidade sem esperar pela próxima mamografia de rotina.</p>
+        </article>
+        <article>
+          <span class="numero-mama">03</span>
+          <h3>Mamografia e rastreamento</h3>
+          <p>Para rastreamento de rotina, a recomendação nacional é mamografia a cada dois anos entre 50 e 74 anos. A equipe da UBS orienta sobre o acesso fora dessa faixa, histórico familiar e investigação de sintomas.</p>
+          <a href="https://www.gov.br/saude/pt-br/assuntos/noticias/2026/outubro/sus-amplia-acesso-a-mamografia-e-ao-tratamento-do-cancer-de-mama/" target="_blank" rel="noopener noreferrer">Veja a orientação atual do Ministério da Saúde</a>
+        </article>
+      </div>
+      <p class="nota-fluxo">O autoexame mensal com técnica fixa não é recomendado como método de rastreamento. A atenção às mudanças do próprio corpo e a avaliação profissional têm papéis diferentes da mamografia de rotina.</p>
+    </section>
+
+    <section class="painel painel-referencias" aria-labelledby="titulo-referencias">
+      <p class="etiqueta">Fontes confiáveis</p>
+      <h2 id="titulo-referencias">Referências oficiais para manter a informação atualizada</h2>
+      <div class="referencias-sus" aria-label="Referências oficiais de saúde">
+        <a href="https://www.gov.br/inca/pt-br/assuntos/gestor-e-profissional-de-saude/controle-do-cancer-do-colo-do-utero/acoes/deteccao-precoce" target="_blank" rel="noopener noreferrer">Rastreamento do colo do útero · INCA</a>
+        <a href="https://linhasdecuidado.saude.gov.br/portal/cancer-de-mama/unidade-de-atencao-primaria/vigilancia-em-saude/" target="_blank" rel="noopener noreferrer">Câncer de mama · linha de cuidado</a>
+        <a href="https://www.gov.br/saude/pt-br/assuntos/noticias/2026/outubro/sus-amplia-acesso-a-mamografia-e-ao-tratamento-do-cancer-de-mama/" target="_blank" rel="noopener noreferrer">Acesso à mamografia · Ministério da Saúde 2026</a>
+        <a href="https://www.gov.br/saude/pt-br/vacinacao/arquivos/calendario-nacional-de-vacinacao-adolescentes-jovens" target="_blank" rel="noopener noreferrer">Calendário de vacinação 2026</a>
+        <a href="https://www.gov.br/inca/pt-br/assuntos/gestor-e-profissional-de-saude/controle-do-cancer-de-mama/acoes/deteccao-precoce" target="_blank" rel="noopener noreferrer">Detecção precoce e orientação sobre autoexame · INCA</a>
+      </div>
+      <p class="nota-fluxo">Protocolos, critérios e periodicidade de exames precisam acompanhar as diretrizes nacionais atualizadas e a oferta disponível em cada município; o Velary não indica diagnóstico nem substitui avaliação profissional.</p>
+    </section>
+
+    <section class="painel painel-integracao" id="integracao-sus" aria-labelledby="titulo-integracao">
+      <div class="cabecalho-equipe">
+        <div>
+          <p class="etiqueta">Conexão com o SUS</p>
+          <h2 id="titulo-integracao">Velary como ponte com os sistemas da rede</h2>
+          <p class="texto-suave">A unidade mantém o controle do atendimento; o Velary pode facilitar a comunicação e o acompanhamento das etapas.</p>
+        </div>
+        <span class="selo-conexao"><span aria-hidden="true"></span> Integração ainda não conectada</span>
+      </div>
+
+      <div class="integracao-etapas">
+        <article><span>01</span><h3>Velary</h3><p>Ajuda a pessoa a organizar dúvidas e a equipe a acompanhar etapas, sem criar um prontuário paralelo.</p></article>
+        <article><span>02</span><h3>Conector seguro</h3><p>Um serviço de integração no servidor validaria acesso e regras; credenciais não ficariam no navegador.</p></article>
+        <article><span>03</span><h3>e-SUS APS / PEC</h3><p>O agendamento online depende de ativação e organização da agenda pela gestão municipal.</p></article>
+        <article><span>04</span><h3>RNDS</h3><p>Intercâmbio de dados depende dos serviços habilitados, estabelecimento com CNES e credenciais institucionais.</p></article>
+      </div>
+      <div class="aviso-integracao"><strong>Estado atual:</strong> esta página é um protótipo demonstrativo. Não consulta agendas, prontuários ou exames reais e não envia dados ao SUS. A integração real exige pactuação com a Secretaria de Saúde, validação técnica, credenciais institucionais e regras de proteção de dados. Como pode envolver dados de saúde e de adolescentes, privacidade e segurança precisam ser aprovadas antes do piloto.</div>
+      <div class="referencias-sus" aria-label="Documentação oficial de integração">
+        <strong>Documentação para planejar a conexão:</strong>
+        <a href="https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/notas-tecnicas/2026/nota-tecnica-conjunta-no-48-2026-seidigi-saps-ms.pdf/view" target="_blank" rel="noopener noreferrer">Agendamento no e-SUS APS · Nota Técnica 48/2026</a>
+        <a href="https://webatendimento.saude.gov.br/faq/rnds" target="_blank" rel="noopener noreferrer">Requisitos e acesso à RNDS</a>
+        <a href="https://rnds-guia.saude.gov.br/" target="_blank" rel="noopener noreferrer">Guia de integração da RNDS</a>
+      </div>
+    </section>
+
+    <section class="painel painel-resumo" id="resumo-consulta">
+      <div class="cabecalho-resumo">
+        <div>
+          <p class="etiqueta">Para imprimir ou salvar em PDF</p>
+          <h2>Resumo para a consulta</h2>
+          <p class="texto-suave">Uma folha de apoio para lembrar o que você quer conversar.</p>
+        </div>
+        <button class="botao" id="imprimir-resumo" type="button">Imprimir ou salvar em PDF</button>
+      </div>
+
+      <div class="resumo-grade">
+        <section>
+          <h3>Sintomas registrados</h3>
+          <ul id="resumo-sintomas" class="resumo-lista"></ul>
+        </section>
+        <section>
+          <h3>Exames</h3>
+          <ul id="resumo-exames" class="resumo-lista"></ul>
+        </section>
+        <section>
+          <h3>Medicamentos para mencionar</h3>
+          <p class="texto-resumo" id="resumo-medicamentos">Não informado.</p>
+        </section>
+        <section>
+          <h3>Dúvidas para conversar</h3>
+          <p class="texto-resumo" id="resumo-perguntas">Não informado.</p>
+        </section>
+        <section class="resumo-pedido">
+          <h3>Consulta</h3>
+          <p id="resumo-pedido">Pedido ainda não simulado.</p>
+        </section>
+      </div>
+      <p class="nota-laudo">Resumo de demonstração preenchido pela pessoa usuária. Não é laudo, prontuário ou orientação clínica.</p>
+      <p class="texto-rodape-demo">Na impressão, escolha “Salvar como PDF” para guardar uma cópia.</p>
+    </section>
+
+    <p class="rodape-app"><a href="acompanhamento.html">Voltar ao meu acompanhamento</a></p>
+  </main>
+
+  <script>
+    (() => {
+      const sintomas = document.getElementById('lista-sintomas');
+      const exames = document.getElementById('lista-exames');
+      const resumoSintomas = document.getElementById('resumo-sintomas');
+      const resumoExames = document.getElementById('resumo-exames');
+      const resumoPedido = document.getElementById('resumo-pedido');
+      const pedidoStatus = document.getElementById('estado-pedido');
+      const medicamentos = document.getElementById('medicamentos-consulta');
+      const perguntas = document.getElementById('perguntas-consulta');
+
+      function atualizarTextoResumo(campo, destino) {
+        destino.textContent = campo.value.trim() || 'Não informado.';
+      }
+
+      function copiarLista(origem, destino, vazio) {
+        const itens = Array.from(origem.querySelectorAll('li'));
+        destino.replaceChildren();
+        if (!itens.length) {
+          const itemVazio = document.createElement('li');
+          itemVazio.textContent = vazio;
+          destino.appendChild(itemVazio);
+          return;
+        }
+        itens.forEach(item => {
+          const resumo = document.createElement('li');
+          resumo.textContent = item.dataset.resumo || item.textContent.trim();
+          destino.appendChild(resumo);
+        });
+      }
+
+      function atualizarResumo() {
+        copiarLista(sintomas, resumoSintomas, 'Nenhum sintoma registrado nesta demonstração.');
+        copiarLista(exames, resumoExames, 'Nenhum exame incluído nesta demonstração.');
+        atualizarTextoResumo(medicamentos, document.getElementById('resumo-medicamentos'));
+        atualizarTextoResumo(perguntas, document.getElementById('resumo-perguntas'));
+      }
+
+      [medicamentos, perguntas].forEach(campo => campo.addEventListener('input', atualizarResumo));
+
+      document.getElementById('form-sintoma').addEventListener('submit', event => {
+        event.preventDefault();
+        const nome = document.getElementById('tipo-sintoma').value;
+        const intensidade = document.getElementById('intensidade').value;
+        const data = document.getElementById('data-sintoma').value;
+        const dataFormatada = new Date(data + 'T12:00:00').toLocaleDateString('pt-BR');
+        const nivel = intensidade + ' de 5';
+        const item = document.createElement('li');
+        item.dataset.resumo = nome + ' — intensidade ' + nivel + ' — ' + dataFormatada;
+        const descricao = document.createElement('span');
+        const titulo = document.createElement('strong');
+        const detalhe = document.createElement('small');
+        const quando = document.createElement('time');
+        titulo.textContent = nome;
+        detalhe.className = 'detalhe-registro';
+        detalhe.textContent = 'Intensidade ' + nivel;
+        quando.textContent = dataFormatada;
+        quando.dateTime = data;
+        descricao.append(titulo, detalhe);
+        item.append(descricao, quando);
+        sintomas.prepend(item);
+        document.getElementById('aviso-registro').textContent = 'Exemplo adicionado somente nesta tela; nada foi enviado ou salvo.';
+        event.currentTarget.reset();
+        atualizarResumo();
+      });
+
+      document.getElementById('simular-exame').addEventListener('click', () => {
+        const item = document.createElement('li');
+        item.dataset.resumo = 'Documento de exame — exemplo fictício — 11/11/2026 — revisão profissional pendente';
+        const simbolo = document.createElement('span');
+        simbolo.className = 'arquivo-simbolo';
+        simbolo.setAttribute('aria-hidden', 'true');
+        simbolo.textContent = 'PDF';
+        const detalhes = document.createElement('span');
+        detalhes.className = 'arquivo-detalhes';
+        const titulo = document.createElement('strong');
+        const data = document.createElement('small');
+        titulo.textContent = 'Documento de exame';
+        data.textContent = 'Exemplo fictício · 11 nov 2026';
+        detalhes.append(titulo, data);
+        const estado = document.createElement('span');
+        estado.className = 'estado-exame';
+        estado.textContent = 'Aguardando revisão';
+        item.append(simbolo, detalhes, estado);
+        exames.prepend(item);
+        document.getElementById('estado-exame').textContent = 'Recebimento simulado. O documento não foi enviado ou salvo.';
+        atualizarResumo();
+      });
+
+      document.getElementById('form-pedido').addEventListener('submit', event => {
+        event.preventDefault();
+        const motivo = document.getElementById('motivo-consulta').value;
+        const unidade = document.getElementById('unidade-saude').value;
+        const periodo = document.getElementById('periodo-consulta').value;
+        const mensagem = 'Simulação concluída. O pedido de ' + motivo.toLowerCase() + ' para ' + unidade + ', no período da ' + periodo.toLowerCase() + ', aguardaria confirmação da equipe. Nenhuma solicitação foi enviada.';
+        const texto = document.createElement('small');
+        texto.textContent = mensagem;
+        const titulo = document.createElement('strong');
+        titulo.textContent = 'Aguardando confirmação (exemplo)';
+        pedidoStatus.replaceChildren(Object.assign(document.createElement('span'), { className: 'ponto-estado' }), Object.assign(document.createElement('div'), { className: 'estado-pedido-texto' }));
+        pedidoStatus.querySelector('.estado-pedido-texto').append(titulo, texto);
+        resumoPedido.textContent = mensagem;
+      });
+
+      const contadoresEquipe = {
+        consulta: document.getElementById('contagem-consulta'),
+        exame: document.getElementById('contagem-exame'),
+        retorno: document.getElementById('contagem-retorno')
+      };
+
+      function atualizarIndicadoresEquipe() {
+        Object.entries(contadoresEquipe).forEach(([tipo, contador]) => {
+          contador.textContent = String(document.querySelectorAll(`#fila-equipe [data-pendencia="${tipo}"]:not(.concluida)`).length);
+        });
+      }
+
+      document.querySelectorAll('[data-concluir-pendencia]').forEach(botao => {
+        botao.addEventListener('click', () => {
+          const caso = botao.closest('[data-pendencia]');
+          const estado = caso.querySelector('.estado-fila');
+          caso.classList.add('concluida');
+          estado.textContent = 'Etapa concluída (demo)';
+          botao.disabled = true;
+          botao.textContent = 'Concluído nesta demonstração';
+          document.getElementById('estado-equipe').textContent = `${caso.querySelector('.codigo-caso').textContent}: etapa atualizada somente nesta tela.`;
+          atualizarIndicadoresEquipe();
+        });
+      });
+
+      document.getElementById('reiniciar-fila').addEventListener('click', () => {
+        document.querySelectorAll('#fila-equipe [data-pendencia]').forEach(caso => {
+          caso.classList.remove('concluida');
+          caso.querySelector('.estado-fila').textContent = {
+            consulta: 'Aguardando agenda',
+            exame: 'Revisão pendente',
+            retorno: 'Retorno pendente'
+          }[caso.dataset.pendencia];
+          const botao = caso.querySelector('[data-concluir-pendencia]');
+          botao.disabled = false;
+          botao.textContent = {
+            consulta: 'Simular agenda organizada',
+            exame: 'Simular revisão concluída',
+            retorno: 'Simular retorno organizado'
+          }[caso.dataset.pendencia];
+        });
+        document.getElementById('estado-equipe').textContent = 'A demonstração foi reiniciada; os exemplos continuam fictícios.';
+        atualizarIndicadoresEquipe();
+      });
+
+      document.getElementById('imprimir-resumo').addEventListener('click', () => window.print());
+      atualizarResumo();
+      atualizarIndicadoresEquipe();
+    })();
+  </script>
+</body>
+</html>

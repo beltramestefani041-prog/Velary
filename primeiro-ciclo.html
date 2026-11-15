@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velary - Primeiro Ciclo</title>
+    <title>Primeiro ciclo e menarca | Velary</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: #fff5f7; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; padding-bottom: 60px; }
@@ -83,6 +83,7 @@
         .card-dica h3 { color: #d6456a; font-size: 1.05rem; margin-bottom: 8px; }
         .card-dica ul { list-style: square; padding-left: 18px; font-size: 0.88rem; color: #555; line-height: 1.5; }
         .card-dica p { font-size: 0.88rem; color: #555; line-height: 1.5; }
+        .video-pratico { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 12px; border: 0; border-radius: 12px; background: #21191c; }
 
         /* Alerta de Sinais de Atenção */
         .alerta-medico { background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 12px; padding: 20px; margin-top: 20px; }
@@ -124,27 +125,103 @@
             font-weight: bold;
             cursor: pointer;
         }
-    </style>
-</head>
-<body>
 
-    <header>
-        <div class="container header-top">
-            <a href="index.html" class="logo">Velary</a>
-            <a href="index.html" class="btn-voltar">&larr; Voltar para o Início</a>
-        </div>
-    </header>
+        /* Mini jogo de mitos e verdades */
+        .jogo-card { grid-column: 1 / -1; gap: 18px; }
+        .jogo-introducao { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+        .jogo-ilustracao { flex: 0 1 280px; }
+        .jogo-ilustracao img { display: block; width: 100%; max-height: 245px; object-fit: contain; }
+        .jogo-intro-texto { flex: 1 1 280px; }
+        .jogo-intro-texto h3 { color: #a92059; font-size: 1.3rem; margin-bottom: 8px; }
+        .jogo-intro-texto p { color: #665760; line-height: 1.6; }
+        .jogo-mitos { padding: 20px; border: 1px solid #f0dce5; border-radius: 16px; background: linear-gradient(135deg,#fff9fb,#fff); }
+        .jogo-progresso { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: #796773; font-size: .88rem; font-weight: 700; }
+        .jogo-barra { height: 9px; overflow: hidden; border-radius: 99px; background: #f8e5ed; }
+        .jogo-barra span { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg,#d63378,#f19aba); transition: width .25s ease; }
+        .jogo-pergunta { margin: 20px 0 16px; color: #791a43; font-size: 1.15rem; line-height: 1.45; }
+        .jogo-opcoes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+        .jogo-opcoes button,.jogo-acao { min-height: 48px; padding: 11px 18px; border: 1px solid #d63378; border-radius: 12px; background: #fff; color: #a92059; font: inherit; font-weight: 800; cursor: pointer; transition: background .18s,color .18s,transform .18s; }
+        .jogo-opcoes button:hover:not(:disabled),.jogo-acao:hover { transform: translateY(-1px); background: #fff0f5; }
+        .jogo-opcoes button:focus-visible,.jogo-acao:focus-visible { outline: 3px solid #f2cadb; outline-offset: 2px; }
+        .jogo-opcoes button:disabled { opacity: .62; cursor: default; }
+        .jogo-opcoes button[data-resposta="Verdade"] { background: #d63378; color: #fff; }
+        .jogo-opcoes button[data-resposta="Verdade"]:hover:not(:disabled) { background: #a92059; }
+        .jogo-feedback { margin-top: 14px; padding: 14px 16px; border-radius: 12px; color: #44333d; line-height: 1.55; }
+        .jogo-feedback.certo { border: 1px solid #badfc7; background: #f0faf3; }
+        .jogo-feedback.rever { border: 1px solid #f0d4a3; background: #fff8e9; }
+        .jogo-acoes { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 14px; }
+        .jogo-acao { background: #d63378; color: #fff; }
+        .jogo-acao:hover { background: #a92059; }
+        .jogo-resultado { padding: 20px; border-radius: 14px; background: #fff0f5; color: #665760; text-align: center; }
+        .jogo-resultado strong { display: block; margin-bottom: 6px; color: #791a43; font-size: 1.2rem; }
+        .fontes-jogo { color: #796773; font-size: .82rem; line-height: 1.6; }
+        .fontes-jogo a { color: #a92059; font-weight: 700; }
+        .avatar-card { grid-column: 1 / -1; gap: 18px; }
+        .avatar-card h3 { color: #a92059; font-size: 1.3rem; margin-bottom: 5px; }
+        .avatar-card-intro { color: #665760; line-height: 1.6; }
+        .avatar-layout { display: grid; grid-template-columns: minmax(230px,.8fr) minmax(0,1.2fr); align-items: start; gap: 22px; }
+        .avatar-preview { position: sticky; top: 18px; display: grid; justify-items: center; gap: 10px; padding: 12px; border: 1px solid #f0dce5; border-radius: 18px; background: #fff; box-shadow: 0 10px 26px rgba(169,32,89,.07); }
+        .avatar-preview img { display: block; width: min(100%,172px); height: auto; max-height: 440px; object-fit: contain; }
+        .avatar-preview svg { display: block; width: min(100%,300px); max-height: 440px; height: auto; overflow: visible; }
+        .avatar-preview p,.nota-avatar { max-width: 310px; margin: 0; color: #796773; font-size: .84rem; line-height: 1.5; text-align: center; }
+        .avatar-controles { display: grid; gap: 15px; }
+        .grade-controles-avatar { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+        .subtitulo-controles-avatar { grid-column: 1 / -1; margin: 4px 0 -3px; color: #a92059; font-size: .9rem; }
+        .grade-controles-avatar label { display: grid; gap: 6px; color: #44333d; font-size: .9rem; font-weight: 700; }
+        .grade-controles-avatar select { width: 100%; min-height: 44px; padding: 9px 11px; border: 1px solid #e2c9d4; border-radius: 10px; background: #fff; color: #44333d; font: inherit; }
+        .grade-controles-avatar select:focus-visible,.botao-apagar-avatar:focus-visible,.roupa-item:focus-visible { outline: 3px solid #f2cadb; outline-offset: 2px; }
+        .armario-cabecalho { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 2px; }
+        .armario-cabecalho h4 { color: #791a43; font-size: 1rem; }
+        .armario-cabecalho span { color: #796773; font-size: .82rem; }
+        .armario-roupas { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+        .roupa-item { display: flex; min-height: 58px; align-items: center; gap: 10px; padding: 9px 11px; border: 1px solid #f0dce5; border-radius: 12px; background: #fff; color: #44333d; font: inherit; text-align: left; cursor: pointer; }
+        .roupa-item[aria-pressed="true"] { border-color: #d63378; box-shadow: 0 0 0 2px #f8dce7; }
+        .roupa-item:disabled { opacity: .58; cursor: not-allowed; }
+        .roupa-amostra { flex: none; width: 34px; height: 38px; border: 1px solid #ead5de; border-radius: 9px; }
+        .roupa-nome { display: grid; gap: 2px; font-size: .82rem; font-weight: 800; }
+        .roupa-nome small { color: #796773; font-size: .72rem; font-weight: 500; }
+        .recompensa-dia { margin: 0; padding: 11px 13px; border-radius: 11px; background: #fff3f7; color: #791a43; font-size: .87rem; line-height: 1.5; }
+        .botao-apagar-avatar { justify-self: start; padding: 7px 10px; border: 0; background: transparent; color: #8d2449; font: inherit; font-size: .82rem; text-decoration: underline; cursor: pointer; }
+        .jogo-resultado .recompensa-resultado { display: block; margin-top: 9px; color: #791a43; font-weight: 700; }
+        .jogo-resultado .link-armario { display: inline-block; margin-top: 10px; color: #a92059; font-weight: 800; }
+        .ranking-card { grid-column: 1 / -1; gap: 14px; }
+        .ranking-card h3 { color: #a92059; font-size: 1.3rem; }
+        .ranking-explicacao,.ranking-aviso { margin: 0; color: #665760; font-size: .88rem; line-height: 1.55; }
+        .ranking-lista { display: grid; gap: 8px; padding: 0; list-style: none; counter-reset: colocacao; }
+        .ranking-lista li { display: grid; grid-template-columns: 38px minmax(0,1fr) auto; align-items: center; gap: 10px; min-height: 54px; padding: 9px 12px; border: 1px solid #f0dce5; border-radius: 12px; background: #fff; counter-increment: colocacao; }
+        .ranking-lista li::before { content: counter(colocacao) 'º'; color: #a92059; font-weight: 900; text-align: center; }
+        .ranking-lista li.voce-no-ranking { border-color: #d63378; background: #fff3f7; box-shadow: 0 0 0 2px #f8dce7; }
+        .ranking-nome { display: grid; gap: 1px; color: #44333d; font-weight: 800; }
+        .ranking-nome small { color: #796773; font-size: .72rem; font-weight: 500; }
+        .ranking-pontos { color: #791a43; font-size: .86rem; font-weight: 900; white-space: nowrap; }
+        [hidden] { display: none !important; }
+        @media(max-width:680px) { .jogo-mitos { padding: 16px; } .jogo-opcoes { grid-template-columns: 1fr; } .jogo-acoes { justify-content: stretch; } .jogo-acao { width: 100%; } .avatar-layout { grid-template-columns: 1fr; } .avatar-preview { position: static; max-width: 360px; width: 100%; justify-self: center; } .grade-controles-avatar,.armario-roupas { grid-template-columns: 1fr; } .armario-cabecalho { align-items: flex-start; flex-direction: column; gap: 3px; } }
+    </style>
+    <link rel="stylesheet" href="css/marca-dagua.css">
+    <link rel="stylesheet" href="css/pagina-tema.css">
+</head>
+<body class="pagina-tema">
+
+    <header class="tema-cabecalho">
+  <div class="tema-cabecalho-interno">
+    <a href="index.html" class="tema-marca">Velary</a>
+    <nav class="tema-nav" aria-label="Navegação da página temática">
+      <a href="temas.html">Todos os temas</a>
+      <a href="index.html">Início</a>
+    </nav>
+  </div>
+</header>
 
     <div class="container">
         
         <!-- Banner Principal -->
         <div class="hero-banner">
             <div class="hero-text">
-                <h1>Primeiro Ciclo & Menarca</h1>
-                <p>Seu espaço de acolhimento sem tabus. Aqui você monitora seu ciclo, anota seus sintomas, organiza consultas médicas e entende as transformações do seu corpo com total liberdade e segurança.</p>
+                <h1>Primeiro ciclo e menarca</h1>
+                <p>Conteúdo educativo sobre puberdade, menstruação e mudanças do corpo. Os campos desta página são demonstrativos e não substituem acompanhamento profissional.</p>
             </div>
             <div>
-                <img src="corpo.png" alt="Transformações do Corpo" class="hero-img img-expansivel" onclick="abrirModal(this.src)">
+                <img src="img/corpo.png" alt="Transformações do Corpo" class="hero-img img-expansivel" onclick="abrirModal(this.src)">
                 <p class="dica-instrucao">Clique para ampliar</p>
             </div>
         </div>
@@ -167,8 +244,8 @@
                         <option>Intenso</option>
                     </select>
                 </div>
-                <button class="btn-salvar" onclick="salvarCiclo()">Salvar no Calendário</button>
-                <button class="btn-salvar btn-secundario" onclick="exportarPDF()">Exportar Relatório (PDF)</button>
+                <button class="btn-salvar" onclick="salvarCiclo()">Testar registro (demonstração)</button>
+                <button class="btn-salvar btn-secundario" type="button" onclick="exportarPDF()">Imprimir ou salvar resumo para consulta</button>
             </div>
 
             <!-- Observações Diárias -->
@@ -178,7 +255,7 @@
                     <label>Como você está se sentindo hoje?</label>
                     <textarea id="obsDiaria" rows="4" placeholder="Ex: Senti leve cólica à tarde, um pouco de cansaço..."></textarea>
                 </div>
-                <button class="btn-salvar" onclick="salvarObs()">Guardar Anotação</button>
+                <button class="btn-salvar" onclick="salvarObs()">Testar anotação (demonstração)</button>
             </div>
 
             <!-- Agendamento Médico -->
@@ -192,7 +269,7 @@
                     <label>Especialidade / Nome do(a) Médico(a):</label>
                     <input type="text" id="nomeMedico" placeholder="Ex: Ginecologista - Dra. Ana">
                 </div>
-                <button class="btn-salvar" onclick="agendarMedico()">Agendar Lembrete</button>
+                <button class="btn-salvar" onclick="agendarMedico()">Adicionar lembrete temporário</button>
                 <ul class="lista-consultas" id="listaConsultas"></ul>
             </div>
 
@@ -204,7 +281,7 @@
             <div class="grid-dicas">
                 
                 <div class="card-dica">
-                    <img src="mochila.png" alt="O que levar na mochila" class="img-expansivel" onclick="abrirModal(this.src)">
+                    <img src="img/mochila.png" alt="O que levar na mochila" class="img-expansivel" onclick="abrirModal(this.src)">
                     <p class="dica-instrucao">Clique para ver em tela cheia</p>
                     <h3>O que levar no Kit Bolsa?</h3>
                     <ul>
@@ -216,10 +293,10 @@
                 </div>
 
                 <div class="card-dica">
-                    <img src="descarte.png" alt="Descarte correto de absorvente" class="img-expansivel" onclick="abrirModal(this.src)">
+                    <img src="img/descarte.png" alt="Descarte correto de absorvente" class="img-expansivel" onclick="abrirModal(this.src)">
                     <p class="dica-instrucao">Clique para ver em tela cheia</p>
                     <h3>Como descartar e quando trocar?</h3>
-                    <p>Troque o absorvente a cada <strong>3 a 4 horas</strong>.</p>
+                    <p>Troque o produto conforme o fluxo e as instruções do fabricante; se estiver desconfortável ou saturado, faça a troca.</p>
                     <ul style="margin-top: 5px;">
                         <li>Enrole no papel higiênico ou embalagem.</li>
                         <li><strong>Nunca jogue no vaso sanitário!</strong></li>
@@ -234,10 +311,19 @@
                 <h3 style="color: #c94a70; font-size: 1.05rem; margin-bottom: 10px;">Tipos de Proteção: Qual escolher?</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 0.85rem; color: #555;">
                     <div><strong>• Externo (com/sem abas):</strong> O mais comum e fácil para iniciar. As abas ajudam a fixar na calcinha.</div>
-                    <div><strong>• Interno:</strong> Ótimo para praia e piscina. Deve ser trocado no máximo a cada 4 a 6 horas.</div>
+                    <div><strong>• Interno:</strong> Ótimo para praia e piscina. Siga o tempo máximo indicado pelo fabricante e higienize as mãos antes e depois do uso.</div>
                     <div><strong>• Calcinha Absorvente:</strong> Lavável, ecológica e super confortável para usar em casa ou dormir.</div>
                     <div><strong>• Coletor Menstrual:</strong> Copinho de silicone reutilizável. Exige um pouco de prática para colocar.</div>
                 </div>
+            </div>
+
+            <div class="card-dica" style="margin-top: 20px;">
+                <h3>Como colocar o absorvente</h3>
+                <p>Assista ao passo a passo narrado. Consulte também as instruções da embalagem do produto escolhido.</p>
+                <video class="video-pratico" controls playsinline preload="metadata" aria-label="Vídeo narrado: como colocar o absorvente">
+                    <source src="videos/como-colocar-absorvente-narrado.mp4" type="video/mp4">
+                    Seu navegador não conseguiu reproduzir este vídeo. <a href="videos/como-colocar-absorvente-narrado.mp4">Abrir ou baixar o vídeo.</a>
+                </video>
             </div>
         </div>
 
@@ -246,39 +332,192 @@
             <h2>Prevenção, Anticoncepção & Mitos</h2>
             <div class="grid-dicas">
                 
-                <!-- Mitos e Perguntas -->
-                <div class="card-dica" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 15px;">
-                    <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 280px; max-width: 380px;">
-                            <img src="mitos.png" alt="Mitos e verdades do ciclo" class="img-expansivel" onclick="abrirModal(this.src)" style="margin-bottom: 5px;">
-                            <p class="dica-instrucao">Clique para ver a imagem completa</p>
+                <!-- Mini jogo de mitos e verdades -->
+                <div class="card-dica jogo-card">
+                    <div class="jogo-introducao">
+                        <div class="jogo-ilustracao">
+                            <img src="img/mitos.png" alt="Ilustração de uma adolescente refletindo sobre dúvidas da menstruação" class="img-expansivel" onclick="abrirModal(this.src)">
+                            <p class="dica-instrucao">Clique para ampliar a ilustração</p>
                         </div>
-                        <div style="flex: 2; min-width: 280px;">
-                            <h3>Mitos, Verdades & Dúvidas Frequentes</h3>
-                            <p style="font-size: 0.95rem; color: #555; line-height: 1.5;">
-                                A primeira menstruação traz muitas incertezas. Abaixo reunimos as respostas para as perguntas mais comuns para que você passe por essa fase com total segurança!
-                            </p>
+                        <div class="jogo-intro-texto">
+                            <h3>Mini jogo: Mitos e Verdades</h3>
+                            <p>Responda seis perguntas sobre a primeira menstruação. Depois de cada escolha, veja uma explicação simples e saiba de onde veio a informação.</p>
+                            <p>A cada 3 acertos, ganhe uma roupinha. Com 6 acertos, pode ganhar duas. O limite é de 2 peças por dia.</p>
+                            <p>Suas respostas individuais não são guardadas; ficam só os pontos diários e as recompensas neste navegador.</p>
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-top: 10px;">
-                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
-                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Quanto tempo dura a primeira menstruação?</strong>
-                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Em média de 3 a 7 dias. Nos primeiros anos, é super normal o ciclo ser desregulado.</p>
+                    <div class="jogo-mitos" id="jogo-mitos" aria-labelledby="pergunta-mito">
+                        <div class="jogo-progresso">
+                            <span id="contador-mito">Pergunta 1 de 6</span>
+                            <span id="pontuacao-mito">Acertos: 0</span>
                         </div>
-                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
-                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Menstruação dói sempre?</strong>
-                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Nem sempre. Cólicas leves são normais, mas dores muito fortes precisam de avaliação médica.</p>
+                        <div class="jogo-barra" id="barra-progresso-mitos" role="progressbar" aria-label="Progresso do jogo" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1">
+                            <span id="preenchimento-progresso-mitos"></span>
                         </div>
-                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
-                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Posso lavar o cabelo ou tomar banho frio?</strong>
-                            <p style="font-size: 0.85rem; color: #555; margin: 0;"><strong>Com certeza!</strong> Isso é um mito antigo. Banho morno ajuda até a aliviar a cólica.</p>
+                        <h4 class="jogo-pergunta" id="pergunta-mito" tabindex="-1"></h4>
+                        <div class="jogo-opcoes" id="opcoes-mito">
+                            <button type="button" data-resposta="Mito">É mito</button>
+                            <button type="button" data-resposta="Verdade">É verdade</button>
                         </div>
-                        <div style="background: #ffffff; padding: 12px 15px; border-radius: 8px; border: 1px solid #ffe3e8;">
-                            <strong style="color: #c94a70; font-size: 0.9rem; display: block; margin-bottom: 4px;">Posso praticar esportes na educação física?</strong>
-                            <p style="font-size: 0.85rem; color: #555; margin: 0;">Sim! Exercícios leves liberam endorfina, diminuindo o desconforto e melhorando o humor.</p>
+                        <p class="jogo-feedback" id="feedback-mito" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+                        <div class="jogo-acoes">
+                            <button class="jogo-acao" id="proxima-pergunta-mito" type="button" hidden>Próxima pergunta</button>
+                            <button class="jogo-acao" id="jogar-novamente-mito" type="button" hidden>Jogar novamente</button>
+                        </div>
+                        <div class="jogo-resultado" id="resultado-mitos" role="status" aria-live="polite" hidden></div>
+                    </div>
+
+                    <p class="fontes-jogo">Informações consultadas: <a href="https://www.gov.br/saude/pt-br/composicao/sectics/publicacoes/cartilha-programa-dignidade-menstrual-um-ciclo-de-respeito" target="_blank" rel="noopener noreferrer">Ministério da Saúde — Dignidade Menstrual</a> · <a href="https://www.unicef.org/brazil/innocenti/dignidade-menstrual" target="_blank" rel="noopener noreferrer">UNICEF Brasil — Dignidade Menstrual</a> · <a href="https://www.acog.org/womens-health/faqs/your-first-period" target="_blank" rel="noopener noreferrer">ACOG — Your First Period (em inglês)</a>.</p>
+                </div>
+
+                <!-- Criador de avatar e armário de recompensas -->
+                <div class="card-dica avatar-card" id="criar-avatar">
+                    <div>
+                        <h3>Personalize seu avatar</h3>
+                        <p class="avatar-card-intro">Mude o cabelo, os acessórios e os looks que você desbloquear jogando.</p>
+                    </div>
+                    <div class="avatar-layout">
+                        <div class="avatar-preview">
+                            <img id="avatar-imagem-referencia" src="img/avatar-referencia.png" alt="Avatar de corpo inteiro com cabelo castanho comprido, blusa rosa, jeans azuis e tênis rosa">
+                            <svg id="avatar-menstruacao" viewBox="0 0 220 300" role="img" aria-labelledby="titulo-avatar" hidden>
+                                <title id="titulo-avatar">Sua bonequinha personalizada</title>
+                                <rect x="0" y="0" width="220" height="300" rx="14" fill="#fff"></rect>
+                                <ellipse cx="110" cy="294" rx="43" ry="4.5" fill="#eee5e9"></ellipse>
+                                <g id="avatar-cabelo-atras-transform">
+                                    <path id="avatar-cabelo-atras" fill="#6b3f31"></path>
+                                </g>
+                                <path d="M76 70 Q68 113 73 164 M144 70 Q151 113 147 164" fill="none" stroke="#f0c1a4" stroke-width="2.2" stroke-linecap="round" opacity=".38"></path>
+                                <g id="avatar-mochila-atras" display="none">
+                                    <path d="M136 150 Q148 142 158 155 L162 208 Q150 214 139 204 Z" fill="#6c9db8" stroke="#385a82" stroke-width="2"></path>
+                                    <path d="M136 148 Q140 160 143 175" fill="none" stroke="#385a82" stroke-width="4" stroke-linecap="round"></path>
+                                </g>
+                                <path id="avatar-pernas" d="M78 224 H142 L132 289 H112 L108 251 L99 289 H80 Z" fill="#d99b79"></path>
+                                <path id="avatar-bracos" d="M80 140 Q70 148 63 184 L58 197 Q58 204 66 205 Q73 206 76 198 L92 165 Z M140 140 Q150 148 157 184 L162 197 Q162 204 154 205 Q147 206 144 198 L128 165 Z" fill="#d99b79"></path>
+                                <rect id="avatar-pescoco" x="101" y="111" width="18" height="34" rx="8" fill="#d99b79"></rect>
+                                <circle id="avatar-orelha-esquerda" cx="75" cy="81" r="8" fill="#d99b79"></circle>
+                                <circle id="avatar-orelha-direita" cx="145" cy="81" r="8" fill="#d99b79"></circle>
+                                <ellipse id="avatar-rosto" cx="110" cy="81" rx="35" ry="42" fill="#d99b79"></ellipse>
+                                <ellipse cx="96" cy="81" rx="5.1" ry="7" fill="#fff9f5"></ellipse>
+                                <ellipse cx="124" cy="81" rx="5.1" ry="7" fill="#fff9f5"></ellipse>
+                                <ellipse cx="96" cy="82" rx="3.5" ry="5.4" fill="#49322c"></ellipse>
+                                <ellipse cx="124" cy="82" rx="3.5" ry="5.4" fill="#49322c"></ellipse>
+                                <circle cx="97.2" cy="79.5" r="1.5" fill="#fff"></circle>
+                                <circle cx="125.2" cy="79.5" r="1.5" fill="#fff"></circle>
+                                <path d="M89 70 Q96 66 102 69 M118 69 Q125 66 131 70" fill="none" stroke="#55382f" stroke-width="2.5" stroke-linecap="round"></path>
+                                <ellipse cx="87" cy="96" rx="7" ry="3.2" fill="#ed9b91" opacity=".34"></ellipse>
+                                <ellipse cx="133" cy="96" rx="7" ry="3.2" fill="#ed9b91" opacity=".34"></ellipse>
+                                <path d="M108 87 Q105 96 110 97" fill="none" stroke="#bd8069" stroke-width="1.8" stroke-linecap="round"></path>
+                                <path d="M103 105 Q110 111 117 105" fill="none" stroke="#a65461" stroke-width="2.4" stroke-linecap="round"></path>
+                                <g id="avatar-cabelo-frente-transform">
+                                    <path id="avatar-cabelo-frente" fill="#6b3f31"></path>
+                                </g>
+                                <g id="avatar-mechas-frente" display="none" fill="none" stroke="#d6aa60" stroke-width="4" stroke-linecap="round">
+                                    <path d="M87 48 Q93 60 91 75"></path><path d="M132 46 Q126 59 130 75"></path>
+                                </g>
+                                <g id="avatar-mechas-laterais" display="none" fill="none" stroke="#d6aa60" stroke-width="4" stroke-linecap="round">
+                                    <path id="avatar-mecha-lateral-esquerda" d="M70 85 Q75 107 72 143"></path><path id="avatar-mecha-lateral-direita" d="M150 85 Q145 107 148 143"></path>
+                                </g>
+                                <g id="avatar-brincos-ponto" display="none" fill="#e3b94e"><circle cx="65" cy="101" r="3.5"></circle><circle cx="155" cy="101" r="3.5"></circle></g>
+                                <g id="avatar-brincos-argola" display="none" fill="none" stroke="#e3b94e" stroke-width="3"><circle cx="65" cy="105" r="6"></circle><circle cx="155" cy="105" r="6"></circle></g>
+                                <g id="avatar-brincos-estrela" display="none" fill="#e3b94e"><path d="M65 98 L67 103 L72 104 L68 107 L69 112 L65 109 L61 112 L62 107 L58 104 L63 103 Z"></path><path d="M155 98 L157 103 L162 104 L158 107 L159 112 L155 109 L151 112 L152 107 L148 104 L153 103 Z"></path></g>
+                                <g id="avatar-chapeu" display="none">
+                                    <path id="avatar-chapeu-forma" d="M72 61 Q77 29 110 28 Q143 29 148 61 Q110 51 72 61 Z" fill="#ed8c69" stroke="#a64d4d" stroke-width="2"></path>
+                                    <path id="avatar-chapeu-aba" d="M70 60 Q110 73 151 60" fill="none" stroke="#a64d4d" stroke-width="5" stroke-linecap="round"></path>
+                                </g>
+                                <path id="avatar-roupa-cima" d="M80 143 Q91 132 102 133 L110 145 L118 133 Q131 132 142 143 L158 207 H62 Z" fill="#d63378" stroke="#7b2b4d" stroke-width="2" stroke-linejoin="round"></path>
+                                <path id="avatar-manga-esquerda" d="M80 145 Q73 151 69 177" fill="none" stroke="#e879a0" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path id="avatar-manga-direita" d="M140 145 Q149 151 147 162 L140 177 Q138 181 146 186" fill="none" stroke="#e879a0" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path id="avatar-mao-na-cintura" d="M145 183 Q151 180 157 185 Q162 190 157 195 L152 199 Q147 197 144 192 Q141 188 145 183 Z" fill="#d99b79"></path>
+                                <path id="avatar-roupa-baixo" d="M64 194 H156 L168 253 H52 Z" fill="#6585b5" stroke="#506b98" stroke-width="2" stroke-linejoin="round"></path>
+                                <path id="avatar-detalhe-roupa" d="M100 158 Q110 166 120 158" fill="none" stroke="#ffd0da" stroke-width="3" stroke-linecap="round"></path>
+                                <path id="avatar-detalhe-calca" d="M68 201 L85 207 L93 252 M152 201 L135 207 L128 252 M110 224 L110 285 M80 203 L80 217 M140 203 L140 217" fill="none" stroke="#abc2e5" stroke-width="2" stroke-linecap="round" opacity=".74" display="none"></path>
+                                <path d="M86 145 Q110 153 134 145 L145 193" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".2"></path>
+                                <path id="avatar-punhos" d="M63 196 Q68 199 74 196 M145 191 Q151 195 157 190" fill="none" stroke="#f6b6ca" stroke-width="2.2" stroke-linecap="round"></path>
+                                <path d="M88 204 Q110 210 132 204" fill="none" stroke="#f4b5c8" stroke-width="2" stroke-linecap="round" opacity=".8"></path>
+                                <g id="avatar-bolsa" display="none">
+                                    <path id="avatar-bolsa-alca" d="M134 154 Q160 155 158 183" fill="none" stroke="#754a8e" stroke-width="4" stroke-linecap="round"></path>
+                                    <path id="avatar-bolsa-forma" d="M143 178 Q143 172 150 172 H166 Q171 172 171 178 L169 205 H144 Z" fill="#ed8c69" stroke="#754a8e" stroke-width="2"></path>
+                                </g>
+                                <g id="avatar-anel" display="none" fill="none" stroke="#e3b94e" stroke-width="2.5"><circle cx="63" cy="198" r="3.5"></circle></g>
+                                <g id="avatar-pulseira" display="none" fill="none" stroke="#d63378" stroke-width="4" stroke-linecap="round"><path d="M64 187 Q69 190 74 188"></path></g>
+                                <g id="avatar-sapato-tenis" fill="#e982a6" stroke="#a84d71" stroke-width="2"><path d="M79 279 Q87 283 99 279 L101 289 H76 Q74 284 79 279 Z"></path><path d="M112 279 Q122 283 132 279 L137 289 H110 Z"></path><path d="M79 285 H99 M113 285 H134" fill="none" stroke="#fff4f8" stroke-width="2"></path></g>
+                                <g id="avatar-sapato-bota" display="none" fill="#9a604d" stroke="#754a4e" stroke-width="2"><path d="M80 267 H98 L101 289 H76 Q75 284 80 281 Z"></path><path d="M113 267 H131 L138 289 H110 Z"></path></g>
+                                <g id="avatar-sapato-sandalia" display="none" fill="#e3b94e" stroke="#946f24" stroke-width="2"><path d="M78 283 Q88 287 100 283 L101 290 H76 Z"></path><path d="M111 283 Q122 287 134 283 L138 290 H110 Z"></path><path d="M82 280 L96 286 M116 286 L131 280" fill="none"></path></g>
+                            </svg>
+                            <p>Seu avatar, o armário e os pontos ficam salvos somente neste navegador.</p>
+                        </div>
+
+                        <div class="avatar-controles">
+                            <div class="grade-controles-avatar">
+                                <label for="avatar-tom-pele">Tom de pele
+                                    <select id="avatar-tom-pele">
+                                        <option value="clara">Clara</option><option value="bege">Bege</option><option value="media" selected>Média</option><option value="marrom">Marrom</option><option value="escura">Escura</option>
+                                    </select>
+                                </label>
+                                <label for="avatar-cor-cabelo">Cor do cabelo
+                                    <select id="avatar-cor-cabelo">
+                                        <option value="preto">Preto</option><option value="castanho-escuro">Castanho escuro</option><option value="castanho" selected>Castanho</option><option value="castanho-claro">Castanho claro</option><option value="loiro-escuro">Loiro escuro</option><option value="loiro">Loiro</option><option value="ruivo">Ruivo</option><option value="cobre">Cobre</option><option value="azul">Azul</option><option value="rosa">Rosa</option><option value="roxo">Roxo</option>
+                                    </select>
+                                </label>
+                                <label for="avatar-comprimento-cabelo">Comprimento do cabelo
+                                    <select id="avatar-comprimento-cabelo">
+                                        <option value="curto">Curto</option><option value="medio" selected>Médio</option><option value="longo">Longo</option>
+                                    </select>
+                                </label>
+                                <label for="avatar-volume-cabelo">Espessura do cabelo
+                                    <select id="avatar-volume-cabelo">
+                                        <option value="fino">Fino</option><option value="medio" selected>Médio</option><option value="volumoso">Volumoso</option>
+                                    </select>
+                                </label>
+                                <h5 class="subtitulo-controles-avatar">Franja e mechas</h5>
+                                <label for="avatar-franja">Estilo de franja
+                                    <select id="avatar-franja"><option value="sem">Sem franja</option><option value="reta">Reta</option><option value="lateral">Lateral</option><option value="cortina">Cortininha</option><option value="repicada">Repicada</option></select>
+                                </label>
+                                <label for="avatar-mechas">Mechas
+                                    <select id="avatar-mechas"><option value="nenhuma">Sem mechas</option><option value="frente">Na frente</option><option value="laterais">Nas laterais</option><option value="combinadas">Frente e laterais</option></select>
+                                </label>
+                                <label for="avatar-cor-mechas">Cor das mechas
+                                    <select id="avatar-cor-mechas"><option value="loiro">Loiro</option><option value="cobre">Cobre</option><option value="rosa">Rosa</option><option value="azul">Azul</option><option value="roxo">Roxo</option></select>
+                                </label>
+                                <h5 class="subtitulo-controles-avatar">Acessórios</h5>
+                                <label for="avatar-chapeu-escolha">Chapéu e tiara
+                                    <select id="avatar-chapeu-escolha"><option value="nenhum">Nenhum</option><option value="tiara">Tiara</option><option value="bone">Boné</option><option value="gorro">Gorro</option></select>
+                                </label>
+                                <label for="avatar-brincos-escolha">Brincos
+                                    <select id="avatar-brincos-escolha"><option value="nenhum">Nenhum</option><option value="ponto">Ponto de luz</option><option value="argola">Argolinhas</option><option value="estrela">Estrelinhas</option></select>
+                                </label>
+                                <label for="avatar-bolsa-escolha">Bolsa ou mochila
+                                    <select id="avatar-bolsa-escolha"><option value="nenhuma">Nenhuma</option><option value="bolsa">Bolsa transversal</option><option value="mochila">Mochila</option></select>
+                                </label>
+                                <label for="avatar-anel-escolha">Anel
+                                    <select id="avatar-anel-escolha"><option value="nenhum">Nenhum</option><option value="dourado">Dourado</option><option value="prateado">Prateado</option></select>
+                                </label>
+                                <label for="avatar-pulseira-escolha">Pulseira
+                                    <select id="avatar-pulseira-escolha"><option value="nenhuma">Nenhuma</option><option value="colorida">Miçangas coloridas</option><option value="dourada">Dourada</option></select>
+                                </label>
+                                <label for="avatar-sapatos-escolha">Sapatos
+                                    <select id="avatar-sapatos-escolha"><option value="tenis">Tênis</option><option value="bota">Botinhas</option><option value="sandalia">Sandálias</option></select>
+                                </label>
+                            </div>
+
+                            <div class="armario-cabecalho">
+                                <h4>Meu armário</h4>
+                                <span id="total-roupas-avatar">1 roupinha desbloqueada</span>
+                            </div>
+                            <div class="armario-roupas" id="armario-roupas" aria-label="Roupinhas disponíveis para vestir"></div>
+                            <p class="recompensa-dia" id="recompensa-dia" aria-live="polite"></p>
+                            <p class="nota-avatar" id="status-avatar" aria-live="polite">Nada do avatar ou do placar é enviado para fora deste navegador.</p>
+                            <button class="botao-apagar-avatar" id="apagar-progresso-avatar" type="button">Apagar avatar e progresso</button>
                         </div>
                     </div>
+                </div>
+
+                <div class="card-dica ranking-card" id="ranking-semanal">
+                    <h3>Ranking da semana</h3>
+                    <p class="ranking-explicacao">Cada acerto vale 10 pontos. Para incentivar aprender, conta só sua melhor rodada de cada dia; o placar recomeça toda semana.</p>
+                    <ol class="ranking-lista" id="lista-ranking-semanal" aria-label="Classificação semanal"></ol>
+                    <p class="ranking-aviso">Protótipo demonstrativo: as outras jogadoras são personagens fictícias. Seu placar fica neste navegador e ninguém mais vê. Para competir com outras pessoas de verdade, o Velary precisará de um servidor.</p>
                 </div>
 
                 <!-- Preservativos e Métodos -->
@@ -289,15 +528,15 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 10px;">
                         <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
                             <h4 style="color: #c94a70; font-size: 0.95rem; margin-bottom: 5px;">Camisinha</h4>
-                            <p style="font-size: 0.85rem; color: #555;">Único método que protege contra ISTs e gravidez ao mesmo tempo. Grátis no SUS.</p>
+                            <p style="font-size: 0.85rem; color: #555;">Preservativos internos e externos ajudam a prevenir várias IST e também podem evitar gravidez. São distribuídos gratuitamente pelo SUS.</p>
                         </div>
                         <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
                             <h4 style="color: #c94a70; font-size: 0.95rem; margin-bottom: 5px;">Anticoncepcionais</h4>
-                            <p style="font-size: 0.85rem; color: #555;">Pílulas, DIU, injeções e implantes. Devem ser indicados por um médico para o seu perfil.</p>
+                            <p style="font-size: 0.85rem; color: #555;">Há diferentes opções contraceptivas. Converse com a equipe da UBS para conhecer os métodos e escolher com informação.</p>
                         </div>
                         <div style="background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #ffe3e8;">
                             <h4 style="color: #c94a70; font-size: 0.95rem; margin-bottom: 5px;">Emergência</h4>
-                            <p style="font-size: 0.85rem; color: #555;">A Pílula do Dia Seguinte serve apenas para imprevistos (camisinha estourou). Usar até 72h.</p>
+                            <p style="font-size: 0.85rem; color: #555;">A contracepção de emergência pode ser considerada após relação sem proteção ou falha do método. Procure orientação de saúde o quanto antes; ela não protege contra IST.</p>
                         </div>
                     </div>
                 </div>
@@ -317,12 +556,13 @@
 
             <!-- Bloco SUS -->
             <div class="destaque-sus">
+                <p><a href="https://www.gov.br/mulheres/pt-br/acesso-a-informacao/acoes-e-programas/dignidade-menstrual">Saiba mais sobre o Programa Dignidade Menstrual.</a></p>
                 <h3>Direitos e Acesso Gratuito no SUS</h3>
                 <p>Você não precisa pagar para se cuidar! Nas Unidades Básicas de Saúde (Postos de Saúde) do SUS você encontra de graça:</p>
                 <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.88rem; color: #333;">
-                    <li><strong>Preservativos masculinos e femininos:</strong> Retirada livre na recepção.</li>
-                    <li><strong>Exames Rápidos:</strong> Testes gratuitos e confidenciais para HIV, Sífilis e Hepatites (resultado em 15 minutos).</li>
-                    <li><strong>Consultas e Métodos Anticoncepcionais:</strong> Pílulas e inserção de DIU gratuitos pelo posto.</li>
+                    <li><strong>Preservativos internos e externos:</strong> Disponíveis gratuitamente nos serviços públicos de saúde; pergunte na UBS.</li>
+                    <li><strong>Testagem:</strong> O SUS oferece testes para HIV, sífilis e hepatites. Consulte a página <a href="vida-sexual.html">Vida sexual e cuidados</a> para saber onde procurar.</li>
+                    <li><strong>Consultas e Métodos Anticoncepcionais:</strong> Orientação sobre métodos contraceptivos na UBS; a equipe explica acesso, opções e disponibilidade local.</li>
                 </ul>
             </div>
         </div>
@@ -336,6 +576,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="consult-report.js"></script>
     <script>
         function abrirModal(src) {
             document.getElementById('janelaModal').style.display = 'block';
@@ -348,18 +589,25 @@
 
         function salvarCiclo() {
             const data = document.getElementById('dataInicio').value;
-            if(data) alert('Data do ciclo salva com sucesso: ' + data);
+            if(data) alert('Demonstração: o registro não é armazenado nesta versão. ' + data);
             else alert('Por favor, escolha uma data.');
         }
 
         function exportarPDF() {
-            alert('Gerando Relatório Médico em PDF... (Funcionalidade Velary Premium)');
+            const consultas = Array.from(document.querySelectorAll('#listaConsultas li')).map(el => el.textContent.trim());
+            const consultaAtual = [document.getElementById('dataMedico').value, document.getElementById('nomeMedico').value.trim()].filter(Boolean).join(' — ');
+            window.velaryImprimirResumo('Resumo pessoal para consulta — Primeiro ciclo', [
+                ['Início da última menstruação', document.getElementById('dataInicio').value],
+                ['Fluxo informado', document.getElementById('fluxo').value],
+                ['Observações', document.getElementById('obsDiaria').value.trim()],
+                ['Consulta', [consultaAtual, ...consultas].filter(Boolean).join('; ')]
+            ]);
         }
 
         function salvarObs() {
             const obs = document.getElementById('obsDiaria').value;
             if(obs) {
-                alert('Observação guardada no seu diário!');
+                alert('Demonstração: a observação não é armazenada nesta versão.');
                 document.getElementById('obsDiaria').value = '';
             } else alert('Escreva algo antes de salvar.');
         }
@@ -376,6 +624,543 @@
                 document.getElementById('nomeMedico').value = '';
             } else alert('Preencha a data e o nome do médico.');
         }
+
+        (() => {
+            const perguntas = [
+                {
+                    texto: 'O ciclo menstrual de todas as pessoas dura exatamente 28 dias.',
+                    resposta: 'Mito',
+                    explicacao: '28 dias é uma média, não uma regra. Na adolescência, os ciclos podem variar; a ACOG descreve intervalos de 21 a 45 dias como comuns nessa fase.'
+                },
+                {
+                    texto: 'A menstruação é um processo natural e não é motivo de vergonha.',
+                    resposta: 'Verdade',
+                    explicacao: 'Isso mesmo. A menstruação é uma parte natural da vida de muitas pessoas. Informação, acesso à higiene e acolhimento fazem parte da dignidade menstrual.'
+                },
+                {
+                    texto: 'Durante a menstruação, a higiene íntima continua: lave suavemente a parte externa da região com água limpa.',
+                    resposta: 'Verdade',
+                    explicacao: 'A orientação é higienizar a parte externa. Se desejar usar sabonete, prefira um neutro; não é necessário lavar dentro da vagina nem usar perfumes íntimos.'
+                },
+                {
+                    texto: 'Toda pessoa precisa evitar atividade física durante a menstruação.',
+                    resposta: 'Mito',
+                    explicacao: 'Não existe uma proibição geral. Se você estiver com disposição, pode fazer atividade física; escolha o ritmo que for confortável para o seu corpo.'
+                },
+                {
+                    texto: 'Cólicas muito intensas que atrapalham as atividades do dia a dia merecem atenção de um profissional de saúde.',
+                    resposta: 'Verdade',
+                    explicacao: 'Cólicas podem acontecer, mas dor intensa que impede atividades merece ser conversada com um profissional. Você não precisa enfrentar isso sozinha.'
+                },
+                {
+                    texto: 'Todas as pessoas menstruam pela primeira vez na mesma idade.',
+                    resposta: 'Mito',
+                    explicacao: 'A idade varia de pessoa para pessoa. Muitas têm a primeira menstruação por volta dos 12 ou 13 anos, mas ela pode começar antes ou depois.'
+                }
+            ];
+
+            const jogo = document.getElementById('jogo-mitos');
+            if (!jogo) return;
+
+            const pergunta = document.getElementById('pergunta-mito');
+            const contador = document.getElementById('contador-mito');
+            const pontuacao = document.getElementById('pontuacao-mito');
+            const barra = document.getElementById('barra-progresso-mitos');
+            const preenchimento = document.getElementById('preenchimento-progresso-mitos');
+            const opcoes = Array.from(jogo.querySelectorAll('[data-resposta]'));
+            const feedback = document.getElementById('feedback-mito');
+            const proxima = document.getElementById('proxima-pergunta-mito');
+            const novamente = document.getElementById('jogar-novamente-mito');
+            const resultado = document.getElementById('resultado-mitos');
+            const statusAvatar = document.getElementById('status-avatar');
+            const armario = document.getElementById('armario-roupas');
+            const contadorRoupas = document.getElementById('total-roupas-avatar');
+            const recompensaDia = document.getElementById('recompensa-dia');
+            const coresPele = { clara: '#f5d5c1', bege: '#e8b89b', media: '#e4ae8c', marrom: '#a5674f', escura: '#654133' };
+            const coresCabelo = { preto: '#30252b', 'castanho-escuro': '#49322c', castanho: '#6b3f31', 'castanho-claro': '#a87447', 'loiro-escuro': '#ad8246', loiro: '#d6aa60', ruivo: '#9a4e36', cobre: '#bd6546', azul: '#516eaa', rosa: '#bd5a8a', roxo: '#754a8e' };
+            const coresMechas = { loiro: '#f1cf72', cobre: '#ed9164', rosa: '#f083b3', azul: '#79b6df', roxo: '#b18ade' };
+            const alturasCabelo = { curto: 133, medio: 166, longo: 207 };
+            const largurasCabelo = { fino: 0.86, medio: 1, volumoso: 1.14 };
+            const opcoesPersonalizacao = {
+                franja: ['sem', 'reta', 'lateral', 'cortina', 'repicada'],
+                mechas: ['nenhuma', 'frente', 'laterais', 'combinadas'],
+                corMechas: Object.keys(coresMechas),
+                chapeu: ['nenhum', 'tiara', 'bone', 'gorro'],
+                brincos: ['nenhum', 'ponto', 'argola', 'estrela'],
+                bolsa: ['nenhuma', 'bolsa', 'mochila'],
+                anel: ['nenhum', 'dourado', 'prateado'],
+                pulseira: ['nenhuma', 'colorida', 'dourada'],
+                sapatos: ['tenis', 'bota', 'sandalia']
+            };
+            const modelosRoupa = [
+                { id: 'inicial', nome: 'Blusa rosa e jeans', blusa: '#e879a0', baixo: '#6585b5', tipo: 'calca', detalhe: '#ffd4e1' },
+                { id: 'vestido-lilas', nome: 'Vestido lilás', blusa: '#9a73cc', baixo: '#9a73cc', tipo: 'saia', detalhe: '#f4e7ff' },
+                { id: 'look-solar', nome: 'Look solar', blusa: '#ed8c69', baixo: '#e3b94e', tipo: 'shorts', detalhe: '#fff2b5' },
+                { id: 'moletom-azul', nome: 'Moletom azul', blusa: '#6c9db8', baixo: '#385a82', tipo: 'calca', detalhe: '#d9efff' },
+                { id: 'saia-florida', nome: 'Saia florida', blusa: '#f1c5cb', baixo: '#cf6687', tipo: 'saia', detalhe: '#a44463' },
+                { id: 'look-verde', nome: 'Look verde', blusa: '#70a982', baixo: '#45795a', tipo: 'shorts', detalhe: '#e3f5dc' },
+                { id: 'vestido-noite', nome: 'Vestido estrelado', blusa: '#5966a3', baixo: '#5966a3', tipo: 'saia', detalhe: '#f6dc82' }
+            ];
+            const chaveAvatar = 'velary_primeiro_ciclo_avatar_v1';
+
+            function dataLocal(agora = new Date()) {
+                return `${agora.getFullYear()}-${String(agora.getMonth() + 1).padStart(2, '0')}-${String(agora.getDate()).padStart(2, '0')}`;
+            }
+
+            function inicioSemanaLocal() {
+                const agora = new Date();
+                const inicio = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
+                inicio.setDate(inicio.getDate() - ((inicio.getDay() + 6) % 7));
+                return dataLocal(inicio);
+            }
+
+            function estadoInicialAvatar() {
+                return {
+                    avatar: { pele: 'media', cabelo: 'castanho', comprimento: 'longo', espessura: 'volumoso', franja: 'cortina', mechas: 'nenhuma', corMechas: 'loiro', chapeu: 'nenhum', brincos: 'nenhum', bolsa: 'nenhuma', anel: 'nenhum', pulseira: 'nenhuma', sapatos: 'tenis', roupa: 'inicial' },
+                    armario: ['inicial'],
+                    dia: { data: dataLocal(), pecas: 0 },
+                    ranking: { semana: inicioSemanaLocal(), porDia: {} }
+                };
+            }
+
+            let estadoAvatar = estadoInicialAvatar();
+            try {
+                const salvo = JSON.parse(localStorage.getItem(chaveAvatar) || 'null');
+                if (salvo && typeof salvo === 'object') {
+                    const personalizacao = salvo.avatar || {};
+                    const aparenciaInicialAnterior = { pele: 'media', cabelo: 'castanho', comprimento: 'medio', espessura: 'medio', franja: 'cortina', mechas: 'nenhuma', corMechas: 'loiro', chapeu: 'nenhum', brincos: 'argola', bolsa: 'nenhuma', anel: 'nenhum', pulseira: 'nenhuma', sapatos: 'tenis', roupa: 'inicial' };
+                    const eraAparenciaInicial = Object.entries(aparenciaInicialAnterior).every(([propriedade, valor]) => personalizacao[propriedade] === valor);
+                    if (!eraAparenciaInicial) {
+                        if (coresPele[personalizacao.pele]) estadoAvatar.avatar.pele = personalizacao.pele;
+                        if (coresCabelo[personalizacao.cabelo]) estadoAvatar.avatar.cabelo = personalizacao.cabelo;
+                        if (alturasCabelo[personalizacao.comprimento]) estadoAvatar.avatar.comprimento = personalizacao.comprimento;
+                        if (largurasCabelo[personalizacao.espessura]) estadoAvatar.avatar.espessura = personalizacao.espessura;
+                        Object.entries(opcoesPersonalizacao).forEach(([propriedade, valores]) => {
+                            if (valores.includes(personalizacao[propriedade])) estadoAvatar.avatar[propriedade] = personalizacao[propriedade];
+                        });
+                    }
+                    const roupasSalvas = Array.isArray(salvo.armario) ? salvo.armario.filter(id => modelosRoupa.some(roupa => roupa.id === id)) : [];
+                    estadoAvatar.armario = Array.from(new Set(['inicial', ...roupasSalvas]));
+                    if (salvo.dia && salvo.dia.data === dataLocal()) {
+                        const pecas = Number.parseInt(salvo.dia.pecas, 10);
+                        estadoAvatar.dia.pecas = Number.isFinite(pecas) ? Math.max(0, Math.min(2, pecas)) : 0;
+                    }
+                    if (modelosRoupa.some(roupa => roupa.id === personalizacao.roupa && estadoAvatar.armario.includes(roupa.id))) {
+                        estadoAvatar.avatar.roupa = personalizacao.roupa;
+                    }
+                    const semanaAtual = inicioSemanaLocal();
+                    if (salvo.ranking && salvo.ranking.semana === semanaAtual && salvo.ranking.porDia && typeof salvo.ranking.porDia === 'object') {
+                        const fimSemana = new Date(`${semanaAtual}T12:00:00`);
+                        fimSemana.setDate(fimSemana.getDate() + 7);
+                        const limiteSemana = dataLocal(fimSemana);
+                        Object.entries(salvo.ranking.porDia).forEach(([dia, pontos]) => {
+                            const pontosValidos = Number.parseInt(pontos, 10);
+                            if (dia >= semanaAtual && dia < limiteSemana && Number.isFinite(pontosValidos)) {
+                                estadoAvatar.ranking.porDia[dia] = Math.max(0, Math.min(6, pontosValidos));
+                            }
+                        });
+                    }
+                }
+            } catch {
+                estadoAvatar = estadoInicialAvatar();
+            }
+
+            let indice = 0;
+            let acertos = 0;
+            let respondida = false;
+
+            function atualizarDia() {
+                if (estadoAvatar.dia.data !== dataLocal()) estadoAvatar.dia = { data: dataLocal(), pecas: 0 };
+            }
+
+            function atualizarSemana() {
+                const semana = inicioSemanaLocal();
+                if (estadoAvatar.ranking.semana !== semana) estadoAvatar.ranking = { semana, porDia: {} };
+            }
+
+            function pontosDaSemana() {
+                atualizarSemana();
+                return Object.values(estadoAvatar.ranking.porDia).reduce((total, acertosDoDia) => total + acertosDoDia * 10, 0);
+            }
+
+            function atualizarRanking() {
+                const lista = document.getElementById('lista-ranking-semanal');
+                if (!lista) return;
+                const participantesDemo = [
+                    { id: 'demo-luna', nome: 'Luna', pontos: 180 },
+                    { id: 'demo-bia', nome: 'Bia', pontos: 130 },
+                    { id: 'demo-isa', nome: 'Isa', pontos: 90 },
+                    { id: 'demo-maia', nome: 'Maia', pontos: 40 }
+                ];
+                const participantes = [...participantesDemo, { id: 'voce', nome: 'Você', pontos: pontosDaSemana() }]
+                    .sort((a, b) => b.pontos - a.pontos || (a.id === 'voce' ? -1 : b.id === 'voce' ? 1 : a.nome.localeCompare(b.nome, 'pt-BR')));
+                lista.replaceChildren();
+                participantes.forEach(participante => {
+                    const item = document.createElement('li');
+                    if (participante.id === 'voce') item.classList.add('voce-no-ranking');
+                    const nome = document.createElement('span');
+                    nome.className = 'ranking-nome';
+                    nome.append(document.createTextNode(participante.nome));
+                    const tipo = document.createElement('small');
+                    tipo.textContent = participante.id === 'voce' ? 'Seu placar neste navegador' : 'Personagem fictícia · demonstração';
+                    nome.appendChild(tipo);
+                    const pontos = document.createElement('span');
+                    pontos.className = 'ranking-pontos';
+                    pontos.textContent = `${participante.pontos} pts`;
+                    item.append(nome, pontos);
+                    lista.appendChild(item);
+                });
+            }
+
+            function registrarPontuacaoSemanal(pontos) {
+                atualizarSemana();
+                const hoje = dataLocal();
+                const melhorAnterior = estadoAvatar.ranking.porDia[hoje] || 0;
+                const melhorHoje = Math.max(melhorAnterior, pontos);
+                estadoAvatar.ranking.porDia[hoje] = melhorHoje;
+                salvarAvatar();
+                atualizarRanking();
+                return pontos > melhorAnterior
+                    ? `Seu placar semanal agora é ${pontosDaSemana()} pontos. A melhor rodada de hoje vale para o ranking.`
+                    : `Sua melhor rodada de hoje já foi ${melhorAnterior} de 6; ela continua valendo. Placar semanal: ${pontosDaSemana()} pontos.`;
+            }
+
+            function salvarAvatar() {
+                atualizarDia();
+                atualizarSemana();
+                try {
+                    localStorage.setItem(chaveAvatar, JSON.stringify(estadoAvatar));
+                    statusAvatar.textContent = 'Avatar, armário, recompensas e placar salvos somente neste navegador.';
+                    return true;
+                } catch {
+                    statusAvatar.textContent = 'Este navegador não permitiu salvar. O avatar e as roupinhas continuam disponíveis enquanto a página estiver aberta.';
+                    return false;
+                }
+            }
+
+            function atualizarRecompensaDoDia() {
+                atualizarDia();
+                recompensaDia.textContent = estadoAvatar.dia.pecas >= 2
+                    ? 'Você já ganhou 2 de 2 roupinhas hoje. Amanhã começa uma nova chance.'
+                    : `Hoje: ${estadoAvatar.dia.pecas} de 2 roupinhas desbloqueadas. Faça 3 acertos para ganhar uma; com 6, pode ganhar duas.`;
+            }
+
+            function desenharAvatar() {
+                const tom = coresPele[estadoAvatar.avatar.pele];
+                const cabelo = coresCabelo[estadoAvatar.avatar.cabelo];
+                const mecha = coresMechas[estadoAvatar.avatar.corMechas];
+                ['avatar-rosto', 'avatar-orelha-esquerda', 'avatar-orelha-direita', 'avatar-pescoco', 'avatar-bracos', 'avatar-pernas', 'avatar-mao-na-cintura'].forEach(id => {
+                    document.getElementById(id).setAttribute('fill', tom);
+                });
+                const fimCabelo = alturasCabelo[estadoAvatar.avatar.comprimento];
+                document.getElementById('avatar-cabelo-atras').setAttribute('d', `M68 82 C57 25 163 25 152 82 L160 ${fimCabelo} Q147 ${fimCabelo + 14} 136 ${fimCabelo - 4} L133 128 H87 L84 ${fimCabelo - 4} Q73 ${fimCabelo + 14} 58 ${fimCabelo} Z`);
+                const estilosFranja = {
+                    sem: 'M68 84 C69 46 90 31 111 37 C130 30 151 50 152 84 C140 68 129 60 116 57 Q121 69 125 79 Q114 70 110 57 Q101 70 91 79 Q94 65 99 57 C86 61 76 72 68 84 Z',
+                    reta: 'M68 84 C69 46 90 31 111 37 C130 30 151 50 152 84 C139 73 126 75 110 73 C95 75 81 72 68 84 Z',
+                    lateral: 'M68 84 C69 46 90 31 111 37 C130 30 151 50 152 84 C136 68 122 65 108 74 C96 83 82 86 68 84 Z',
+                    cortina: 'M68 84 C69 46 90 31 111 37 C130 30 151 50 152 84 C139 68 128 63 118 61 Q121 70 124 78 Q114 69 110 57 Q105 69 96 78 Q99 67 103 61 C88 64 77 73 68 84 Z',
+                    repicada: 'M68 84 C69 46 90 31 111 37 C130 30 151 50 152 84 L137 73 L127 79 L116 71 L105 79 L94 72 L82 82 Z'
+                };
+                document.getElementById('avatar-cabelo-frente').setAttribute('d', estilosFranja[estadoAvatar.avatar.franja]);
+                ['avatar-cabelo-atras', 'avatar-cabelo-frente'].forEach(id => document.getElementById(id).setAttribute('fill', cabelo));
+                const escala = largurasCabelo[estadoAvatar.avatar.espessura];
+                const transformacao = `translate(110 0) scale(${escala} 1) translate(-110 0)`;
+                document.getElementById('avatar-cabelo-atras-transform').setAttribute('transform', transformacao);
+                document.getElementById('avatar-cabelo-frente-transform').setAttribute('transform', transformacao);
+                const mechasFrente = ['frente', 'combinadas'].includes(estadoAvatar.avatar.mechas);
+                const mechasLaterais = ['laterais', 'combinadas'].includes(estadoAvatar.avatar.mechas);
+                const camadaFrente = document.getElementById('avatar-mechas-frente');
+                const camadaLateral = document.getElementById('avatar-mechas-laterais');
+                camadaFrente.setAttribute('display', mechasFrente ? 'inline' : 'none');
+                camadaLateral.setAttribute('display', mechasLaterais ? 'inline' : 'none');
+                camadaFrente.setAttribute('stroke', mecha);
+                camadaLateral.setAttribute('stroke', mecha);
+                camadaFrente.setAttribute('transform', transformacao);
+                camadaLateral.setAttribute('transform', transformacao);
+                document.getElementById('avatar-mecha-lateral-esquerda').setAttribute('d', `M70 85 Q75 107 72 ${fimCabelo}`);
+                document.getElementById('avatar-mecha-lateral-direita').setAttribute('d', `M150 85 Q145 107 148 ${fimCabelo}`);
+
+                const roupa = modelosRoupa.find(item => item.id === estadoAvatar.avatar.roupa) || modelosRoupa[0];
+                const partesDeBaixo = {
+                    saia: 'M64 194 H156 L168 253 H52 Z',
+                    shorts: 'M64 194 H156 L153 248 H115 L110 222 L105 248 H67 Z',
+                    calca: 'M64 194 H156 L142 288 H115 L110 224 L102 288 H78 Z'
+                };
+                document.getElementById('avatar-roupa-cima').setAttribute('fill', roupa.blusa);
+                document.getElementById('avatar-roupa-baixo').setAttribute('fill', roupa.baixo);
+                document.getElementById('avatar-roupa-baixo').setAttribute('d', partesDeBaixo[roupa.tipo]);
+                document.getElementById('avatar-detalhe-roupa').setAttribute('stroke', roupa.detalhe);
+                document.querySelectorAll('#avatar-menstruacao path[id^="avatar-manga"]').forEach(manga => manga.setAttribute('stroke', roupa.blusa));
+                document.querySelectorAll('#avatar-menstruacao path[id^="avatar-punho"]').forEach(punho => punho.setAttribute('stroke', roupa.detalhe));
+                document.getElementById('avatar-detalhe-calca').setAttribute('display', roupa.tipo === 'calca' ? 'inline' : 'none');
+
+                const gruposBrinco = { ponto: 'avatar-brincos-ponto', argola: 'avatar-brincos-argola', estrela: 'avatar-brincos-estrela' };
+                Object.entries(gruposBrinco).forEach(([tipo, id]) => document.getElementById(id).setAttribute('display', estadoAvatar.avatar.brincos === tipo ? 'inline' : 'none'));
+                const corAcessorio = { dourado: '#e3b94e', prateado: '#adb5bd', colorida: '#d63378', dourada: '#e3b94e' };
+                document.getElementById('avatar-anel').setAttribute('display', estadoAvatar.avatar.anel === 'nenhum' ? 'none' : 'inline');
+                document.getElementById('avatar-anel').setAttribute('stroke', corAcessorio[estadoAvatar.avatar.anel] || '#e3b94e');
+                document.getElementById('avatar-pulseira').setAttribute('display', estadoAvatar.avatar.pulseira === 'nenhuma' ? 'none' : 'inline');
+                document.getElementById('avatar-pulseira').setAttribute('stroke', corAcessorio[estadoAvatar.avatar.pulseira] || '#d63378');
+
+                const chapeu = document.getElementById('avatar-chapeu');
+                const formaChapeu = document.getElementById('avatar-chapeu-forma');
+                const abaChapeu = document.getElementById('avatar-chapeu-aba');
+                chapeu.setAttribute('display', estadoAvatar.avatar.chapeu === 'nenhum' ? 'none' : 'inline');
+                if (estadoAvatar.avatar.chapeu === 'tiara') {
+                    formaChapeu.setAttribute('d', 'M73 69 Q110 28 147 69');
+                    formaChapeu.setAttribute('fill', 'none');
+                    formaChapeu.setAttribute('stroke', '#e3b94e');
+                    formaChapeu.setAttribute('stroke-width', '5');
+                    abaChapeu.setAttribute('display', 'none');
+                } else if (estadoAvatar.avatar.chapeu === 'gorro') {
+                    formaChapeu.setAttribute('d', 'M72 61 Q75 24 110 27 Q145 24 148 61 Q110 50 72 61 Z');
+                    formaChapeu.setAttribute('fill', '#754a8e');
+                    formaChapeu.setAttribute('stroke', '#513568');
+                    formaChapeu.setAttribute('stroke-width', '2');
+                    abaChapeu.setAttribute('d', 'M74 58 Q110 70 146 58');
+                    abaChapeu.setAttribute('stroke', '#e6d6f5');
+                    abaChapeu.setAttribute('display', 'inline');
+                } else {
+                    formaChapeu.setAttribute('d', 'M72 61 Q77 29 110 28 Q143 29 148 61 Q110 51 72 61 Z');
+                    formaChapeu.setAttribute('fill', '#ed8c69');
+                    formaChapeu.setAttribute('stroke', '#a64d4d');
+                    formaChapeu.setAttribute('stroke-width', '2');
+                    abaChapeu.setAttribute('d', 'M70 60 Q110 73 151 60');
+                    abaChapeu.setAttribute('stroke', '#a64d4d');
+                    abaChapeu.setAttribute('display', 'inline');
+                }
+
+                document.getElementById('avatar-mochila-atras').setAttribute('display', estadoAvatar.avatar.bolsa === 'mochila' ? 'inline' : 'none');
+                document.getElementById('avatar-bolsa').setAttribute('display', estadoAvatar.avatar.bolsa === 'bolsa' ? 'inline' : 'none');
+                const gruposSapato = { tenis: 'avatar-sapato-tenis', bota: 'avatar-sapato-bota', sandalia: 'avatar-sapato-sandalia' };
+                Object.entries(gruposSapato).forEach(([tipo, id]) => document.getElementById(id).setAttribute('display', estadoAvatar.avatar.sapatos === tipo ? 'inline' : 'none'));
+
+                const franjaAcessivel = estadoAvatar.avatar.franja === 'sem' ? 'sem franja' : `com franja ${estadoAvatar.avatar.franja}`;
+                document.getElementById('titulo-avatar').textContent = `Bonequinha personalizada, cabelo ${estadoAvatar.avatar.comprimento} ${franjaAcessivel}, vestindo ${roupa.nome}`;
+            }
+
+            function mostrarArmario() {
+                armario.replaceChildren();
+                modelosRoupa.forEach(roupa => {
+                    const desbloqueada = estadoAvatar.armario.includes(roupa.id);
+                    const botaoRoupa = document.createElement('button');
+                    botaoRoupa.type = 'button';
+                    botaoRoupa.className = 'roupa-item';
+                    botaoRoupa.disabled = !desbloqueada;
+                    botaoRoupa.setAttribute('aria-pressed', String(estadoAvatar.avatar.roupa === roupa.id));
+                    botaoRoupa.setAttribute('aria-label', `${roupa.nome}: ${estadoAvatar.avatar.roupa === roupa.id ? 'vestindo' : desbloqueada ? 'desbloqueada' : 'bloqueada'}`);
+                    const amostra = document.createElement('span');
+                    amostra.className = 'roupa-amostra';
+                    amostra.style.background = `linear-gradient(145deg, ${roupa.blusa} 50%, ${roupa.baixo} 50%)`;
+                    const nome = document.createElement('span');
+                    nome.className = 'roupa-nome';
+                    nome.append(document.createTextNode(roupa.nome));
+                    const estado = document.createElement('small');
+                    estado.textContent = !desbloqueada ? 'Bloqueada · ganhe no jogo' : estadoAvatar.avatar.roupa === roupa.id ? 'Vestindo' : 'Desbloqueada';
+                    nome.appendChild(estado);
+                    botaoRoupa.append(amostra, nome);
+                    if (desbloqueada) {
+                        botaoRoupa.addEventListener('click', () => {
+                            estadoAvatar.avatar.roupa = roupa.id;
+                            desenharAvatar();
+                            mostrarArmario();
+                            salvarAvatar();
+                        });
+                    }
+                    armario.appendChild(botaoRoupa);
+                });
+                const total = estadoAvatar.armario.length;
+                contadorRoupas.textContent = `${total} de ${modelosRoupa.length} roupinhas desbloqueadas`;
+            }
+
+            function sincronizarControlesAvatar() {
+                const campos = {
+                    'avatar-tom-pele': 'pele',
+                    'avatar-cor-cabelo': 'cabelo',
+                    'avatar-comprimento-cabelo': 'comprimento',
+                    'avatar-volume-cabelo': 'espessura',
+                    'avatar-franja': 'franja',
+                    'avatar-mechas': 'mechas',
+                    'avatar-cor-mechas': 'corMechas',
+                    'avatar-chapeu-escolha': 'chapeu',
+                    'avatar-brincos-escolha': 'brincos',
+                    'avatar-bolsa-escolha': 'bolsa',
+                    'avatar-anel-escolha': 'anel',
+                    'avatar-pulseira-escolha': 'pulseira',
+                    'avatar-sapatos-escolha': 'sapatos'
+                };
+                Object.entries(campos).forEach(([id, propriedade]) => {
+                    document.getElementById(id).value = estadoAvatar.avatar[propriedade];
+                });
+            }
+
+            function desbloquearRoupasDoDia(pontos) {
+                atualizarDia();
+                if (pontos < 3) return `Você acertou ${pontos} de 6. Faça pelo menos 3 acertos em uma rodada para ganhar uma roupinha.`;
+                if (estadoAvatar.dia.pecas >= 2) return 'Você já ganhou o limite de 2 roupinhas hoje. Amanhã pode jogar por novas peças.';
+
+                const quantidadeDesejada = Math.min(2, Math.floor(pontos / 3));
+                const vagasDoDia = 2 - estadoAvatar.dia.pecas;
+                const novasRoupas = [];
+                for (let i = 0; i < Math.min(quantidadeDesejada, vagasDoDia); i += 1) {
+                    const proximaRoupa = modelosRoupa.find(item => item.id !== 'inicial' && !estadoAvatar.armario.includes(item.id));
+                    if (!proximaRoupa) break;
+                    estadoAvatar.armario.push(proximaRoupa.id);
+                    estadoAvatar.dia.pecas += 1;
+                    novasRoupas.push(proximaRoupa);
+                }
+
+                if (!novasRoupas.length) return 'Você já desbloqueou todas as roupinhas do armário. Mandou muito bem!';
+                estadoAvatar.avatar.roupa = novasRoupas[novasRoupas.length - 1].id;
+                desenharAvatar();
+                mostrarArmario();
+                const salvo = salvarAvatar();
+                atualizarRecompensaDoDia();
+                const nomes = novasRoupas.map(item => item.nome).join(' e ');
+                return `Você ganhou ${nomes}! Já vesti a última roupinha no seu avatar. ${salvo ? 'As peças ficaram salvas neste navegador.' : 'As peças ficam disponíveis enquanto esta página estiver aberta.'}`;
+            }
+
+            function configurarAvatar() {
+                const seletores = [
+                    ['avatar-tom-pele', 'pele'],
+                    ['avatar-cor-cabelo', 'cabelo'],
+                    ['avatar-comprimento-cabelo', 'comprimento'],
+                    ['avatar-volume-cabelo', 'espessura'],
+                    ['avatar-franja', 'franja'],
+                    ['avatar-mechas', 'mechas'],
+                    ['avatar-cor-mechas', 'corMechas'],
+                    ['avatar-chapeu-escolha', 'chapeu'],
+                    ['avatar-brincos-escolha', 'brincos'],
+                    ['avatar-bolsa-escolha', 'bolsa'],
+                    ['avatar-anel-escolha', 'anel'],
+                    ['avatar-pulseira-escolha', 'pulseira'],
+                    ['avatar-sapatos-escolha', 'sapatos']
+                ];
+                seletores.forEach(([id, propriedade]) => {
+                    document.getElementById(id).addEventListener('change', event => {
+                        estadoAvatar.avatar[propriedade] = event.target.value;
+                        desenharAvatar();
+                        salvarAvatar();
+                    });
+                });
+
+                document.getElementById('apagar-progresso-avatar').addEventListener('click', () => {
+                    if (!window.confirm('Apagar seu avatar personalizado e todas as roupinhas desbloqueadas?')) return;
+                    estadoAvatar = estadoInicialAvatar();
+                    try { localStorage.removeItem(chaveAvatar); } catch { }
+                    sincronizarControlesAvatar();
+                    desenharAvatar();
+                    mostrarArmario();
+                    atualizarRecompensaDoDia();
+                    atualizarRanking();
+                    statusAvatar.textContent = 'Avatar e progresso apagados deste navegador.';
+                });
+            }
+
+
+            function mostrarPergunta(focar = false) {
+                const atual = perguntas[indice];
+                pergunta.hidden = false;
+                pergunta.textContent = atual.texto;
+                contador.textContent = `Pergunta ${indice + 1} de ${perguntas.length}`;
+                pontuacao.textContent = `Acertos: ${acertos}`;
+                barra.setAttribute('aria-valuenow', String(indice + 1));
+                preenchimento.style.width = `${((indice + 1) / perguntas.length) * 100}%`;
+                opcoes.forEach(botao => { botao.disabled = false; });
+                feedback.hidden = true;
+                feedback.classList.remove('certo', 'rever');
+                proxima.hidden = true;
+                novamente.hidden = true;
+                resultado.hidden = true;
+                resultado.replaceChildren();
+                jogo.querySelector('.jogo-opcoes').hidden = false;
+                respondida = false;
+                if (focar) pergunta.focus();
+            }
+
+            function responder(respostaEscolhida) {
+                if (respondida) return;
+                respondida = true;
+                const atual = perguntas[indice];
+                const acertou = respostaEscolhida === atual.resposta;
+                if (acertou) acertos += 1;
+                pontuacao.textContent = `Acertos: ${acertos}`;
+                opcoes.forEach(botao => { botao.disabled = true; });
+                feedback.classList.add(acertou ? 'certo' : 'rever');
+                feedback.textContent = `${acertou ? 'Acertou!' : `A resposta correta é: ${atual.resposta}.`} ${atual.explicacao}`;
+                feedback.hidden = false;
+                proxima.textContent = indice === perguntas.length - 1 ? 'Ver resultado' : 'Próxima pergunta';
+                proxima.hidden = false;
+                proxima.focus();
+            }
+
+            function mostrarResultado() {
+                pergunta.hidden = true;
+                jogo.querySelector('.jogo-opcoes').hidden = true;
+                feedback.hidden = true;
+                proxima.hidden = true;
+                novamente.hidden = false;
+                contador.textContent = 'Jogo concluído';
+                pontuacao.textContent = `Acertos: ${acertos} de ${perguntas.length}`;
+                barra.setAttribute('aria-valuenow', String(perguntas.length));
+                preenchimento.style.width = '100%';
+
+                const titulo = document.createElement('strong');
+                titulo.textContent = acertos === perguntas.length
+                    ? 'Mandou muito bem!'
+                    : acertos >= 4
+                        ? 'Você foi muito bem!'
+                        : 'Você completou o jogo!';
+                const resumo = document.createElement('span');
+                resumo.textContent = `Você acertou ${acertos} de ${perguntas.length}. Cada resposta é uma oportunidade para conhecer melhor o próprio corpo.`;
+                const recompensa = document.createElement('span');
+                recompensa.className = 'recompensa-resultado';
+                recompensa.textContent = desbloquearRoupasDoDia(acertos);
+                const pontosRanking = document.createElement('span');
+                pontosRanking.className = 'recompensa-resultado';
+                pontosRanking.textContent = registrarPontuacaoSemanal(acertos);
+                const abrirArmario = document.createElement('a');
+                abrirArmario.className = 'link-armario';
+                abrirArmario.href = '#criar-avatar';
+                abrirArmario.textContent = 'Ver minha bonequinha e meu armário';
+                resultado.replaceChildren(titulo, resumo, recompensa, pontosRanking, abrirArmario);
+                resultado.hidden = false;
+                novamente.focus();
+            }
+
+            opcoes.forEach(botao => {
+                botao.addEventListener('click', () => responder(botao.dataset.resposta));
+            });
+            proxima.addEventListener('click', () => {
+                if (indice < perguntas.length - 1) {
+                    indice += 1;
+                    mostrarPergunta(true);
+                } else {
+                    mostrarResultado();
+                }
+            });
+            novamente.addEventListener('click', () => {
+                indice = 0;
+                acertos = 0;
+                mostrarPergunta(true);
+            });
+
+            sincronizarControlesAvatar();
+            desenharAvatar();
+            mostrarArmario();
+            atualizarRecompensaDoDia();
+            configurarAvatar();
+            atualizarRanking();
+            mostrarPergunta();
+        })();
     </script>
+  <aside class="aviso-educativo-padrao" role="note"><strong>Informação importante:</strong> este conteúdo é educativo e não substitui consulta, diagnóstico ou tratamento individual. Para orientações sobre o seu caso, converse com um profissional de saúde.</aside>
+  <footer class="rodape-tema" aria-label="Links do Velary">
+    <a href="index.html">Início</a>
+    <a href="temas.html">Todos os temas</a>
+    <a href="noticias.html">Artigos e notícias</a>
+    <a href="videos.html">Vídeos</a>
+    <a href="premium.html">Ideias Premium</a>
+  </footer>
 </body>
 </html>

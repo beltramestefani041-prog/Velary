@@ -1,75 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velary - Cadastro</title>
-    <link rel="stylesheet" href="home.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8fb">
+  <title>Acesso | Velary</title>
+  <link rel="stylesheet" href="css/acompanhamento.css">
+  <link rel="stylesheet" href="css/login-entrada.css">
+  <script>
+    if (new URLSearchParams(window.location.search).get("login") === "1") {
+      document.documentElement.classList.add("velary-login-gate");
+    }
+  </script>
 </head>
-<body style="background-color: #fff9fa; margin: 0; font-family: sans-serif;">
+<body class="acompanhamento pagina-cadastro">
+  <main class="auth-card">
+    <div class="login-panel">
+    <div class="login-emblema" aria-hidden="true">
+      <svg viewBox="160 105 420 420" focusable="false">
+        <defs><linearGradient id="flor-acesso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ea76a2"/><stop offset="1" stop-color="#d63378"/></linearGradient></defs>
+        <g fill="url(#flor-acesso)">
+          <path d="M376 286C326 242 334 174 379 122c48 58 47 126 9 165Z"/>
+          <path d="M340 294c-64-4-104-39-125-83 63-5 113 18 145 70Z"/>
+          <path d="M401 281c30-59 79-86 137-77-24 58-68 91-126 101Z"/>
+          <path d="M414 312c63-29 119-13 157 31-51 36-108 32-159 5Z"/>
+          <path d="M405 349c55 31 80 81 69 137-57-26-88-71-91-127Z"/>
+          <path d="M352 353c-46 44-66 98-47 151 52-36 78-83 74-139Z"/>
+          <path d="M334 330c-57 39-113 37-159 12 38-50 94-66 155-39Z"/>
+          <path d="M376 285c-20 0-40 23-40 54 0 30 20 50 40 50s40-20 40-50c0-31-20-54-40-54Z" fill="#a92059"/>
+        </g>
+      </svg>
+    </div>
+    <a class="marca" href="index.html">Velary</a>
+    <p class="etiqueta">Seu espaço de cuidado</p>
+    <h1>Entre no seu espaço</h1>
 
-    <header>
-        <a href="home.html">
-            <img src="https://github.com/user-attachments/assets/430aff38-7e6b-4f70-b4de-b6e8bf20b5bc" alt="Velary Logo" class="header-logo">
-        </a>
-        <nav>
-            <a href="home.html" style="color: #d15b7d; font-weight: bold; text-decoration: none;">Voltar para Início</a>
-        </nav>
-    </header>
+    <div class="abas-conta" role="tablist" aria-label="Acesso">
+      <button class="aba-conta" id="aba-criar" type="button" role="tab" aria-selected="false" aria-controls="painel-criar">Criar conta</button>
+      <button class="aba-conta selecionada" id="aba-entrar" type="button" role="tab" aria-selected="true" aria-controls="painel-entrar">Entrar</button>
+    </div>
 
-    <section style="padding: 100px 20px 60px 20px; display: flex; justify-content: center;">
-        <div style="background: white; padding: 40px; border-radius: 25px; box-shadow: 0 10px 30px rgba(209,91,125,0.1); width: 100%; max-width: 450px; border: 1px solid #fce3ec; text-align: center;">
-            <h2 style="color: #d15b7d; margin-bottom: 10px;">Faça parte do Velary</h2>
-            <p style="color: #888; margin-bottom: 25px; font-size: 0.95rem;">Cadastre-se para uma experiência personalizada.</p>
-            
-            <form id="formCadastro">
-                <input type="text" id="nome" placeholder="Seu Nome Completo" required style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #FCC1D6; outline: none; box-sizing: border-box;">
-                
-                <input type="email" id="email" placeholder="Seu E-mail" required style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #FCC1D6; outline: none; box-sizing: border-box;">
-                
-                <div style="text-align: left; margin-bottom: 15px;">
-                    <label for="nascimento" style="font-size: 0.85rem; color: #666; display: block; margin-bottom: 5px; padding-left: 5px;">Data de Nascimento:</label>
-                    <input type="date" id="nascimento" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #FCC1D6; outline: none; box-sizing: border-box; color: #666;">
-                </div>
+    <section id="painel-criar" role="tabpanel" aria-labelledby="aba-criar" hidden>
+      <form class="formulario" id="form-criar">
+        <label for="nome">Como podemos chamar você? <span class="opcional">(opcional)</span></label>
+        <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome">
 
-                <div style="text-align: left; margin-bottom: 15px;">
-                    <label for="interesse" style="font-size: 0.85rem; color: #666; display: block; margin-bottom: 5px; padding-left: 5px;">Qual o seu principal foco de cuidado?</label>
-                    <select id="interesse" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #FCC1D6; outline: none; box-sizing: border-box; color: #666; background: white;">
-                        <option value="" disabled selected>Selecione uma opção...</option>
-                        <option value="Primeiro Ciclo">Primeiro Ciclo (Menarca / Adolescência)</option>
-                        <option value="Saúde Integral">Saúde Integral (Ciclos / Rotina)</option>
-                        <option value="Maturidade">Plenitude &amp; Maturidade (Climatério / Menopausa)</option>
-                    </select>
-                </div>
+        <label for="foto">Foto de perfil <span class="opcional">(opcional)</span></label>
+        <input id="foto" name="foto" type="file" accept="image/*" aria-describedby="ajuda-foto">
+        <small id="ajuda-foto">A foto aparece só nesta tela de demonstração.</small>
+        <img id="previa-foto" class="foto-previa" alt="Prévia da foto escolhida" hidden>
 
-                <input type="password" id="senha" placeholder="Crie uma Senha" required style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #FCC1D6; outline: none; box-sizing: border-box;">
+        <label for="email-criar">E-mail</label>
+        <input id="email-criar" name="email" type="email" autocomplete="email" placeholder="voce@email.com" required>
 
-                <button type="submit" style="width: 100%; background-color: #d15b7d; color: white; padding: 14px; border: none; border-radius: 20px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: background 0.3s;">
-                    Criar Conta
-                </button>
-            </form>
-
-            <p style="margin-top: 20px; font-size: 0.85rem; color: #777;">
-                Já tem uma conta? <a href="#" style="color: #d15b7d; font-weight: bold; text-decoration: none;">Entrar</a>
-            </p>
+        <label for="senha-criar">Senha</label>
+        <div class="senha-campo">
+          <input id="senha-criar" name="senha" type="password" autocomplete="new-password" placeholder="Crie uma senha" required>
+          <button class="mostrar-senha" type="button" data-toggle-password="senha-criar" aria-label="Mostrar senha" title="Mostrar senha">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
         </div>
+
+        <button class="botao" type="submit">Continuar para meu perfil de saúde</button>
+      </form>
     </section>
 
-    <script>
-        document.getElementById('formCadastro').onsubmit = function(e) {
-            e.preventDefault();
-            const usuario = {
-                nome: document.getElementById('nome').value,
-                email: document.getElementById('email').value,
-                nascimento: document.getElementById('nascimento').value,
-                foco: document.getElementById('interesse').value
-            };
-            
-            // Salva os dados de perfil no localStorage
-            localStorage.setItem('velary_usuario', JSON.stringify(usuario));
-            alert('Cadastro realizado com sucesso!');
-            window.location.href = 'home.html';
-        };
-    </script>
+    <section id="painel-entrar" role="tabpanel" aria-labelledby="aba-entrar">
+      <form class="formulario" id="form-entrar">
+        <label for="email-entrar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>E-mail</label>
+        <input id="email-entrar" name="email" type="email" autocomplete="email" placeholder="voce@email.com" required>
+
+        <label for="senha-entrar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 4v3"/></svg>Senha</label>
+        <div class="senha-campo">
+          <input id="senha-entrar" name="senha" type="password" autocomplete="current-password" placeholder="Sua senha" required>
+          <button class="mostrar-senha" type="button" data-toggle-password="senha-entrar" aria-label="Mostrar senha" title="Mostrar senha">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+
+        <button class="botao" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <p class="atalho-perfil-demo">Quer só visualizar? <a href="saude.html">Abrir a demonstração do perfil de saúde</a></p>
+
+    <aside class="aviso-privacidade nota-demo">
+      <strong>Protótipo visual.</strong> O acesso não cria uma conta. Os campos não são enviados nem salvos; use dados fictícios.
+      <a href="privacidade.html">Como funciona a privacidade nesta demonstração</a>
+    </aside>
+    <a class="voltar" href="index.html">Voltar ao início</a>
+    </div>
+  </main>
+
+  <script>
+document.querySelectorAll("[data-toggle-password]").forEach(botao => {
+      botao.addEventListener("click", () => {
+        const campo = document.getElementById(botao.dataset.togglePassword);
+        const mostrar = campo.type === "password";
+        campo.type = mostrar ? "text" : "password";
+        botao.setAttribute("aria-label", mostrar ? "Ocultar senha" : "Mostrar senha");
+        botao.title = mostrar ? "Ocultar senha" : "Mostrar senha";
+      });
+    });
+        const abas = document.querySelectorAll(".aba-conta");
+    const painis = {
+      criar: document.getElementById("painel-criar"),
+      entrar: document.getElementById("painel-entrar")
+    };
+    function mostrarPainel(nome) {
+      for (const chave of Object.keys(painis)) painis[chave].hidden = chave !== nome;
+      for (const aba of abas) {
+        const ativa = aba.id === "aba-" + nome;
+        aba.classList.toggle("selecionada", ativa);
+        aba.setAttribute("aria-selected", String(ativa));
+      }
+    }
+    document.getElementById("aba-criar").addEventListener("click", () => mostrarPainel("criar"));
+    document.getElementById("aba-entrar").addEventListener("click", () => mostrarPainel("entrar"));
+    document.getElementById("form-criar").addEventListener("submit", event => {
+      event.preventDefault();
+      try { sessionStorage.setItem("velary_acesso_demo", "1"); } catch {}
+      window.location.href = "saude.html?entrada=1";
+    });
+    document.getElementById("form-entrar").addEventListener("submit", event => {
+      event.preventDefault();
+      try { sessionStorage.setItem("velary_acesso_demo", "1"); } catch {}
+      window.location.href = "acompanhamento.html?entrada=1&destino=inicio";
+    });
+    document.getElementById("foto").addEventListener("change", event => {
+      const arquivo = event.target.files && event.target.files[0];
+      const previa = document.getElementById("previa-foto");
+      if (!arquivo) { previa.hidden = true; previa.removeAttribute("src"); return; }
+      previa.src = URL.createObjectURL(arquivo);
+      previa.hidden = false;
+    });
+  </script>
 </body>
 </html>

@@ -1,57 +1,90 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velary - Notícias & Artigos</title>
+    <meta name="description" content="Notícias recentes e fontes confiáveis sobre saúde feminina, prevenção e autocuidado.">
+    <title>Artigos e notícias | Velary</title>
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="css/marca-dagua.css">
+    <style>
+        body { background:#fff8fb; color:#44333d; }
+        .cabecalho-noticias { position:relative; padding:16px max(22px,calc((100% - 1080px)/2)); display:flex; align-items:center; justify-content:space-between; gap:24px; background:rgba(255,255,255,.96); }
+        .cabecalho-noticias nav { display:flex; flex-wrap:wrap; gap:18px; }
+        .cabecalho-noticias nav a { margin:0; }
+        .marca-texto { color:#a92059; text-decoration:none; font:700 1.8rem Georgia,serif; }
+        main { width:min(1000px,calc(100% - 36px)); margin:54px auto 72px; }
+        .intro { max-width:720px; margin:0 auto 32px; text-align:center; }
+        .intro h1 { color:#a92059; font:600 clamp(2.5rem,6vw,3.8rem)/1.1 Georgia,serif; margin-bottom:12px; }
+        .intro p { color:#71636a; line-height:1.7; }
+        .lista-artigos { display:grid; gap:20px; }
+        .artigo { padding:clamp(22px,4vw,34px); border:1px solid #f0dce5; border-radius:18px; background:rgba(255,255,255,.94); box-shadow:0 8px 24px rgba(109,39,64,.06); }
+        .artigo time { color:#a92059; font-size:.9rem; font-weight:800; }
+        .artigo h2 { margin:9px 0 12px; color:#46343d; font:700 clamp(1.35rem,3vw,1.75rem)/1.25 'Segoe UI',Arial,sans-serif; }
+        .artigo p { margin:0 0 16px; color:#62565c; line-height:1.75; }
+        .artigo a, .voltar { color:#a92059; font-weight:800; text-decoration:none; }
+        .artigo a:hover, .voltar:hover { text-decoration:underline; }
+        .nota { margin-top:28px; padding:18px 20px; border-left:4px solid #d63378; border-radius:8px; background:rgba(255,255,255,.9); color:#665760; }
+        .voltar-wrap { margin-top:32px; text-align:center; }
+        @media(max-width:650px) { .cabecalho-noticias { align-items:flex-start; flex-direction:column; } .cabecalho-noticias nav { gap:10px 16px; } main { margin-top:34px; } }
+    </style>
 </head>
 <body>
-
-    <header>
-        <a href="home.html"><img src="https://github.com/user-attachments/assets/430aff38-7e6b-4f70-b4de-b6e8bf20b5bc" alt="Velary Logo" class="header-logo"></a>
-        <nav>
-            <a href="home.html#inicio">Início</a>
-            <a href="home.html#diario">Diário Emocional</a>
-            <a href="home.html#servicos">Fases</a>
-            <a href="home.html#conteudos">Conteúdos</a>
-            <a href="https://wa.me/5542998178060?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Velary." target="_blank">Contato</a>
+    <header class="cabecalho-noticias">
+        <a href="index.html" class="marca-texto">Velary</a>
+        <nav aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="temas.html">Temas</a>
+            <a href="noticias.html" aria-current="page">Artigos e notícias</a>
+            <a href="videos.html">Vídeos</a>
         </nav>
     </header>
 
-    <section style="padding: 120px 40px 60px 40px; max-width: 800px; margin: 0 auto; background-color: #ffffff;">
-        <h1 style="color: #d15b7d; font-size: 2.5rem; margin-bottom: 10px; text-align: center;">Notícias & Artigos</h1>
-        <p style="color: #888; text-align: center; margin-bottom: 50px; font-size: 1.1rem;">Fique por dentro de conteúdos explicados de forma simples por nossos especialistas.</p>
+    <main>
+        <section class="intro">
+            <h1>Artigos e notícias</h1>
+            <p>Informações recentes sobre saúde feminina, resumidas a partir de fontes oficiais e científicas. Consulte a publicação original para ver detalhes e orientações completas.</p>
+        </section>
 
-        <article style="background-color: #fff9fa; padding: 30px; border-radius: 15px; border: 1px solid #FCC1D6; margin-bottom: 30px;">
-            <span style="font-size: 0.85rem; color: #d15b7d; font-weight: bold; display: block; margin-bottom: 10px;">🚀 TECNOLOGIA E SAÚDE DA MULHER</span>
-            <h2 style="color: #444; margin-bottom: 15px;">Female-RHINO: Inteligência Artificial mapeia saúde uterina em tempo real</h2>
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">Um novo estudo científico internacional apresentou a ferramenta <strong>Female-RHINO</strong>, um sistema avançado de IA integrado diretamente a exames de Ressonância Magnética. Ele é capaz de medir automaticamente o volume do útero e detetar com extrema precisão achados comuns na rotina médica, como miomas uterinos e cistos, gerando relatórios automatizados. Essa inovação promete agilizar diagnósticos e melhorar o acompanhamento da saúde reprodutiva e hormonal feminina.</p>
-            <a href="https://arxiv.org/abs/2606.24390?utm_source=chatgpt.com" target="_blank" style="color: #d15b7d; font-weight: bold; text-decoration: none; font-size: 0.9rem;">Ler publicação científica original no arXiv →</a>
-        </article>
+        <section class="lista-artigos" aria-label="Publicações recentes">
+            <article class="artigo">
+                <time datetime="2026-10-19">19 de outubro de 2026 · Prevenção</time>
+                <h2>Outubro Rosa: informação confiável ajuda na prevenção do câncer de mama</h2>
+                <p>O Ministério das Mulheres destaca que conhecer o próprio corpo ajuda a perceber mudanças, mas não substitui os exames de rastreamento nem a avaliação profissional. A publicação também orienta a buscar atendimento diante de alterações suspeitas e a conversar com a equipe de saúde sobre os exames adequados para cada idade e situação.</p>
+                <a href="https://www.gov.br/mulheres/pt-br/central-de-conteudos/noticias/2026/outubro-defeso-eleitoral/outubro-rosa-desinformacao-ainda-dificulta-a-prevencao-e-o-diagnostico-precoce-do-cancer-de-mama" target="_blank" rel="noopener noreferrer">Ler a publicação do Ministério das Mulheres</a>
+            </article>
 
-        <article style="background-color: #fff9fa; padding: 30px; border-radius: 15px; border: 1px solid #FCC1D6; margin-bottom: 30px;">
-            <span style="font-size: 0.85rem; color: #d15b7d; font-weight: bold; display: block; margin-bottom: 10px;">📅 NUTRIÇÃO HORMONAL</span>
-            <h2 style="color: #444; margin-bottom: 15px;">Alimentação e Ciclo Hormonal: O que comer em cada fase?</h2>
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">Você sabia que as suas necessidades nutricionais mudam ao longo do mês? Na fase folicular, alimentos mais leves e frescos ajudam na energia. Já no período pós-ovulatório, aumentar a ingestão de magnésio e gorduras boas pode reduzir drasticamente os sintomas clássicos de oscilação de humor e cansaço físico.</p>
-            <a href="https://bvsms.saude.gov.br/" target="_blank" style="color: #d15b7d; font-weight: bold; text-decoration: none; font-size: 0.9rem;">Ler artigo científico completo no Ministério da Saúde →</a>
-        </article>
+            <article class="artigo">
+                <time datetime="2026-10-01">1º de outubro de 2026 · Endometriose</time>
+                <h2>Planos de saúde passam a cobrir DIU hormonal em situações previstas para endometriose</h2>
+                <p>A ANS informou que a cobertura obrigatória do dispositivo ou sistema intrauterino hormonal entrou em vigor em 1º de outubro. A regra se aplica às situações previstas na diretriz da agência, incluindo contraindicação ou não adesão a contraceptivos orais combinados. A indicação deve ser avaliada por profissional de saúde.</p>
+                <a href="https://www.gov.br/ans/pt-br/assuntos/noticias-1/periodo-eleitoral/planos-de-saude-passam-a-cobrir-diu-hormonal-para-tratamento-da-endometriose/" target="_blank" rel="noopener noreferrer">Ler a publicação da ANS</a>
+            </article>
 
-        <article style="background-color: #fff9fa; padding: 30px; border-radius: 15px; border: 1px solid #FCC1D6; margin-bottom: 40px;">
-            <span style="font-size: 0.85rem; color: #d15b7d; font-weight: bold; display: block; margin-bottom: 10px;">📅 BEM-ESTAR & MATURIDADE</span>
-            <h2 style="color: #444; margin-bottom: 15px;">A importância da rotina de sono e descanso no Climatério</h2>
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">Durante as transições hormonais da maturidade, a regulação do sono se torna um pilar essencial para a qualidade de vida. Criar um ambiente escuro, reduzir o uso de telas antes de deitar e praticar a higiene do sono ajuda a equilibrar o cortisol e a melatonina, garantindo dias mais produtivos e menos estressantes.</p>
-            <a href="https://bvsms.saude.gov.br/" target="_blank" style="color: #d15b7d; font-weight: bold; text-decoration: none; font-size: 0.9rem;">Ler artigo científico completo no Ministério da Saúde →</a>
-        </article>
+            <article class="artigo">
+                <time datetime="2026-09-30">30 de setembro de 2026 · Climatério e menopausa</time>
+                <h2>Como buscar acompanhamento para o climatério e a menopausa no SUS</h2>
+                <p>O Ministério das Mulheres explica que o acompanhamento pode começar durante a transição, antes da última menstruação. A equipe da Unidade Básica de Saúde pode avaliar sintomas, orientar e discutir cuidados conforme as necessidades de cada pessoa. A menopausa é identificada após 12 meses consecutivos sem menstruar.</p>
+                <a href="https://www.gov.br/mulheres/pt-br/central-de-conteudos/noticias/2026/setembro-defeso-eleitoral/climaterio-e-menopausa-saiba-quando-e-como-buscar-atendimento-no-sus" target="_blank" rel="noopener noreferrer">Ler a publicação do Ministério das Mulheres</a>
+            </article>
 
-        <div style="text-align: center;">
-            <a href="home.html" style="display: inline-block; background-color: #d15b7d; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: background 0.2s;" onmouseover="this.style.backgroundColor='#b34663'" onmouseout="this.style.backgroundColor='#d15b7d'">Voltar para a Home</a>
-        </div>
-    </section>
+            <article class="artigo">
+                <time datetime="2026-09-23">23 de setembro de 2026 · Saúde sexual e reprodutiva</time>
+                <h2>OMS publica recomendações para ampliar opções contraceptivas</h2>
+                <p>A Organização Mundial da Saúde publicou orientações para ampliar o acesso a métodos contraceptivos seguros e eficazes. A escolha depende das necessidades e preferências de cada pessoa; profissionais de saúde podem explicar benefícios, limites e formas de uso de cada método.</p>
+                <a href="https://www.who.int/news/item/23-09-2026-who-expands-safe-options-for-contraception" target="_blank" rel="noopener noreferrer">Ler a publicação da OMS</a>
+            </article>
 
-    <a href="https://wa.me/5542998178060?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Velary." class="whatsapp-flutuante" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Velary" style="width: 35px; height: 35px; display: block;">
-    </a>
+            <article class="artigo">
+                <time datetime="2026-09-08">8 de setembro de 2026 · Fertilidade</time>
+                <h2>OMS reúne evidências sobre tabagismo e fertilidade</h2>
+                <p>Uma atualização da OMS resume evidências de que fumar pode estar associado a dificuldades de fertilidade em mulheres e homens, além de afetar os resultados de alguns tratamentos. A OMS recomenda que pessoas planejando uma gravidez recebam informação e apoio baseado em evidências para parar de fumar.</p>
+                <a href="https://www.who.int/news/item/08-09-2026-tobacco-smoking-may-be-harming-your-chances-of-having-a-baby" target="_blank" rel="noopener noreferrer">Ler a publicação da OMS</a>
+            </article>
+        </section>
 
+        <p class="nota"><strong>Nota:</strong> esta página tem finalidade educativa e não substitui consulta, diagnóstico ou tratamento individual.</p>
+        <div class="voltar-wrap"><a class="voltar" href="index.html">Voltar para a página inicial</a> · <a class="voltar" href="premium.html">Ideias para o Premium</a></div>
+    </main>
 </body>
 </html>

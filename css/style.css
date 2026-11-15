@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E RESET
-   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -9,11 +6,29 @@
     scroll-behavior: smooth;
 }
 
-body {
-    background-color: #fdfbfb;
-    color: #333;
-    line-height: 1.6;
+
+/* TÍTULOS COM LETRAS MAIS DESENHADAS */
+
+.hero h1,
+.section-heading h2,
+.video-info h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.7px;
 }
+
+.hero h1 span {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-style: italic;
+    font-weight: 600;
+}
+
+body {
+    font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
 
 hr.divider {
     border: none;
@@ -40,8 +55,8 @@ hr.divider {
     text-align: center;
 }
 
-/* ==========================================================================
-   2. CABEÇALHO E NAVEGAÇÃO
+    /* ==========================================================================
+    2. CABEÇALHO E NAVEGAÇÃO
    ========================================================================== */
 header {
     background-color: #ffffff;
@@ -55,9 +70,11 @@ header {
     z-index: 1000;
 }
 
-.header-logo {
-    height: 45px;
-    width: auto;
+.logo-velary {
+    width: 160px;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 .nav-container {
@@ -141,8 +158,8 @@ header {
     display: block;
 }
 
-/* ==========================================================================
-   3. SEÇÃO HERO (BOAS-VINDAS) & SOBRE
+    /* ==========================================================================
+    3. SEÇÃO HERO (BOAS-VINDAS) & SOBRE
    ========================================================================== */
 .hero-section {
     display: flex;
@@ -178,9 +195,9 @@ header {
     margin-bottom: 15px;
 }
 
-/* ==========================================================================
-   4. SEÇÃO DE PLANOS / PREÇOS
-   ========================================================================== */
+    /* ==========================================================================
+    4. SEÇÃO DE PLANOS / PREÇOS
+    ========================================================================== */
 .section-planos {
     padding: 60px 20px;
     background-color: #ffffff;
@@ -309,9 +326,9 @@ header {
     box-shadow: 0 6px 16px rgba(209, 91, 125, 0.4);
 }
 
-/* ==========================================================================
-   5. DIÁRIO EMOCIONAL
-   ========================================================================== */
+    /* ==========================================================================
+    5. DIÁRIO EMOCIONAL
+    ========================================================================== */
 .section-diario {
     padding: 40px 20px;
     display: flex;
@@ -377,9 +394,9 @@ header {
     color: #d15b7d;
 }
 
-/* ==========================================================================
-   6. FASES DE CUIDADO
-   ========================================================================== */
+    /* ==========================================================================
+    6. FASES DE CUIDADO
+    ========================================================================== */
 .section-fases {
     padding: 80px 40px;
     text-align: center;
@@ -438,9 +455,9 @@ header {
     font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   7. CONTEÚDOS E BEM-ESTAR (SPOTIFY, VÍDEO, ARTIGOS)
-   ========================================================================== */
+    /* ==========================================================================
+    7. CONTEÚDOS E BEM-ESTAR (SPOTIFY, VÍDEO, ARTIGOS)
+    ========================================================================== */
 .section-conteudos {
     padding: 80px 40px;
     text-align: center;
@@ -556,8 +573,8 @@ header {
     margin-top: auto;
 }
 
-/* ==========================================================================
-   8. BOTÃO FLUTUANTE DO WHATSAPP
+    /* ==========================================================================
+    8. BOTÃO FLUTUANTE DO WHATSAPP
    ========================================================================== */
 .whatsapp-flutuante {
     position: fixed;
@@ -585,9 +602,9 @@ header {
     background-color: #20ba5a;
 }
 
-/* ==========================================================================
-   9. RESPONSIVIDADE (DISPOSITIVOS MÓVEIS)
-   ========================================================================== */
+    /* ==========================================================================
+    9. RESPONSIVIDADE (DISPOSITIVOS MÓVEIS)
+    ========================================================================== */
 @media (max-width: 768px) {
     header {
         padding: 15px 20px;
@@ -616,4 +633,18 @@ header {
         background-color: #fff5f7;
         width: 100%;
     }
+}
+.logo-velary {
+    width: 90px;
+    max-width: 90px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+img[src*="logovelary.png"] {
+    width: 80px !important;
+    max-width: 80px !important;
+    height: auto !important;
+    object-fit: contain;
+    display: block;
 }

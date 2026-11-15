@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore os temas de saúde feminina do Velary. Cada tema tem uma página própria.">
+  <title>Temas | Velary</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+  <style>
+    :root { --rosa:#d63378; --rosa-escuro:#a92059; --texto:#45353c; --fundo:#fff8fb; --borda:#f0dce5; }
+    * { box-sizing:border-box; }
+    body { position:relative; isolation:isolate; margin:0; background:var(--fundo); color:var(--texto); font-family:'Nunito Sans',Arial,sans-serif; line-height:1.65; }
+header, footer { position:relative; z-index:1; background:rgba(255,255,255,.94); border-bottom:1px solid var(--borda); }
+    .barra { width:min(1120px, calc(100% - 40px)); margin:auto; min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .marca { color:var(--rosa-escuro); text-decoration:none; font-weight:800; font-size:1.2rem; }
+    nav { display:flex; gap:20px; flex-wrap:wrap; } nav a { color:var(--texto); text-decoration:none; font-weight:700; } nav a:hover { color:var(--rosa); }
+    main { width:min(1120px, calc(100% - 40px)); margin:56px auto 72px; }
+    .intro { max-width:860px; margin-bottom:32px; }
+    .etiqueta { color:var(--rosa-escuro); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; }
+    h1,h2 { font-family:'Cormorant Garamond',Georgia,serif; color:var(--rosa-escuro); line-height:1.1; }
+    h1 { font-size:clamp(1.9rem,3.5vw,2.6rem); line-height:1.15; margin:10px 0; } .intro p { max-width:760px; font-size:1rem; line-height:1.65; }
+    .grade { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .tema { display:flex; flex-direction:column; align-items:flex-start; min-height:220px; background:rgba(255,255,255,.91); border:1px solid var(--borda); border-radius:18px; padding:22px; text-decoration:none; color:inherit; box-shadow:0 8px 24px #6d27400a; transition:transform .2s,box-shadow .2s; }
+    .tema:hover,.tema:focus-visible { transform:translateY(-3px); box-shadow:0 12px 30px #6d274018; outline:2px solid #e7a0bd; }
+    .tema h2 { font-size:1.65rem; margin:10px 0 4px; } .tema p { margin:0 0 16px; } .acao { margin-top:auto; color:var(--rosa-escuro); font-weight:800; }
+    footer { text-align:center; padding:24px; background:#fff; color:#74656b; border-top:1px solid var(--borda); }
+    @media(max-width:800px) { .grade { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:540px) {
+      .barra { padding:14px 0; align-items:flex-start; flex-direction:column; }
+      nav { gap:12px; }
+      main { margin-top:36px; }
+      .grade { grid-template-columns:1fr; }
+    }
+  </style>
+    <link rel="stylesheet" href="css/marca-dagua.css">
+</head>
+<body>
+  <header>
+    <div class="barra">
+      <a class="marca" href="index.html">Velary</a>
+      <nav aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="temas.html" aria-current="page">Temas</a>
+        <a href="noticias.html">Artigos e notícias</a>
+        <a href="videos.html">Vídeos</a>
+        <a href="index.html#sobre">Sobre</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="intro">
+      <span class="etiqueta">Informação, acolhimento e autocuidado</span>
+      <h1>Temas para acompanhar você</h1>
+      <p>Explore o assunto que faz sentido para você. Cada tema abre uma página própria, para que as informações fiquem organizadas e a navegação seja simples.</p>
+    </div>
+    <section class="grade" aria-label="Temas de saúde feminina">
+      <a class="tema" href="primeiro-ciclo.html"><h2>Primeiro ciclo e menarca</h2><p>Puberdade, primeira menstruação e mudanças do corpo.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="saude-integral.html"><h2>Saúde integral</h2><p>Prevenção, saúde íntima e autocuidado no dia a dia.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="endometriose.html"><h2>Endometriose</h2><p>Informações sobre sintomas possíveis e acompanhamento profissional.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="sop.html"><h2>SOP</h2><p>Conheça a síndrome dos ovários policísticos e formas de buscar avaliação.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="tentantes.html"><h2>Tentantes e fertilidade</h2><p>Fertilidade e planejamento reprodutivo.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="gestacao.html"><h2>Gestação</h2><p>Gravidez, pré-natal e cuidados durante a gestação.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="menopausa.html"><h2>Climatério e menopausa</h2><p>Mudanças e cuidados durante essa etapa da vida.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="maturidade.html"><h2>Maturidade</h2><p>Saúde, qualidade de vida e autocuidado.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="vida-sexual.html"><h2>Vida sexual</h2><p>Saúde sexual, prevenção, consentimento e diálogo.</p><span class="acao">Acessar página →</span></a>
+      <a class="tema" href="assistente.html"><h2>Assistente Velary</h2><p>Conheça a interface em preparação e encontre páginas úteis enquanto a conversa não está ativa.</p><span class="acao">Ver a interface</span></a>
+    </section>
+  </main>
+  <footer>Velary — educação em saúde feminina e autocuidado. <a href="premium.html">Conheça ideias para o Premium</a>.</footer>
+</body>
+</html>

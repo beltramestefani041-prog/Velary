@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8fb">
+  <title>Meu acompanhamento | Velary</title>
+  <link rel="stylesheet" href="css/acompanhamento.css">
+  <link rel="stylesheet" href="css/velary-intro.css">
+  <script src="velary-intro.js" defer></script>
+</head>
+<body class="acompanhamento pagina-dashboard">
+  <dialog class="velary-intro" id="velary-intro" aria-labelledby="velary-intro-title" aria-describedby="velary-intro-description" hidden>
+    <h2 class="velary-intro__sr-only" id="velary-intro-title">Velary — cuidando de você em cada fase</h2>
+    <p class="velary-intro__sr-only" id="velary-intro-description">Animação de abertura. A flor se abre e revela a marca Velary.</p>
+    <button class="velary-intro__skip" type="button" autofocus>Pular animação</button>
+    <div class="velary-intro__stage" aria-hidden="true">
+      <svg class="velary-intro__art" viewBox="0 0 1774 887" role="presentation" focusable="false">
+        <defs>
+          <linearGradient id="velary-petal" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f16b9d" />
+            <stop offset="1" stop-color="#d63378" />
+          </linearGradient>
+        </defs>
+        <g class="velary-intro__petal petal-top"><path d="M376 286C326 242 334 174 379 122c48 58 47 126 9 165Z" /></g>
+        <g class="velary-intro__petal petal-upper-left"><path d="M340 294c-64-4-104-39-125-83 63-5 113 18 145 70Z" /></g>
+        <g class="velary-intro__petal petal-upper-right"><path d="M401 281c30-59 79-86 137-77-24 58-68 91-126 101Z" /></g>
+        <g class="velary-intro__petal petal-right"><path d="M414 312c63-29 119-13 157 31-51 36-108 32-159 5Z" /></g>
+        <g class="velary-intro__petal petal-lower-right"><path d="M405 349c55 31 80 81 69 137-57-26-88-71-91-127Z" /></g>
+        <g class="velary-intro__petal petal-lower-left"><path d="M352 353c-46 44-66 98-47 151 52-36 78-83 74-139Z" /></g>
+        <g class="velary-intro__petal petal-left"><path d="M334 330c-57 39-113 37-159 12 38-50 94-66 155-39Z" /></g>
+        <path class="velary-intro__core" d="M376 285c-20 0-40 23-40 54 0 30 20 50 40 50s40-20 40-50c0-31-20-54-40-54Z" />
+
+        <path class="velary-intro__stem" d="M378 386c8 62 48 107 29 184-10 43-42 75-50 125" />
+        <g class="velary-intro__arm arm-left">
+          <path d="M392 548c-64-55-137-80-199-68 25 62 101 91 199 68Z" />
+          <path class="velary-intro__vein" d="M389 546c-55-31-111-52-177-64" />
+        </g>
+        <g class="velary-intro__arm arm-right">
+          <path d="M393 548c61-58 127-87 195-78-21 65-96 99-195 78Z" />
+          <path class="velary-intro__vein" d="M396 546c47-36 106-60 172-74" />
+        </g>
+
+        <text class="velary-intro__wordmark" x="610" y="506">VELARY</text>
+        <path class="velary-intro__rule" d="M610 565h402m94 0h402" />
+        <path class="velary-intro__heart" d="M1060 583c-24-20-42-43-42-59 0-20 27-29 42-8 15-21 42-12 42 8 0 16-18 39-42 59Z" />
+        <text class="velary-intro__tagline" x="1110" y="647" text-anchor="middle">Cuidando de você em cada fase</text>
+      </svg>
+    </div>
+  </dialog>
+
+  <header class="barra-app">
+    <div class="marca-perfil">
+      <a class="marca" href="index.html">Velary</a>
+      <a href="saude.html" aria-current="page">Perfil</a>
+    </div>
+    <nav aria-label="Navegação principal">
+      <a href="atendimento.html">Consulta preventiva</a>
+      <a href="privacidade.html">Privacidade</a>
+      <a href="index.html">Início</a>
+    </nav>
+  </header>
+
+  <main class="conteudo-app">
+    <section class="cabecalho-app">
+      <div>
+        <p class="etiqueta">Seu acompanhamento</p>
+        <h1>Seu ciclo, no seu ritmo</h1>
+        <p class="texto-suave">Um espaço para observar padrões e registrar como você se sente.</p>
+      </div>
+    </section>
+
+    <div class="aviso-privacidade nota-demo">
+      <strong>Demonstração visual com informações fictícias.</strong> Nada do que você digitar será enviado ou salvo. Os exemplos abaixo não são dados de uma pessoa real.
+    </div>
+
+    <section class="duas-colunas cartoes-resumo" aria-label="Resumo do ciclo demonstrativo">
+      <article class="painel cartao-ciclo">
+        <p class="etiqueta">Ciclo de exemplo</p>
+        <h2>Dia 10</h2>
+        <p>Última menstruação: <strong>19 de outubro</strong></p>
+        <div class="trilha-ciclo" aria-label="Dia 10 de um ciclo ilustrativo de 28 dias">
+          <span></span>
+        </div>
+        <small>Visualização ilustrativa de um ciclo de 28 dias.</small>
+      </article>
+
+      <article class="painel cartao-ciclo cartao-previsao">
+        <p class="etiqueta">Próxima previsão</p>
+        <h2>16 de novembro</h2>
+        <p>Estimativa de exemplo, baseada em um ciclo fictício.</p>
+        <a class="link-simples" href="saude.html">Ver dados do ciclo</a>
+      </article>
+    </section>
+
+    <div class="duas-colunas">
+      <section class="painel">
+        <div class="linha-titulo">
+          <h2>Como você está?</h2>
+          <span class="selo-exemplo">Registro de demonstração</span>
+        </div>
+        <p>Escolha um sintoma e registre a intensidade para ver como a lista fica.</p>
+        <form class="formulario" id="form-sintoma">
+          <label for="tipo-sintoma">Sintoma</label>
+          <select id="tipo-sintoma" name="tipo-sintoma" required>
+            <option value="">Escolha uma opção</option>
+            <option>Cólica</option>
+            <option>Dor de cabeça</option>
+            <option>Cansaço</option>
+            <option>Alteração de humor</option>
+            <option>Fluxo menstrual</option>
+            <option>Outro</option>
+          </select>
+
+          <label for="intensidade">Intensidade</label>
+          <select id="intensidade" name="intensidade" required>
+            <option value="">Selecione</option>
+            <option value="1">1 — Leve</option>
+            <option value="2">2</option>
+            <option value="3">3 — Moderada</option>
+            <option value="4">4</option>
+            <option value="5">5 — Intensa</option>
+          </select>
+
+          <label for="data-sintoma">Data</label>
+          <input id="data-sintoma" name="data-sintoma" type="date" required>
+          <button class="botao" type="submit">Adicionar à demonstração</button>
+        </form>
+        <p class="texto-rodape-demo" id="aviso-registro" aria-live="polite">O item aparece nesta tela até você atualizar ou fechar a página.</p>
+      </section>
+
+      <section class="painel">
+        <h2>Registros recentes</h2>
+        <ul class="lista-registros" id="lista-sintomas" aria-live="polite">
+          <li><span><strong>Cólica</strong><small class="detalhe-registro">Intensidade leve · exemplo</small></span><time>23 out</time></li>
+          <li><span><strong>Cansaço</strong><small class="detalhe-registro">Intensidade moderada · exemplo</small></span><time>21 out</time></li>
+        </ul>
+        <p class="texto-rodape-demo">Estes dois registros também são fictícios.</p>
+      </section>
+    </div>
+
+        <section class="duas-colunas modulos-humor" id="humor">
+      <article class="painel">
+        <h2>Humor</h2>
+        <p>Um registro opcional para observar como você se sente ao longo do ciclo.</p>
+        <form class="formulario formulario-demo-modelo" id="form-humor">
+          <label for="tipo-humor">Como está seu humor?</label>
+          <select id="tipo-humor" required><option value="">Selecione</option><option>Tranquila</option><option>Animada</option><option>Ansiosa</option><option>Triste</option><option>Irritada</option><option>Outro</option></select>
+          <label for="nivel-humor">Intensidade</label>
+          <select id="nivel-humor" required><option value="">Selecione</option><option>1 — Leve</option><option>2</option><option>3 — Moderada</option><option>4</option><option>5 — Intensa</option></select>
+          <label for="data-humor">Data do registro</label>
+          <input id="data-humor" type="date" required>
+          <button class="botao" type="submit">Registrar humor (demonstração)</button>
+          <p class="texto-rodape-demo" aria-live="polite">Os registros aparecem nesta lista durante esta sessão e desaparecem ao atualizar ou fechar a página.</p>
+        </form>
+        <ul class="lista-registros" id="lista-humor" aria-label="Registros de humor desta sessão">
+          <li class="registro-vazio">Nenhum registro nesta sessão ainda.</li>
+        </ul>
+      </article>
+
+      <article class="painel">
+        <h2>Diário emocional</h2>
+        <p>Se quiser, registre um desafio, algo positivo e seu nível de energia.</p>
+        <form class="formulario formulario-demo-modelo" id="form-diario">
+          <label for="data-diario">Data</label>
+          <input id="data-diario" type="date" required>
+          <label for="desafio-diario">Desafio do dia (opcional)</label>
+          <input id="desafio-diario" type="text" placeholder="Uma palavra ou frase">
+          <label for="gratidao-diario">Algo pelo qual sente gratidão (opcional)</label>
+          <input id="gratidao-diario" type="text">
+          <label for="energia-diario">Energia (opcional)</label>
+          <select id="energia-diario"><option value="">Selecione</option><option>1 — Baixa</option><option>2</option><option>3 — Média</option><option>4</option><option>5 — Alta</option></select>
+          <label for="obs-diario">Observações (opcional)</label>
+          <textarea id="obs-diario" rows="3"></textarea>
+          <button class="botao" type="submit">Adicionar ao diário (demonstração)</button>
+          <p class="texto-rodape-demo" aria-live="polite">O diário aparece nesta lista durante esta sessão e desaparece ao atualizar ou fechar a página.</p>
+        </form>
+        <ul class="lista-registros" id="lista-diario" aria-label="Registros do diário emocional desta sessão">
+          <li class="registro-vazio">Nenhum registro nesta sessão ainda.</li>
+        </ul>
+      </article>
+    </section>
+
+<footer class="rodape-app">
+      <a href="privacidade.html">Privacidade e uso de dados</a>
+    </footer>
+  </main>
+
+  <script>
+    const formulario = document.getElementById("form-sintoma");
+    const lista = document.getElementById("lista-sintomas");
+    formulario.addEventListener("submit", event => {
+      event.preventDefault();
+      const sintoma = document.getElementById("tipo-sintoma").value;
+      const intensidade = document.getElementById("intensidade");
+      const data = document.getElementById("data-sintoma").value;
+      const [ano, mes, dia] = data.split("-");
+      const item = document.createElement("li");
+      const texto = document.createElement("span");
+      const nome = document.createElement("strong");
+      const detalhe = document.createElement("small");
+      const quando = document.createElement("time");
+      nome.textContent = sintoma;
+      detalhe.className = "detalhe-registro";
+      detalhe.textContent = "Intensidade " + intensidade.options[intensidade.selectedIndex].text.split(" — ").pop() + " · demonstração";
+      quando.textContent = dia + "/" + mes;
+      quando.dateTime = data;
+      texto.append(nome, detalhe);
+      item.append(texto, quando);
+      lista.prepend(item);
+      formulario.reset();
+      document.getElementById("aviso-registro").textContent = "Adicionado só nesta tela. Atualize a página para limpar os dados de demonstração.";
+    });
+    function dataEmPortugues(data) {
+      if (!data) return "Data não informada";
+      const [ano, mes, dia] = data.split("-");
+      return dia + "/" + mes + "/" + ano;
+    }
+
+    function adicionarRegistroEmocional(listaId, data, titulo, detalhes) {
+      const listaRegistros = document.getElementById(listaId);
+      listaRegistros.querySelector(".registro-vazio")?.remove();
+
+      const item = document.createElement("li");
+      const texto = document.createElement("span");
+      const nome = document.createElement("strong");
+      const detalhe = document.createElement("small");
+      const quando = document.createElement("time");
+
+      nome.textContent = titulo;
+      detalhe.className = "detalhe-registro";
+      detalhe.textContent = detalhes;
+      quando.textContent = dataEmPortugues(data);
+      if (data) quando.dateTime = data;
+      texto.append(nome, detalhe);
+      item.append(texto, quando);
+      listaRegistros.prepend(item);
+    }
+
+    document.getElementById("form-humor").addEventListener("submit", event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const humor = document.getElementById("tipo-humor").value;
+      const intensidade = document.getElementById("nivel-humor").selectedOptions[0].text;
+      const data = document.getElementById("data-humor").value;
+      adicionarRegistroEmocional("lista-humor", data, humor, intensidade);
+      form.querySelector("[aria-live]").textContent = "Registro adicionado somente nesta sessão. Atualize ou feche a página para limpá-lo.";
+      form.reset();
+    });
+
+    document.getElementById("form-diario").addEventListener("submit", event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const data = document.getElementById("data-diario").value;
+      const desafio = document.getElementById("desafio-diario").value.trim();
+      const gratidao = document.getElementById("gratidao-diario").value.trim();
+      const energia = document.getElementById("energia-diario").value;
+      const observacao = document.getElementById("obs-diario").value.trim();
+      const detalhes = [
+        desafio && "Desafio: " + desafio,
+        gratidao && "Gratidão: " + gratidao,
+        energia && "Energia: " + energia,
+        observacao && "Observação: " + observacao
+      ].filter(Boolean).join(" · ") || "Registro emocional";
+      adicionarRegistroEmocional("lista-diario", data, "Diário emocional", detalhes);
+      form.querySelector("[aria-live]").textContent = "Registro adicionado somente nesta sessão. Atualize ou feche a página para limpá-lo.";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
