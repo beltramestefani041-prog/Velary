@@ -60,6 +60,11 @@ Algumas interações guardam dados no armazenamento local do navegador (`localSt
 - `img/`: imagens e elementos visuais.
 - `videos/`: materiais audiovisuais usados pelo site.
 - `velary-java/`: código-fonte, esquema SQL e configuração Maven do catálogo.
+- `geoly/`: protótipo web independente para análise exploratória de localização comercial.
+
+## Geoly
+
+Protótipo web de análise exploratória de localização comercial, com mapa de bairros de Ponta Grossa e comparação de setores. Projeto acadêmico desenvolvido em colaboração e apresentado em evento de tecnologia; recebeu **3º lugar**. A busca usa correspondência de palavras-chave, sem integração com LLM, e os indicadores por bairro são demonstrativos. Veja [o projeto Geoly](geoly/) e suas instruções.
 
 ## Contribuições e reconhecimento
 
